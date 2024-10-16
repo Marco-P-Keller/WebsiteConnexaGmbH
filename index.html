@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexa GmbH</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+        margin: 0;
+        overflow: auto; /* Ändere 'hidden' zu 'auto' */
+
+        }
+        canvas {
+            display: block;
+        }
+        /* Style for centered text */
+        #centerText {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            font-weight: bold;
+            color: #00FFFF; /* Cyan color matching the network devices */
+            pointer-events: none; /* So the text doesn't block mouse interactions */
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Startseite</a></li>
+            <li><a href="#about">Was wir tun</a></li>
+            <li><a href="#founders">Die Gründer</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="parallax">
+
+        <div id="centerText">Connexa GmbH</div>
+        <div>
+            <canvas id="networkCanvas"></canvas>
+        </div>
+    </section>
+
+
+    <section id="about">
+        <div class="container">
+            <h2>Was wir tun</h2>
+            Unser Startup entwickelt eine innovative Social-Media-Plattform, die den Fokus auf Authentizität und echte Interaktionen legt.
+             Anstatt auf oberflächliche Metriken wie Follower-Zahlen und Likes zu setzen, schaffen wir eine Umgebung, die den echten Austausch zwischen Menschen in den Vordergrund stellt. 
+             Unsere Mission ist es, Social Media neu zu definieren, indem wir eine Plattform anbieten, die frei von Täuschung, Blendern und Manipulationen ist – 
+             für eine vertrauenswürdige und transparente Online-Communit                
+                .</p>
+        </div>
+    </section>
+
+
+    <section id="founders">
+        <div class="container">
+            <h2>Die Gründer</h2>
+            <div class="founders">
+                <div class="founder fade-in">
+                    <img src="founder1.jpg" alt="Gründer 1">
+                    <h3>Janis Papagiorgio</h3>
+                    <p>COO &amp; Mitgründer</p>
+                    <p>Janis ist der technologische Kopf des Unternehmens und entwickelt maßgeschneiderte Lösungen für unsere Kunden.</p>
+                </div>
+                <div class="founder fade-in">
+                    <img src="founder2.jpg" alt="Gründer 2">
+                    <h3>Marco P. Keller</h3>
+                    <p>CEO &amp; Mitgründerin</p>
+                    <p>Marco hat eine Leidenschaft für operative Exzellenz und sorgt dafür, dass alle Unternehmensprozesse reibungslos ablaufen und leitet das Unternehmen mit visionärem Denken und einem Blick für Details.</p>
+                </div>
+                <div class="founder fade-in">
+                    <img src="founder3.jpg" alt="Gründer 3">
+                    <h3>Marius Jörger</h3>
+                    <p>CTO &amp; Mitgründer</p>
+                    <p>Marius ist ein erfahrener Technologieexperte, der die technische Vision unseres Startups leitet und dafür sorgt, dass unsere Plattform innovativ, skalierbar und benutzerfreundlich ist.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Connexa GmbH. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <!-- Skript fo the animation -->
+    <script>
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        let mouseX = 0;
+        let mouseY = 0;
+        let gradientShift = 0;
+
+        // Größe des Canvas auf die gesamte Bildschirmgröße setzen
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Anzahl der Geräte
+        const deviceCount = 100;
+        const devices = [];
+
+        // Mindestabstand zwischen Geräten
+        const minDistance = 50;
+        const maxConnectionDistance = 150;  
+        const maxSpeed = 1.5;  // Erhöhte Geschwindigkeit für schnellere Reaktion
+
+        // Verbindungen speichern
+        const connections = [];
+
+        // Initialisiere die Geräte
+        for (let i = 0; i < deviceCount; i++) {
+            const startX = Math.random() * canvas.width;
+            const startY = Math.random() * canvas.height;
+            devices.push({
+                x: startX,
+                y: startY,
+                dx: (Math.random() - 0.5) * 0.5,
+                dy: (Math.random() - 0.5) * 0.5,
+                anchorX: startX, 
+                anchorY: startY  
+            });
+        }
+
+        // Maus-Position erfassen
+        canvas.addEventListener('mousemove', function(event) {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+        });
+
+        // Funktion zum Zeichnen des Netzwerks
+        function drawNetwork() {
+            // Hintergrund-Farbverlauf, animiert durch leichte Verschiebung
+            const gradient = ctx.createRadialGradient(canvas.width / 2 + gradientShift, canvas.height / 2 + gradientShift, canvas.width / 4, canvas.width / 2, canvas.height / 2, canvas.width);
+            gradient.addColorStop(0, '#00172D');
+            gradient.addColorStop(1, '#002D49');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            gradientShift += 0.05;  // Langsame Bewegung des Hintergrundes
+
+            // Verbindungen zeichnen
+            for (const connection of connections) {
+                const deviceA = devices[connection[0]];
+                const deviceB = devices[connection[1]];
+
+                // Berechne die Distanz zur Maus für Glüheffekte
+                const distanceToMouseA = Math.sqrt(Math.pow(deviceA.x - mouseX, 2) + Math.pow(deviceA.y - mouseY, 2));
+                const distanceToMouseB = Math.sqrt(Math.pow(deviceB.x - mouseX, 2) + Math.pow(deviceB.y - mouseY, 2));
+                const minDistanceToMouse = Math.min(distanceToMouseA, distanceToMouseB);
+
+                // Glüheffekt basierend auf der Nähe zur Maus
+                if (minDistanceToMouse < 40) {
+                    ctx.strokeStyle = `rgba(0, 150, 200, ${1 - minDistanceToMouse / 150})`;  // Gelblich leuchtende Linien in der Nähe der Maus
+                    ctx.lineWidth = 1;
+                } else {
+                    ctx.strokeStyle = 'rgba(0, 150, 200, 0.1)'; // Weiße, transparente Linien weiter weg
+                    ctx.lineWidth = 1;
+                }
+
+                // Zeichne die Verbindungslinie mit Glüheffekt
+                ctx.shadowBlur = minDistanceToMouse < 150 ? 20 : 0;
+                ctx.shadowColor = ctx.strokeStyle;
+                ctx.beginPath();
+                ctx.moveTo(deviceA.x, deviceA.y);
+                ctx.lineTo(deviceB.x, deviceB.y);
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+            }
+
+            // Geräte zeichnen
+            for (const device of devices) {
+                const distanceToMouse = Math.sqrt(Math.pow(device.x - mouseX, 2) + Math.pow(device.y - mouseY, 2));
+
+                // Farbe ändert sich basierend auf der Nähe zur Maus
+                if (distanceToMouse < 150) {
+                    ctx.fillStyle = `rgba(0, 150, 200, ${100 - distanceToMouse / 100})`;  // Gelbliche Farbe, wenn nah an der Maus
+                } else {
+                    ctx.fillStyle = '#00FFFF';  // Cyanfarbe für normale Geräte
+                }
+
+                // Zeichne das Gerät
+                ctx.beginPath();
+                ctx.arc(device.x, device.y, 8, 0, Math.PI * 2, false);
+                ctx.fill();
+
+                // Partikel-Effekt um das Gerät, wenn es nah an der Maus ist
+                // if (distanceToMouse < 100) {
+                //     ctx.beginPath();
+                //     ctx.arc(device.x, device.y, 15, 0, Math.PI * 2, false);
+                //     ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distanceToMouse / 100})`;
+                //     ctx.lineWidth = 2;
+                //     ctx.stroke();
+                // }
+            }
+        }
+
+        // Funktion zur Bewegung der Geräte und zur Interaktion mit der Maus
+        function updateDevicePositions() {
+            // Bewegungen und Interaktionen wie im ursprünglichen Code
+
+            // Neue Verbindungen hinzufügen, wenn Geräte in Reichweite sind
+            for (let i = 0; i < devices.length; i++) {
+                for (let j = i + 1; j < devices.length; j++) {
+                    const distance = Math.sqrt(
+                        Math.pow(devices[i].x - devices[j].x, 2) +
+                        Math.pow(devices[i].y - devices[j].y, 2)
+                    );
+
+                    // Wenn die Geräte nah genug sind und noch nicht verbunden sind, füge sie zur Liste hinzu
+                    if (distance < maxConnectionDistance && !isConnected(i, j)) {
+                        if (Math.random() < 0.4) {  // Zufällige Auswahl von ca. 50 % der Geräte
+                            connections.push([i, j]);  // Verbindung hinzufügen
+                        }
+                    }
+                }
+            }
+
+            // Bewege die Geräte
+            for (let i = 0; i < devices.length; i++) {
+                const device = devices[i];
+
+                // Berechne die Distanz zur Maus
+                const distanceToMouse = Math.sqrt(Math.pow(device.x - mouseX, 2) + Math.pow(device.y - mouseY, 2));
+
+                // Wenn das Gerät in der Nähe der Maus ist, bewegt es sich weg
+                if (distanceToMouse < 150) {
+                    const angle = Math.atan2(device.y - mouseY, device.x - mouseX);
+                    device.dx += Math.cos(angle) * 0.1;  // Stärkere Bewegung weg von der Maus
+                    device.dy += Math.sin(angle) * 0.1;
+                }
+
+                // Begrenze die Geschwindigkeit
+                device.dx = Math.max(Math.min(device.dx, maxSpeed), -maxSpeed);
+                device.dy = Math.max(Math.min(device.dy, maxSpeed), -maxSpeed);
+
+                // Aktualisiere die Position
+                device.x += device.dx;
+                device.y += device.dy;
+
+                // Geräte prallen von den Rändern ab
+                if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
+                if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
+
+                // Berechne die Distanz zum Ankerpunkt
+                const distanceToAnchor = Math.sqrt(Math.pow(device.x - device.anchorX, 2) + Math.pow(device.y - device.anchorY, 2));
+
+                // Wenn das Gerät sich zu weit vom Anker entfernt, ziehe es zurück
+                const maxDistanceFromAnchor = 200;
+                if (distanceToAnchor > maxDistanceFromAnchor) {
+                    const angle = Math.atan2(device.anchorY - device.y, device.anchorX - device.x);
+                    device.dx += Math.cos(angle) * 0.1;
+                    device.dy += Math.sin(angle) * 0.1;
+                }
+
+                // Abstoßungskraft zwischen zu nahen Geräten anwenden
+                for (let j = 0; j < devices.length; j++) {
+                    if (i !== j) {
+                        const otherDevice = devices[j];
+                        const distance = Math.sqrt(Math.pow(device.x - otherDevice.x, 2) + Math.pow(device.y - otherDevice.y, 2));
+
+                        // Wenn die Geräte zu nah beieinander sind, anwenden der Abstoßung
+                        if (distance < minDistance) {
+                            const angle = Math.atan2(device.y - otherDevice.y, device.x - otherDevice.x);
+                            device.dx += Math.cos(angle) * 0.05;
+                            device.dy += Math.sin(angle) * 0.05;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Funktion, um zu prüfen, ob zwei Geräte bereits verbunden sind
+        function isConnected(indexA, indexB) {
+            for (const connection of connections) {
+                if ((connection[0] === indexA && connection[1] === indexB) ||
+                    (connection[0] === indexB && connection[1] === indexA)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Animationsschleife
+        function animate() {
+            updateDevicePositions();
+            drawNetwork();
+            requestAnimationFrame(animate);
+        }
+
+        // Starte die Animation
+        animate();
+
+    </script>
+
+
+<script>
+    // JavaScript for fade-in effect on scroll
+    const faders = document.querySelectorAll('.fade-in');
+
+    const appearOptions = {
+        threshold: 0.3,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                return;
+            } else {
+                entry.target.classList.add('appear');
+                appearOnScroll.unobserve(entry.target);
+            }
+        });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+        appearOnScroll.observe(fader);
+    });
+
+    // Smooth scroll animation for navigation links
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); // Verhindert das sofortige Springen
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            // Sanftes Scrollen zur Zielsektion
+            window.scrollTo({
+                top: targetSection.offsetTop - 60, // Höhe des fixen Menüs berücksichtigen
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+</body>
+</html>
