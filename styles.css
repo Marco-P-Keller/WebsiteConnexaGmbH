@@ -173,4 +173,30 @@ footer p {
     .founders {
         flex-direction: column; /* Stack founders vertically */
     }
+
+    /* Stack the founder cards vertically on mobile */
+    .founders {
+        flex-direction: column; /* Stacks the founders vertically */
+        align-items: center; /* Center the founder cards */
+    }
+
+    .founder {
+        max-width: 90%; /* Make the founder cards take up most of the width on mobile */
+        margin-bottom: 20px; /* Add space between the founder cards */
+    }
+
+    .founder img {
+        width: 120px; /* Reduce the image size on mobile */
+        height: 120px;
+    }
+
+    .founder h3 {
+        font-size: 1.5rem; /* Reduce the font size */
+    }
+
+    .founder p {
+        font-size: 1rem; /* Reduce text size for mobile */
+    }
 }
+
+
