@@ -149,3 +149,28 @@ footer p {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Add media query for mobile devices */
+@media only screen and (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    #home h1 {
+        font-size: 2.5rem; /* Reduce font size for mobile */
+    }
+
+    #about p {
+        font-size: 1rem; /* Adjust text size */
+        padding: 10px;
+    }
+
+    .founder {
+        max-width: 90%; /* Adjust the width of the founders' sections on mobile */
+    }
+
+    .founders {
+        flex-direction: column; /* Stack founders vertically */
+    }
+}

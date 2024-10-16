@@ -107,13 +107,13 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        // Anzahl der Geräte
-        const deviceCount = 100;
+        // Anzahl der Geräte je nach Bildschirmgröße anpassen
+        const deviceCount = window.innerWidth < 768 ? 20 : 100; // 20 Geräte auf Mobilgeräten, 100 auf größeren Bildschirmen
         const devices = [];
 
         // Mindestabstand zwischen Geräten
         const minDistance = 50;
-        const maxConnectionDistance = 150;  
+        const maxConnectionDistance = 150;
         const maxSpeed = 1.5;  // Erhöhte Geschwindigkeit für schnellere Reaktion
 
         // Verbindungen speichern
@@ -129,7 +129,7 @@
                 dx: (Math.random() - 0.5) * 0.5,
                 dy: (Math.random() - 0.5) * 0.5,
                 anchorX: startX, 
-                anchorY: startY  
+                anchorY: startY
             });
         }
 
