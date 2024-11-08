@@ -13,15 +13,13 @@ body {
     overflow: auto; /* Ändere 'hidden' zu 'auto' */
 }
 
-
-
 nav {
     position: fixed;
     top: 0;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.6); /* Transparentes Menü */
     color: #fff;
-    padding: 20px 0;
+    padding: 10px 0;
     text-align: center;
     z-index: 1000;
     transition: background-color 0.3s ease;
@@ -29,10 +27,12 @@ nav {
 
 nav ul {
     list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Ermöglicht das Umschlagen von Elementen bei kleinem Bildschirm */
 }
 
 nav ul li {
-    display: inline;
     margin: 0 15px;
 }
 
@@ -48,7 +48,7 @@ nav ul li a:hover {
 
 section {
     width: 100%;
-    height: 100vh; /* Jede Sektion nimmt die volle Bildschirmhöhe ein */
+    min-height: 100vh; /* Anpassung an Bildschirmhöhe */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,7 +67,6 @@ section {
 #home {
     background-color: #000; /* Schwarzer Hintergrund */
     color: #fff;
-    position: relative;
 }
 
 #home h1 {
@@ -99,7 +98,7 @@ section {
 .founders {
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Ermöglicht das Umschlagen bei kleinem Bildschirm */
 }
 
 .founder {
@@ -120,8 +119,9 @@ section {
 }
 
 .founder img {
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    max-width: 150px;
+    height: auto;
     border-radius: 50%;
     margin-bottom: 20px;
 }
@@ -150,53 +150,99 @@ footer p {
     transform: translateY(0);
 }
 
-/* Add media query for mobile devices */
+/* Media Query für mobile Geräte */
 @media only screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Stapelt die Navigation vertikal auf kleinen Bildschirmen */
+        padding: 0;
+    }
+
     nav ul li {
-        display: block;
         margin: 10px 0;
     }
 
     #home h1 {
-        font-size: 2.5rem; /* Reduce font size for mobile */
+        font-size: 2.5rem; /* Kleinere Schriftgröße für mobile Geräte */
     }
 
     #about p {
-        font-size: 1rem; /* Adjust text size */
+        font-size: 1rem; /* Kleinere Schriftgröße für besseren Lesefluss */
         padding: 10px;
     }
 
-    .founder {
-        max-width: 90%; /* Adjust the width of the founders' sections on mobile */
-    }
-
     .founders {
-        flex-direction: column; /* Stack founders vertically */
-    }
-
-    /* Stack the founder cards vertically on mobile */
-    .founders {
-        flex-direction: column; /* Stacks the founders vertically */
-        align-items: center; /* Center the founder cards */
+        flex-direction: column; /* Stapelt die Gründer-Elemente auf kleineren Bildschirmen */
+        align-items: center;
     }
 
     .founder {
-        max-width: 90%; /* Make the founder cards take up most of the width on mobile */
-        margin-bottom: 20px; /* Add space between the founder cards */
+        max-width: 90%; /* Weitet die Gründer-Elemente auf fast die gesamte Breite */
+        margin-bottom: 20px;
     }
 
     .founder img {
-        width: 120px; /* Reduce the image size on mobile */
-        height: 120px;
+        width: 120px; /* Kleinere Bildgröße für mobile Geräte */
+        height: auto;
     }
 
     .founder h3 {
-        font-size: 1.5rem; /* Reduce the font size */
+        font-size: 1.5rem; /* Kleinere Schriftgröße */
     }
 
     .founder p {
-        font-size: 1rem; /* Reduce text size for mobile */
+        font-size: 1rem; /* Kleinere Textgröße für bessere Lesbarkeit auf kleinen Bildschirmen */
     }
 }
 
+/* Grundstil für die Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
 
+/* Navigationsliste standardmäßig sichtbar */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+nav ul li a:hover {
+    color: #f9a825;
+}
+
+/* Desktop- und Tablet-Ansicht: Navigation bleibt sichtbar */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+/* Mobile Ansicht: Navigation ausblenden */
+@media only screen and (max-width: 768px) {
+    nav ul {
+        display: none; /* Blendet die Navigation auf mobilen Geräten aus */
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
