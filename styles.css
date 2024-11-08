@@ -333,3 +333,23 @@ html {
         max-width: 100%;
     }
 }
+
+/* Navigation: Desktop-Ansicht */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+/* Mobile Ansicht: Komplett ausblenden */
+@media only screen and (max-width: 768px) {
+    nav {
+        display: none; /* Navigation komplett ausblenden im mobilen Modus */
+    }
+}
