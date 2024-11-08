@@ -278,10 +278,11 @@ html {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
+    max-width: 250px;
     flex: 1 1 250px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: left;
+    box-sizing: border-box;
 }
 
 .impressum-card:hover {
@@ -315,11 +316,20 @@ html {
 /* Mobile Anpassungen */
 @media only screen and (max-width: 768px) {
     .impressum-cards {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row; /* Gleiche Richtung beibehalten */
+        flex-wrap: wrap;
     }
 
     .impressum-card {
-        max-width: 90%;
+        flex: 1 1 calc(50% - 20px); /* Halbe Breite für mobile Ansicht mit 20px Abstand */
+        max-width: calc(50% - 20px); /* Maximale Breite von 50% */
+        margin: 10px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .impressum-card {
+        flex: 1 1 100%; /* Volle Breite bei sehr kleinen Bildschirmen */
+        max-width: 100%;
     }
 }
