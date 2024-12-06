@@ -252,3 +252,47 @@ nav.hidden {
     transform: translateY(-100%); /* Navigation nach oben ausblenden */
     opacity: 0; /* Navigation unsichtbar machen */
 }
+/* Standardstil für die Navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Abstand zwischen den Links */
+    padding: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #00FFFF;
+    font-size: 1.2rem; /* Standardgröße */
+    transition: color 0.3s;
+    padding: 5px 15px; /* Innerer Abstand für bessere Klickflächen */
+}
+
+nav ul li a:hover {
+    color: #fff;
+}
+
+/* Abstände und Schriftgrößen für Tablets */
+@media (min-width: 768px) {
+    nav ul {
+        gap: 20px; /* Erhöht den Abstand zwischen den Links */
+    }
+
+    nav ul li a {
+        font-size: 1.5rem;
+        padding: 8px 20px; /* Größere Klickfläche */
+    }
+}
+
+/* Abstände und Schriftgrößen für Desktops */
+@media (min-width: 1024px) {
+    nav ul {
+        gap: 30px; /* Noch größerer Abstand für größere Bildschirme */
+    }
+
+    nav ul li a {
+        font-size: 2rem;
+        padding: 10px 25px; /* Optimal für große Bildschirme */
+    }
+}
