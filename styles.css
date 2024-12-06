@@ -74,17 +74,18 @@ section {
 #founders {
     background-color: #0b1a2b;
 }
-
 .founders {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
+    flex-wrap: wrap; /* Erlaubt Umbruch der Karten */
+    justify-content: center; /* Zentriert die Karten horizontal */
+    gap: 20px; /* Abstand zwischen den Karten */
     padding: 20px;
 }
 
 .founder {
     background: #122438;
+    width: 100%; /* Standardbreite für Mobile */
+    max-width: 400px; /* Optional: Begrenzung der maximalen Breite */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -104,6 +105,19 @@ section {
     transform: scale(1.05);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
+
+/* Media Query für größere Bildschirme (Desktop) */
+@media (min-width: 768px) {
+    .founders {
+        flex-wrap: nowrap; /* Karten brechen nicht um */
+    }
+
+    .founder {
+        width: calc(33.33% - 20px); /* Karten nebeneinander, mit Platz für den Abstand */
+        max-width: none; /* Maximale Breite entfernen */
+    }
+}
+
 
 footer {
     background: #0b1a2b;
