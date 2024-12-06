@@ -112,3 +112,21 @@
     </footer>
 </body>
 </html>
+<script>
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > lastScrollY) {
+            // Nach unten scrollen - Navigation ausblenden
+            nav.classList.add('hidden');
+        } else {
+            // Nach oben scrollen - Navigation einblenden
+            nav.classList.remove('hidden');
+        }
+        lastScrollY = window.scrollY;
+    });
+    </script>
+    </body>
+    </html>
+    
