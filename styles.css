@@ -184,4 +184,47 @@ html {
     top: 0;
     line-height: 1.2;
 }
+#home {
+    position: relative;
+    background: url('background-image.png') no-repeat center center / cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+#centerText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: #FFFFFF;
+    text-shadow: 0 0 15px #FFFFFF, 0 0 30px #FFFFFF;
+}
+#home {
+    position: relative;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), #0b1a2b), 
+                url('background-image.png') no-repeat center center / cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+#centerText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: #FFFFFF;
+    text-shadow: 0 0 15px #FFFFFF, 0 0 30px #FFFFFF;
+}
 
