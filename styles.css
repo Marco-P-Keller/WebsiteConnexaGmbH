@@ -184,3 +184,40 @@ html {
     top: 0;
     line-height: 1.2;
 }
+.founder {
+    background: #122438;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+    border: 2px solid transparent; /* Ausgangszustand */
+}
+
+.founder img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 2px solid #00FFFF;
+}
+
+.founder:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    border: 2px solid #00FFFF; /* Randfarbe bei Hover */
+    animation: border-glow 1s infinite; /* Animation anwenden */
+}
+
+@keyframes border-glow {
+    0% {
+        box-shadow: 0 0 5px #00FFFF;
+    }
+    50% {
+        box-shadow: 0 0 20px #00FFFF;
+    }
+    100% {
+        box-shadow: 0 0 5px #00FFFF;
+    }
+}
+
