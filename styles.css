@@ -6,322 +6,181 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: black;
+    background: radial-gradient(circle, #0f1e2e, #010a16);
     color: white;
+    overflow-x: hidden;
     line-height: 1.6;
-    margin: 0;
-    overflow: auto; /* Ändere 'hidden' zu 'auto' */
 }
 
 nav {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Transparentes Menü */
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px 0;
     z-index: 1000;
-    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Ermöglicht das Umschlagen von Elementen bei kleinem Bildschirm */
-}
-
-nav ul li {
-    margin: 0 15px;
+    gap: 20px;
 }
 
 nav ul li a {
-    color: #fff;
     text-decoration: none;
+    color: #00FFFF;
     font-size: 1.2rem;
+    transition: color 0.3s;
 }
 
 nav ul li a:hover {
-    color: #00FFFF;
+    color: #fff;
 }
 
 section {
-    width: 100%;
-    min-height: 100vh; /* Anpassung an Bildschirmhöhe */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px;
+    min-height: 100vh;
     position: relative;
+    padding: 20px;
 }
-
-/* .parallax {
-    background-image: url('your-image.jpg');
-    background-attachment: fixed; 
-    background-size: cover;
-    background-position: center;
-} 
-*/
 
 #home {
-    background-color: black; /* Schwarzer Hintergrund */
-    color: #fff;
+    position: relative;
+    overflow: hidden;
 }
 
-#home h1 {
-    font-size: 4rem;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* Textschatten */
+#centerText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: #00FFFF;
+    text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
 }
 
 #about {
-    background: linear-gradient(135deg, #f0f0f0, #e0e0e0); /* Eleganter Farbverlauf */
-    color: #333;
-}
-
-#about h2, #founders h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-}
-
-#about p {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto;
+    background: linear-gradient(135deg, #122438, #1e3248);
+    color: white;
 }
 
 #founders {
-    background-color: #fff;
+    background-color: #0b1a2b;
 }
 
 .founders {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap; /* Ermöglicht das Umschlagen bei kleinem Bildschirm */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
 }
 
 .founder {
-    flex: 1;
-    max-width: 30%;
-    text-align: center;
+    background: #122438;
     padding: 20px;
-    margin: 10px;
-    background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Schatten für einen 3D-Effekt */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.founder img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 2px solid #00FFFF;
 }
 
 .founder:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Verstärkter Schatten beim Hover */
-}
-
-.founder img {
-    width: 100%;
-    max-width: 150px;
-    height: auto;
-    border-radius: 50%;
-    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
+    background: #0b1a2b;
+    color: white;
     text-align: center;
     padding: 20px 0;
-}
-
-footer p {
-    margin: 0;
     font-size: 0.9rem;
 }
 
-/* Animations and Fade-Ins */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
+/* Parallax Background */
+.parallax {
+    background: url('galaxy.jpg') no-repeat center center / cover;
+    min-height: 100vh;
 }
 
-.fade-in.appear {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Media Query für mobile Geräte */
-@media only screen and (max-width: 768px) {
-    nav ul {
-        flex-direction: column; /* Stapelt die Navigation vertikal auf kleinen Bildschirmen */
-        padding: 0;
-    }
-
-    nav ul li {
-        margin: 10px 0;
-    }
-
-    #home h1 {
-        font-size: 2.5rem; /* Kleinere Schriftgröße für mobile Geräte */
-    }
-
-    #about p {
-        font-size: 1rem; /* Kleinere Schriftgröße für besseren Lesefluss */
-        padding: 10px;
-    }
-
-    .founders {
-        flex-direction: column; /* Stapelt die Gründer-Elemente auf kleineren Bildschirmen */
-        align-items: center;
-    }
-
-    .founder {
-        max-width: 90%; /* Weitet die Gründer-Elemente auf fast die gesamte Breite */
-        margin-bottom: 20px;
-    }
-
-    .founder img {
-        width: 120px; /* Kleinere Bildgröße für mobile Geräte */
-        height: auto;
-    }
-
-    .founder h3 {
-        font-size: 1.5rem; /* Kleinere Schriftgröße */
-    }
-
-    .founder p {
-        font-size: 1rem; /* Kleinere Textgröße für bessere Lesbarkeit auf kleinen Bildschirmen */
-    }
-}
-
-/* Grundstil für die Navigation */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-    z-index: 1000;
-    transition: background-color 0.3s ease;
-}
-
-/* Mobile Ansicht: Navigation ausblenden */
-@media only screen and (max-width: 768px) {
-    nav ul {
-        display: none; /* Blendet die Navigation auf mobilen Geräten aus */
-    }
-}
-
+/* Smooth Scroll */
 html {
     scroll-behavior: smooth;
 }
+#home {
+    position: relative;
+    background: url('image.png') no-repeat center center / cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    color: white;
+}
 
-/* Impressum-Sektion */
+#centerText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: #00FFFF;
+    text-shadow: 0 0 15px #00FFFF, 0 0 30px #00FFFF;
+}
 #impressum {
-    background-color: #f5f5f5;
+    background-color: #0b1a2b;
     padding: 50px 20px;
     text-align: center;
+    color: white;
     font-family: Arial, sans-serif;
 }
 
 #impressum h2 {
     font-size: 2rem;
-    color: #333;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    color: #00FFFF;
     text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
+    text-align: center; /* Stellt sicher, dass der Titel zentriert ist */
 }
 
-/* Flexibles Karten-Layout für die Impressum-Karten */
-.impressum-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+#impressum ul {
+    list-style: none; /* Entfernt Standard-Aufzählungspunkte */
+    padding: 0;
+    margin: 0 auto; /* Zentriert die Liste */
+    display: inline-block; /* Liste bleibt unter dem Titel */
+    text-align: left; /* Text innerhalb der Liste linksbündig */
 }
 
-/* Impressum-Karten */
-.impressum-card {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-width: 250px;
-    flex: 1 1 250px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: left;
-    box-sizing: border-box;
-}
-
-.impressum-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.impressum-card h3 {
+#impressum ul li {
     font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #ccc; /* Grauer Unterstrich */
-    padding-bottom: 5px;
+    margin: 10px 0;
+    position: relative;
+    padding-left: 30px;
 }
 
-.impressum-card p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #555;
-}
-
-.impressum-card a {
-    color: #666;
-    text-decoration: none;
-}
-
-.impressum-card a:hover {
-    text-decoration: underline;
-}
-
-/* Mobile Anpassungen */
-@media only screen and (max-width: 768px) {
-    .impressum-cards {
-        flex-direction: row; /* Gleiche Richtung beibehalten */
-        flex-wrap: wrap;
-    }
-
-    .impressum-card {
-        flex: 1 1 calc(50% - 20px); /* Halbe Breite für mobile Ansicht mit 20px Abstand */
-        max-width: calc(50% - 20px); /* Maximale Breite von 50% */
-        margin: 10px;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .impressum-card {
-        flex: 1 1 100%; /* Volle Breite bei sehr kleinen Bildschirmen */
-        max-width: 100%;
-    }
-}
-
-/* Navigation: Desktop-Ansicht */
-nav {
-    position: fixed;
+#impressum ul li::before {
+    content: "•"; /* Fügt einen Punkt als Symbol hinzu */
+    color: #00FFFF;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
     top: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-    z-index: 1000;
-    transition: background-color 0.3s ease;
-}
-
-/* Mobile Ansicht: Komplett ausblenden */
-@media only screen and (max-width: 768px) {
-    nav {
-        display: none; /* Navigation komplett ausblenden im mobilen Modus */
-    }
+    line-height: 1.2;
 }
