@@ -6,8 +6,8 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: black;
+    color: white;
     line-height: 1.6;
     margin: 0;
     overflow: auto; /* Ändere 'hidden' zu 'auto' */
@@ -43,7 +43,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #f9a825;
+    color: #00FFFF;
 }
 
 section {
@@ -57,15 +57,16 @@ section {
     position: relative;
 }
 
-.parallax {
-    background-image: url('your-image.jpg'); /* Hintergrundbild */
-    background-attachment: fixed; /* Parallax Effekt */
+/* .parallax {
+    background-image: url('your-image.jpg');
+    background-attachment: fixed; 
     background-size: cover;
     background-position: center;
-}
+} 
+*/
 
 #home {
-    background-color: #000; /* Schwarzer Hintergrund */
+    background-color: black; /* Schwarzer Hintergrund */
     color: #fff;
 }
 
@@ -205,35 +206,6 @@ nav {
     text-align: center;
     z-index: 1000;
     transition: background-color 0.3s ease;
-}
-
-/* Navigationsliste standardmäßig sichtbar */
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
-}
-
-nav ul li a:hover {
-    color: #f9a825;
-}
-
-/* Desktop- und Tablet-Ansicht: Navigation bleibt sichtbar */
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
 }
 
 /* Mobile Ansicht: Navigation ausblenden */
