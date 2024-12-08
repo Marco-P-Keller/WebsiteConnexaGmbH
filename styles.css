@@ -24,11 +24,14 @@ nav {
     padding: 20px 0;
     text-align: center;
     z-index: 1000;
-    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    transform: translateY(0); /* Startposition */
 }
 
 nav ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -45,6 +48,12 @@ nav ul li a {
 nav ul li a:hover {
     color: #f9a825;
 }
+
+/* Scroll-Effekt: Verstecken bei Scrollen */
+.hidden-nav {
+    transform: translateY(-100%); /* Menü aus dem Sichtbereich schieben */
+}
+
 
 section {
     width: 100%;
@@ -77,7 +86,7 @@ section {
 }
 
 #about {
-    background: linear-gradient(135deg, #f0f0f0, #e0e0e0); /* Eleganter Farbverlauf */
+    background: linear-gradient(135deg, #00172D, #002D49); /* Eleganter Farbverlauf */
     color: #333;
 }
 
@@ -197,6 +206,19 @@ footer p {
     .founder p {
         font-size: 1rem; /* Reduce text size for mobile */
     }
+    .impressum {
+        background: #111;
+        padding: 20px;
+        border-top: s1px solid #333;
+    }
+    
+    .impressum a {
+        color: #00d9ff;
+        text-decoration: none;
+    }
+    
+    .impressum a:hover {
+        text-decoration: underline;
+    }
 }
-
 

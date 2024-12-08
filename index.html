@@ -34,6 +34,7 @@
             <li><a href="#home">Startseite</a></li>
             <li><a href="#about">Was wir tun</a></li>
             <li><a href="#founders">Die Gründer</a></li>
+            <li><a href="#impressum">Impressum</a></li>
         </ul>
     </nav>
     
@@ -84,11 +85,14 @@
     </section>
 
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Connexa GmbH. Alle Rechte vorbehalten.</p>
-        </div>
-    </footer>
+    <section id="impressum" class="impressum">
+        <h2>Impressum</h2>
+        <p>Connexa GmbH<br>Winterthurerstrasse 12<br>8360 Eschlikon, Switzerland</p>
+        <p>Contact: <a href="mailto:info@connexa-gmbh.ch">info@connexa-gmbh.ch</a></p>
+        <p>UID: CHE-196.465.062</p>
+        <p>© 2024 Connexa GmbH. All rights reserved.</p>
+    </section>
+    
 
     <!-- Skript fo the animation -->
     <script>
@@ -107,7 +111,7 @@
         resizeCanvas();
 
         // Anzahl der Geräte je nach Bildschirmgröße anpassen
-        const deviceCount = window.innerWidth < 768 ? 20 : 100; // 20 Geräte auf Mobilgeräten, 100 auf größeren Bildschirmen
+        const deviceCount = window.innerWidth < 768 ? 5 : 10; // 20 Geräte auf Mobilgeräten, 100 auf größeren Bildschirmen
         const devices = [];
 
         // Mindestabstand zwischen Geräten
@@ -345,5 +349,23 @@
         });
     });
 </script>
+
+<script>
+    let lastScrollY = window.scrollY;
+    const nav = document.querySelector('nav');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > lastScrollY) {
+            // Nach unten scrollen: Menü ausblenden
+            nav.classList.add('hidden-nav');
+        } else {
+            // Nach oben scrollen: Menü einblenden
+            nav.classList.remove('hidden-nav');
+        }
+        lastScrollY = window.scrollY;
+    });
+</script>
+
+
 </body>
 </html>
