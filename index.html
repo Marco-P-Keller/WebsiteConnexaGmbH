@@ -42,7 +42,7 @@
             }
         }
         nav {
-            position: fixed;
+            position: sticky;   /*changed from fixed*/
             top: 0;
             width: 100%;
             background-color: rgba(29, 53, 87, 0.8);
@@ -361,6 +361,18 @@
         }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
+
+        //added
+        let lastExecution = 0; // Zeitpunkt der letzten Ausführung
+
+        window.addEventListener('resize', () => {
+            const now = Date.now();
+            if (now - lastExecution >= 200) { // 200 ms Intervall
+                resizeCanvas();
+                lastExecution = now;
+            }
+        });
+        //added
 
         function createDevices(count) {
             devices = []; // Löscht vorherige Geräte
