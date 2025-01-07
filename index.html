@@ -17,7 +17,8 @@
  <!-- Navigation (kein Canvas hier, da About eigene Seite) -->
  <nav class="navbar">
     <div class="navbar-brand">
-      <a href="index.html">Connexa</a>
+        <!-- <img src="LogoV1.jpg"  width="10%" > -->
+        <a href="index.html">Connexa</a>
     </div>
     <div class="navbar-toggle" id="mobileMenu">
       <span class="bar"></span>
@@ -26,7 +27,7 @@
     </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="about.html" >About</a></li>
       <li><a href="founders.html">Founders</a></li>
     </ul>
   </nav>
@@ -159,9 +160,9 @@
 
       // Schöner Farbverlauf als Canvas-Hintergrund
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, '#1D3557');
-      gradient.addColorStop(0.5, '#457B9D');
-      gradient.addColorStop(1, '#A8DADC');
+      gradient.addColorStop(0, '#051E41FF');
+      gradient.addColorStop(0.5, '#2C5772FF');
+      gradient.addColorStop(1, '#3647A5FF');
 
       // Hintergrund zeichnen mit dem Farbverlauf
       ctx.fillStyle = gradient;
