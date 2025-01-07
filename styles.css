@@ -11,8 +11,7 @@
     /* Wir machen kein eigenes Body-Gradient,
        da wir den Canvas selbst einen Hintergrund-Gradient nutzen lassen.
        So bleibt es "durchsichtig" und du siehst das Canvas darunter. */
-    overflow-x: hidden;
-    /* Ermöglicht vertikales Scrollen */
+    overflow-x: hidden; /* Ermöglicht vertikales Scrollen */
   }
   
   /* Canvas als Hintergrund */
@@ -127,6 +126,7 @@
   .hero-section {
     min-height: 100vh; /* damit man den ganzen Screen füllt */
     display: flex;
+    flex-direction: column; /* Damit Text unter "Connexa GmbH" positioniert wird */
     align-items: center;
     justify-content: center;
     position: relative; /* Falls man etwas positionieren möchte */
@@ -148,6 +148,29 @@
     100% {
       text-shadow: 0 0 40px rgb(80, 80, 255);
     }
+  }
+  
+  /* Neuer Bereich unterhalb von Connexa GmbH */
+  .hero-description {
+    margin-top: 20px;
+    text-align: center;
+    color: #F1FAEE;
+  }
+  
+  /* Schöner Button (CTA) */
+  .btn-cta {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 24px;
+    background-color: #44a1bd;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  .btn-cta:hover {
+    background-color: #3faab8;
   }
   
   /* Content-Sektionen (Idea, Concept, etc.) */
@@ -184,10 +207,8 @@
     .navbar-toggle {
       display: flex;
     }
-  }
   
-  /* Kleiner Smartphone */
-  @media (max-width: 480px) {
+    /* Kleineres Hero-Text */
     #centerText {
       font-size: 40px;
     }

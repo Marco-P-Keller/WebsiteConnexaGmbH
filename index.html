@@ -14,7 +14,7 @@
   />
 </head>
 <body>
- <!-- Navigation (kein Canvas hier, da About eigene Seite) -->
+ <!-- Navigation -->
  <nav class="navbar">
     <div class="navbar-brand">
         <!-- <img src="LogoV1.jpg"  width="10%" > -->
@@ -27,7 +27,7 @@
     </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html" >About</a></li>
+      <li><a href="about.html">About</a></li>
       <li><a href="founders.html">Founders</a></li>
     </ul>
   </nav>
@@ -37,7 +37,15 @@
 
   <!-- HERO-Bereich (Home) -->
   <section id="home" class="hero-section">
-    <div id="centerText">Connexa GmbH</div>
+    <div id="centerText">CONNECT WITH PURPOSE</div>
+
+    <!-- Neuer Text + Button (verlinkt auf neueSeite.html) -->
+    <div class="hero-description">
+      <p>
+        Imagine a social media platform free from addiction, time-wasting, envy, and fake personas. No like counts, no follower races, no influencers vying for attention—just real, meaningful connections. SoulBond redefines what social media can be, putting authentic relationships at its core and sparking a revolution in how we connect.
+      </p>
+      <a href="neueSeite.html" class="btn-cta">Mehr erfahren</a>
+    </div>
   </section>
 
   <!-- INFO-Bereich (Idea, Concept, Benefits) -->
@@ -86,7 +94,8 @@
     </ol>
     <p>
       This platform would appeal to people who want to use social media 
-      but are looking for a more conscious, time-efficient, and authentic alternative.
+      but are looking for a more conscious, time-efficient, 
+      and authentic alternative.
     </p>
   </section>
 
@@ -126,7 +135,7 @@
       canvas.height = window.innerHeight * 5; 
       // Du kannst hier * 2, * 3 oder *5 nehmen, 
       // wenn du viel Content hast (damit das Canvas den ganzen Inhalt bedeckt).
-      createDevices( Math.floor((canvas.width * canvas.height) / 5000) );
+      createDevices(Math.floor((canvas.width * canvas.height) / 5000));
     }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
