@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Connexa GmbH - Home</title>
+  <title>Connexa GmbH - Single Page</title>
   <link rel="icon" href="LogoV1.jpg" type="image/png" />
   <!-- Gemeinsame CSS-Datei -->
   <link rel="stylesheet" href="styles.css" />
@@ -14,32 +14,96 @@
   />
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
+ <!-- Navigation (kein Canvas hier, da About eigene Seite) -->
+ <nav class="navbar">
     <div class="navbar-brand">
       <a href="index.html">Connexa</a>
     </div>
-
-    <!-- Hamburger Icon für Mobile -->
     <div class="navbar-toggle" id="mobileMenu">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </div>
-
-    <!-- Nav-Links (Overlay-Menü) -->
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="about.html" class="active">About</a></li>
       <li><a href="founders.html">Founders</a></li>
-      <!-- Optional: <li><a href="product.html">Product</a></li> -->
     </ul>
   </nav>
 
-  <!-- Parallax/Home-Bereich -->
-  <section id="home" class="parallax">
+  <!-- CANVAS im Hintergrund -->
+  <canvas id="networkCanvas"></canvas>
+
+  <!-- HERO-Bereich (Home) -->
+  <section id="home" class="hero-section">
     <div id="centerText">Connexa GmbH</div>
-    <canvas id="networkCanvas"></canvas>
+  </section>
+
+  <!-- INFO-Bereich (Idea, Concept, Benefits) -->
+  <section id="info" class="content-section">
+    <h2>Idea</h2>
+    <p>
+      A social media platform inspired by popular platforms like Instagram 
+      but without the typical negative aspects such as time-wasting, 
+      irrelevant or unnecessary content (“trash content”), 
+      overly staged influencers, and artificiality (“fakeness”).
+    </p>
+    <h2>Concept</h2>
+    <ul>
+      <li>A combination of Instagram and WhatsApp.</li>
+      <li>
+        A platform that merges the visual appeal and sharing features 
+        of Instagram with the private and direct communication of WhatsApp.
+      </li>
+      <li>
+        The focus is on real connections and authentic content that adds value 
+        and doesn’t waste time.
+      </li>
+    </ul>
+    <h2>Benefits (Pro's)</h2>
+    <ol>
+      <li>
+        <strong>No irrelevant content:</strong><br />
+        Filters or curation mechanisms prevent trashy or unnecessary content 
+        from cluttering the feed.
+      </li>
+      <li>
+        <strong>Efficient use of time:</strong><br />
+        Designed to avoid addictive endless scrolling, enabling meaningful
+        and valuable interactions instead.
+      </li>
+      <li>
+        <strong>Stay up-to-date with friends:</strong><br />
+        Keep in touch with what’s happening in your friends’ lives in a meaningful, 
+        direct way – without artificial facades.
+      </li>
+      <li>
+        <strong>Authenticity and realness:</strong><br />
+        No over-the-top self-promotion by influencers. The focus is on genuine 
+        communication and authentic content.
+      </li>
+    </ol>
+    <p>
+      This platform would appeal to people who want to use social media 
+      but are looking for a more conscious, time-efficient, and authentic alternative.
+    </p>
+  </section>
+
+  <!-- FOUNDERS-Bereich (Beispiel) -->
+  <section id="founders" class="content-section">
+    <h2>The Founders</h2>
+    <p>Hier könnte ein kurzer Absatz über die Gründer stehen oder Bilder etc.</p>
+    <!-- Beispiel (falls du Bilder hast) -->
+    <!--
+    <div class="founders">
+      <div class="founder">
+        <img src="Janis.webp" alt="Janis" />
+        <h3>Janis Papagiorgio</h3>
+        <p>CTO & Co-founder</p>
+      </div>
+      ...
+    </div>
+    -->
   </section>
 
   <!-- Optionaler Footer -->
@@ -49,7 +113,7 @@
   </footer>
   -->
 
-  <!-- Canvas-Animation -->
+  <!-- Hintergrund-Animation -->
   <script>
     const canvas = document.getElementById('networkCanvas');
     const ctx = canvas.getContext('2d');
@@ -58,10 +122,10 @@
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      const deviceCount = Math.floor((canvas.width * canvas.height) / 5000);
-      createDevices(deviceCount);
+      canvas.height = window.innerHeight * 5; 
+      // Du kannst hier * 2, * 3 oder *5 nehmen, 
+      // wenn du viel Content hast (damit das Canvas den ganzen Inhalt bedeckt).
+      createDevices( Math.floor((canvas.width * canvas.height) / 5000) );
     }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
@@ -90,10 +154,20 @@
     }
 
     function drawNetwork() {
+      // Leeren
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#00172D';
+
+      // Schöner Farbverlauf als Canvas-Hintergrund
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#1D3557');
+      gradient.addColorStop(0.5, '#457B9D');
+      gradient.addColorStop(1, '#A8DADC');
+
+      // Hintergrund zeichnen mit dem Farbverlauf
+      ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+      // Punkte (devices)
       devices.forEach(device => {
         ctx.beginPath();
         ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
@@ -101,6 +175,7 @@
         ctx.fill();
       });
 
+      // Verbindungslinien
       devices.forEach((device, i) => {
         for (let j = i + 1; j < devices.length; j++) {
           const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
@@ -119,7 +194,7 @@
       devices.forEach(device => {
         device.x += device.dx;
         device.y += device.dy;
-
+        // Begrenzung an den Rändern
         if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
         if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
       });
@@ -141,6 +216,9 @@
     mobileMenu.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
+
+    // Optional: Scroll-Spys oder automatisches Entfernen der active-Klasse
+    // kann man hier ergänzen, damit Menülinks beim Anklicken die Klasse "active" setzen.
   </script>
 </body>
 </html>

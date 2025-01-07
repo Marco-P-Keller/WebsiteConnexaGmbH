@@ -5,65 +5,45 @@
     box-sizing: border-box;
   }
   
-  /* Schrift & Hintergrund (Farverlauf über gesamten Body) */
+  /* Schrift */
   body {
     font-family: 'Poppins', sans-serif;
-    /* Schöner Farbverlauf (kannst du anpassen) */
-    background: linear-gradient(135deg, #1D3557, #457B9D, #A8DADC);
+    /* Wir machen kein eigenes Body-Gradient,
+       da wir den Canvas selbst einen Hintergrund-Gradient nutzen lassen.
+       So bleibt es "durchsichtig" und du siehst das Canvas darunter. */
     overflow-x: hidden;
+    /* Ermöglicht vertikales Scrollen */
   }
   
-  /* Parallax-Sektion für Startseite */
-  .parallax {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    /* Optional ein weiterer Farbverlauf – falls erwünscht */
-    background: linear-gradient(135deg, rgba(29,53,87,0.6), rgba(69,123,157,0.6));
+  /* Canvas als Hintergrund */
+  #networkCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Damit es hinter allen Inhalten liegt */
   }
   
-  /* Text in der Mitte */
-  #centerText {
-    position: absolute;
-    font-size: 60px;
-    font-weight: bold;
-    color: #50e2ff;
-    text-shadow: 0 0 20px rgba(80, 141, 255, 0.8);
-    pointer-events: none;
-    animation: glow 2s infinite alternate;
-  }
-  
-  @keyframes glow {
-    0% {
-      text-shadow: 0 0 20px rgba(80, 109, 255, 0.8);
-    }
-    100% {
-      text-shadow: 0 0 40px rgb(80, 80, 255);
-    }
-  }
-  
-  /* Navbar (immer oben fixiert) */
+  /* Navigation (oben fixiert) */
   .navbar {
     position: sticky;
     top: 0;
     width: 100%;
-    /* Transparenter Hintergrund mit leichtem Farbverlauf */
+    /* Halbtransparenter Farbverlauf */
     background: linear-gradient(
       135deg,
-      rgba(29, 53, 87, 0.8),
-      rgba(69, 123, 157, 0.8)
+      rgba(29, 53, 87, 0.7),
+      rgba(69, 123, 157, 0.7)
     );
     color: #fff;
     padding: 15px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 1000;
+    z-index: 1000; /* vor dem Canvas */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
   
+  /* Brand links */
   .navbar-brand a {
     color: #f1faee;
     font-weight: 600;
@@ -71,54 +51,17 @@
     font-size: 1.5rem;
   }
   
-  /* Desktop-Navigation */
+  /* Menü */
   .nav-links {
     list-style: none;
-    display: flex;
+    display: flex;  /* Desktop: horizontal */
     gap: 30px;
-  }
-  
-  /* Standard-Links */
-  .nav-links li a {
-    color: #f1faee;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 600;
-    transition: color 0.3s;
-  }
-  
-  .nav-links li a:hover {
-    color: #ffd700;
-  }
-  
-  .nav-links li a.active {
-    color: #ffd700;
-    text-decoration: underline;
-  }
-  
-  /* Hamburger */
-  .navbar-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-  }
-  
-  .bar {
-    height: 3px;
-    width: 25px;
-    background-color: #f1faee;
-    margin: 4px 0;
-    transition: 0.4s;
-  }
-  
-  /* Overlay-Menü (wenn Hamburger geklickt) */
-  .nav-links {
-    position: fixed;    /* wichtig: fixiert damit es den ganzen Screen überlagert */
+    /* Für Mobile Overlay-Effekt */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 0;
-    /* Hier Farbverlauf für das Overlay */
     background: linear-gradient(
       135deg,
       rgba(29, 53, 87, 0.95),
@@ -133,99 +76,118 @@
     justify-content: center;
   }
   
-  /* Wenn aktiv, soll das Menü die komplette Bildschirmhöhe einnehmen */
+  /* Desktop: Menü normal (keine Overlay-Eigenschaften) */
+  @media (min-width: 769px) {
+    .nav-links {
+      position: static;
+      height: auto;
+      background: none;
+      flex-direction: row;
+      justify-content: flex-end;
+      transition: none;
+    }
+  }
+  
+  /* Menü-Links */
+  .nav-links li a {
+    color: #f1faee;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  .nav-links li a:hover {
+    color: #ffd700;
+  }
+  .nav-links li a.active {
+    color: #ffd700;
+    text-decoration: underline;
+  }
+  
+  /* Vollbild Overlay, wenn active */
   .nav-links.active {
     height: 100vh;
   }
   
-  .nav-links li {
-    margin: 20px 0;
-    /* Damit die Links schön groß zentriert sind */
-    font-size: 1.5rem;
+  /* Hamburger Icon (nur sichtbar auf Mobile/Tablet) */
+  .navbar-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .bar {
+    height: 3px;
+    width: 25px;
+    background-color: #f1faee;
+    margin: 4px 0;
+    transition: 0.4s;
   }
   
-  /* Content Sections (z. B. About/Founders) */
+  /* Hero-Sektion (Home-Bereich oben) */
+  .hero-section {
+    min-height: 100vh; /* damit man den ganzen Screen füllt */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Falls man etwas positionieren möchte */
+  }
+  
+  /* Center Text */
+  #centerText {
+    font-size: 60px;
+    font-weight: bold;
+    color: #50e2ff;
+    text-shadow: 0 0 20px rgba(80, 141, 255, 0.8);
+    pointer-events: none;
+    animation: glow 2s infinite alternate;
+  }
+  @keyframes glow {
+    0% {
+      text-shadow: 0 0 20px rgba(80, 109, 255, 0.8);
+    }
+    100% {
+      text-shadow: 0 0 40px rgb(80, 80, 255);
+    }
+  }
+  
+  /* Content-Sektionen (Idea, Concept, etc.) */
   .content-section {
-    padding: 80px 20px;
+    padding: 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
     color: #F1FAEE;
-    /* Optional weiterer Farbverlauf */
-    background: linear-gradient(135deg, rgba(29,53,87,0.8), rgba(69,123,157,0.8));
+    /* Halbtransparenter Hintergrund (optional) */
+    background: rgba(29, 53, 87, 0.5);
     border-radius: 10px;
+    margin-bottom: 50px;
   }
-  
-  /* Beispiel für Heading & Paragraph in content-section */
   .content-section h2 {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     font-size: 2rem;
-    text-align: center;
   }
-  .content-section p {
+  .content-section p,
+  .content-section ul,
+  .content-section ol {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 1rem;
   }
-  
-  /* Founders-Bereich */
-  .founders {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .founder {
-    max-width: 280px;
-    background: rgba(30, 57, 74, 0.8);
-    color: #F1FAEE;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .founder:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  }
-  .founder img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    border: 5px solid #F1FAEE;
-  }
-  .founder h3 {
-    margin-bottom: 10px;
+  .content-section ul li,
+  .content-section ol li {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
   }
   
   /* Responsive Design */
-  /* Tablets und kleiner */
+  /* Mobile/Tablet */
   @media (max-width: 768px) {
-    .navbar {
-      padding: 10px 20px;
-    }
-    .navbar-brand a {
-      font-size: 1.2rem;
-    }
-  
-    /* Hamburger sichtbar machen */
     .navbar-toggle {
       display: flex;
     }
-  
-    /* Ursprünglich nur für Desktop: hier ausblenden,
-       da wir jetzt ein Overlay-Menü haben */
-    .nav-links {
-      display: flex; /* wir lassen es, aber setzen height=0 (Overlay) */
-    }
   }
   
-  /* Sehr kleine Smartphones */
+  /* Kleiner Smartphone */
   @media (max-width: 480px) {
-    .founder {
-      max-width: 90%;
-    }
     #centerText {
       font-size: 40px;
     }
