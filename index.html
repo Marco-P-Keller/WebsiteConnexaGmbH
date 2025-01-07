@@ -1,432 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexa GmbH</title>
-    <link rel="icon" href="LogoV1.jpg" type="image/png">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-            overflow: auto;
-            overflow-x: hidden;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(120deg, #1D3557, #457B9D);
-        
-        }
-        canvas {
-            display: block;
-        }
-
-        #centerText {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 60px;
-            font-weight: bold;
-            color: #50e2ff;
-            text-shadow: 0 0 20px rgba(80, 141, 255, 0.8);
-            pointer-events: none;
-            animation: glow 2s infinite alternate;
-        }
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 20px rgba(80, 109, 255, 0.8);
-            }
-            100% {
-                text-shadow: 0 0 40px rgb(80, 80, 255);
-            }
-        }
-        nav {
-            position: sticky;   /*changed from fixed*/
-            top: 0;
-            width: 100%;
-            background-color: rgba(29, 53, 87, 0.8);
-            color: #fff;
-            padding: 15px 0;
-            text-align: center;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease, padding 0.3s ease;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 20px;
-        }
-        nav ul li a {
-            color: #50bfff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        nav ul li a:hover {
-            color: #004cff;
-        }
-        #networkCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-
-        #titel{
-            text-align: center;
-            z-index: 1;
-        }
-
-        .parallax {
-            height: 100vh;
-            background: linear-gradient(120deg, #1D3557, #457B9D);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-        section {
-            padding: 80px 20px;
-        }
-
-        #home{
-            /* margin-top: 0%; */
-            height: 100vh;
-            text-align: center;
-            z-index: -1;
-            background: linear-gradient(120deg, #1D3557, #457B9D);
-        }
-
-        #about{
-            margin-top: 0%;
-            height: 100vh;
-            width: 100%;
-            text-align: center;
-            z-index: 1;
-            background: linear-gradient(120deg, #1D3557, #457B9D);
-        }
-        #about h2, #founders h2 {
-            margin: 4%;
-            font-size: 2.5rem;
-            margin-bottom: 5vh;
-            color: #c6c7c7;
-        }
-        #about p {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: #aad0e7;
-            margin: 0 auto;
-            max-width: 1500px;
-        }
-
-        /* Allgemeiner Stil (Desktop-Standard) */
-        .desktop-only {
-            display: block; /* Standardmäßig sichtbar */
-        }
-
-        .mobile-only {
-            display: none; /* Standardmäßig unsichtbar */
-        }
-
-        /* Stil für Mobilgeräte */
-        @media (max-width: 768px) {
-            .desktop-only {
-                display: none; /* Auf Mobilgeräten ausblenden */
-            }
-
-            .mobile-only {
-                display: block; /* Auf Mobilgeräten anzeigen */
-            }
-        }
-
-
-        #founders{
-            height: 80vh;
-            text-align: center;
-            margin-top: 10%;
-            z-index: 0;
-            
-        }
-
-        .founders {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-            
-            
-        }
-        .founder {
-            max-width: 600px;
-            background: #1e394a;
-            color: #F1FAEE;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        /* Anpassung für mittelgroße Bildschirme */
-        @media (max-width: 768px) {
-            .founder {
-                max-width: 250px; /* Reduzierte Breite */
-                padding: 15px; /* Weniger Padding für kleinere Bildschirme */
-            }
-        }
-        /* Anpassung für kleine Bildschirme */
-        @media (max-width: 480px) {
-            .founder {
-                max-width: 200px; /* Noch schmaler auf sehr kleinen Bildschirmen */
-                padding: 10px; /* Noch kompakter */
-                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Weniger Schatten */
-            }
-        }
-        .founder:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-        .founder img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            border: 5px solid #F1FAEE;
-        }
-
-        #product{
-            position: relative;
-            height: 100vh;
-        }
-        .logo {
-            margin: 0 auto;
-            align-items: center;
-        }
-        .logotransparent{
-            position: absolute;
-            transform: translate(47%, 10%);
-            align-items: center;
-            display: block;
-            margin: 0 auto;
-            width: 50%;
-            z-index: 2;
-        }
-        .loch{
-            transform: translate(-23, -40%);
-            position: absolute;
-            width: 100%;
-            z-index: 1;
-        }
-
-        footer {
-
-            /* bottom: 0 auto; */
-            background-color: #1D3557;
-            /* margin-top: auto; */
-            color: #F1FAEE;
-            text-align: center;
-            /* padding: 0;
-            margin: 0; */
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
-        }
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
-        footer .social-icons {
-            margin-top: auto;
-        }
-        footer .social-icons a {
-            margin: 0 10px;
-            color: #F1FAEE;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-        footer .social-icons a:hover {
-            color: #5082ff;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connexa GmbH - Home</title>
+  <link rel="icon" href="LogoV1.jpg" type="image/png" />
+  <!-- Gemeinsame CSS-Datei -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#founders">Founders</a></li>
-            <!-- <li style="display:none;" class="desktop-only"><a href="#product">Product</a></li> -->
-        </ul>
-    </nav>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="index.html">Connexa</a>
+    </div>
 
-    <section id="home" class="parallax">
-        <div id="centerText">Connexa GmbH</div>
-        <canvas id="networkCanvas"></canvas>
-        <!-- <img src="logo.jpeg" alt="titlepicture"> -->
-    </section> 
+    <!-- Hamburger Icon für Mobile -->
+    <div class="navbar-toggle" id="mobileMenu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
 
-    <section id="about">
-        <div class="desktop-only">
-            <h2>Goal</h2>
-            <!-- <p>Our mission is to make social media a space where trust, transparency, and authenticity come first.</p> -->
-            <p>Our mission is to make social media a space where trust, transparency, and authenticity take center stage. Instead of relying on superficial metrics like likes and follower counts, we aim to create a platform that fosters meaningful conversations and honest exchanges.</p>
-            <h2>The Problem</h2>
-            <p>Today’s social media is often dominated by pretense and manipulation. Fake profiles, curated posts, and the constant pressure to present a perfect image alienate us from one another. The consequences range from diminished self-esteem to a lack of genuine interaction.</p>
-            <!-- <p>Today’s social media landscape is dominated by pretense and manipulation, alienating us from one another.</p> -->
-            <h2>Solution</h2>
-            <p>Connexa offers an alternative: a digital space where authenticity matters. Our platform focuses on real interactions without misleading algorithms or manufactured popularity. Instead, users can express themselves honestly and unfiltered — creating a community built on shared values and true connections.            </p>
-            
-        </div>
-        <div class="mobile-only">
-            <h2>Goal</h2>
-            <p>Our mission is to make social media a space where trust, transparency, and authenticity come first.</p>
-            <!-- <p>Our mission is to make social media a space where trust, transparency, and authenticity take center stage. Instead of relying on superficial metrics like likes and follower counts, we aim to create a platform that fosters meaningful conversations and honest exchanges.</p> -->
-            <h2>The Problem</h2>
-            <!-- <p>Today’s social media is often dominated by pretense and manipulation. Fake profiles, curated posts, and the constant pressure to present a perfect image alienate us from one another. The consequences range from diminished self-esteem to a lack of genuine interaction.</p> -->
-            <p>Today’s social media landscape is dominated by pretense and manipulation, alienating us from one another.</p>
-            <h2>Solution</h2>
-            <p>We provides a digital space where authenticity thrives, fostering honest interactions and genuine connections without manipulative algorithms or fake popularity.
-        </div>
+    <!-- Nav-Links (Overlay-Menü) -->
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="founders.html">Founders</a></li>
+      <!-- Optional: <li><a href="product.html">Product</a></li> -->
+    </ul>
+  </nav>
 
-    </section>
+  <!-- Parallax/Home-Bereich -->
+  <section id="home" class="parallax">
+    <div id="centerText">Connexa GmbH</div>
+    <canvas id="networkCanvas"></canvas>
+  </section>
 
-    <section id="founders">
-        <div>
-            <h2>The Founders</h2>
-            <div class="founders">
-                <div class="founder">
-                    <img src="Janis.webp" alt="Founder 1">
-                    <h3>Janis Papagiorgio</h3>
-                    <p>CTO & Co-founder</p>
-                    <div class="desktop-only">
-                        <p>Janis is a visionary technologist with exceptional problem-solving skills and expertise in software architecture. His innovative mindset ensures Connexa remains secure, scalable, and at the forefront of authentic digital interactions.</p>
-                    </div>
-                </div>
-                <div class="founder">
-                    <img src="Marco2.webp" alt="Founder 2">
-                    <h3>Marco P. Keller</h3>
-                    <p>CEO & Co-founder</p>
-                    <div class="desktop-only">
-                        <p>Marco is a strategic leader known for inspiring teams and forging impactful partnerships. With a clear vision and a focus on growth, he drives Connexa’s mission to revolutionize social media.</p>
-                    </div>
-                </div>
-                <div class="founder">
-                    <img src="Marius.webp" alt="Founder 3">
-                    <h3>Marius Jörger</h3>
-                    <div class="desktop-only">
-                        <p>CFO & Co-founder</p>
-                        <p>Marius is a financial strategist with a keen eye for sustainable growth and resource efficiency. His forward-thinking approach positions Connexa for long-term success in a competitive landscape.</p>
-                    </div>
-                    <div class="mobile-only">
-                        <p>CFO & Co-founder</p>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Optionaler Footer -->
+  <!--
+  <footer>
+    <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
+  </footer>
+  -->
 
-    <!-- <section id="product" class="desktop-only">
+  <!-- Canvas-Animation -->
+  <script>
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
 
-        
-        <img src="Logo_TransparentV4.png" alt="Logo_TransparentV4" class="logotransparent">
-        <img src="Loch.png" alt="Loch" class="loch">
-        
-    </section>  -->
+    let devices = [];
 
-    <!-- <footer>
-        <p>&copy; 2024 Connexa GmbH. All rights reserved.</p>
-        <div class="social-icons">
-            <a href="#">&#x2665; Facebook</a>
-            <a href="#">&#x2665; Twitter</a>
-            <a href="#">&#x2665; LinkedIn</a>
-        </div>
-    </footer> -->
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
-    <script>
-        const canvas = document.getElementById('networkCanvas');
-        const ctx = canvas.getContext('2d');
+      const deviceCount = Math.floor((canvas.width * canvas.height) / 5000);
+      createDevices(deviceCount);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-        let devices = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            const deviceCount = Math.floor((canvas.width * canvas.height) / 5000); // 1 Gerät pro 10.000 Pixel Fläche
-            createDevices(deviceCount);
-        }
-        window.addEventListener('resize', resizeCanvas);
+    let lastExecution = 0;
+    window.addEventListener('resize', () => {
+      const now = Date.now();
+      if (now - lastExecution >= 200) {
         resizeCanvas();
+        lastExecution = now;
+      }
+    });
 
-        //added
-        let lastExecution = 0; // Zeitpunkt der letzten Ausführung
-
-        window.addEventListener('resize', () => {
-            const now = Date.now();
-            if (now - lastExecution >= 200) { // 200 ms Intervall
-                resizeCanvas();
-                lastExecution = now;
-            }
+    function createDevices(count) {
+      devices = [];
+      for (let i = 0; i < count; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        devices.push({
+          x,
+          y,
+          dx: Math.random() - 0.5,
+          dy: Math.random() - 0.5
         });
-        //added
+      }
+    }
 
-        function createDevices(count) {
-            devices = []; // Löscht vorherige Geräte
-            for (let i = 0; i < count; i++) {
-                const x = Math.random() * canvas.width;
-                const y = Math.random() * canvas.height;
-                devices.push({ x, y, dx: Math.random() - 0.5, dy: Math.random() - 0.5 });
-            }
+    function drawNetwork() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00172D';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      devices.forEach(device => {
+        ctx.beginPath();
+        ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFD700';
+        ctx.fill();
+      });
+
+      devices.forEach((device, i) => {
+        for (let j = i + 1; j < devices.length; j++) {
+          const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(device.x, device.y);
+            ctx.lineTo(devices[j].x, devices[j].y);
+            ctx.strokeStyle = 'rgba(255, 127, 80, 0.1)';
+            ctx.stroke();
+          }
         }
+      });
+    }
 
-        function drawNetwork() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00172D';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+    function updatePositions() {
+      devices.forEach(device => {
+        device.x += device.dx;
+        device.y += device.dy;
 
-            devices.forEach(device => {
-                ctx.beginPath();
-                ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
-                ctx.fillStyle = '#FFD700';
-                ctx.fill();
-            });
+        if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
+        if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
+      });
+    }
 
-            devices.forEach((device, i) => {
-                for (let j = i + 1; j < devices.length; j++) {
-                    const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
-                    if (dist < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(device.x, device.y);
-                        ctx.lineTo(devices[j].x, devices[j].y);
-                        ctx.strokeStyle = 'rgba(255, 127, 80, 0.1)';
-                        ctx.stroke();
-                    }
-                }
-            });
-        }
+    function animate() {
+      updatePositions();
+      drawNetwork();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
 
-        
+  <!-- Mobile-Menü per JavaScript ein-/ausklappen -->
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = document.getElementById('navLinks');
 
-        function updatePositions() {
-            devices.forEach(device => {
-                device.x += device.dx;
-                device.y += device.dy;
-
-                if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
-                if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
-            });
-        }
-
-        function animate() {
-            updatePositions();
-            drawNetwork();
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>

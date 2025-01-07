@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connexa GmbH - About</title>
+  <link rel="icon" href="LogoV1.jpg" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <!-- Navigation (kann man in ein separates Snippet auslagern und per include laden) -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="index.html">Connexa</a>
+    </div>
+    <div class="navbar-toggle" id="mobileMenu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="founders.html">Founders</a></li>
+      <!-- <li><a href="product.html">Product</a></li> -->
+    </ul>
+  </nav>
+
+  <section id="about" class="content-section">
+    <h2>Goal</h2>
+    <p>
+      Our mission is to make social media a space where trust, transparency,
+      and authenticity take center stage. Instead of relying on superficial metrics like 
+      likes and follower counts, we aim to create a platform that fosters meaningful 
+      conversations and honest exchanges.
+    </p>
+    <h2>The Problem</h2>
+    <p>
+      Today’s social media is often dominated by pretense and manipulation. 
+      Fake profiles, curated posts, and the constant pressure to present a perfect image 
+      alienate us from one another. The consequences range from diminished self-esteem 
+      to a lack of genuine interaction.
+    </p>
+    <h2>Solution</h2>
+    <p>
+      Connexa offers an alternative: a digital space where authenticity matters. 
+      Our platform focuses on real interactions without misleading algorithms or 
+      manufactured popularity. Instead, users can express themselves honestly 
+      and unfiltered — creating a community built on shared values and true connections.
+    </p>
+  </section>
+
+  <!-- Optionaler Footer -->
+  <!--
+  <footer>
+    <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
+  </footer>
+  -->
+
+  <!-- JavaScript für Mobile-Menü -->
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

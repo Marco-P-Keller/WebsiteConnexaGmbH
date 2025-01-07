@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connexa GmbH - Founders</title>
+  <link rel="icon" href="LogoV1.jpg" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="index.html">Connexa</a>
+    </div>
+    <div class="navbar-toggle" id="mobileMenu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="founders.html" class="active">Founders</a></li>
+      <!-- <li><a href="product.html">Product</a></li> -->
+    </ul>
+  </nav>
+
+  <section id="founders" class="content-section">
+    <h2>The Founders</h2>
+    <div class="founders">
+      <div class="founder">
+        <img src="Janis.webp" alt="Founder 1" />
+        <h3>Janis Papagiorgio</h3>
+        <p>CTO & Co-founder</p>
+        <p>
+          Janis ist ein visionärer Technologe mit außergewöhnlichen
+          Problemlösungsfähigkeiten und tiefem Verständnis für Softwarearchitektur.
+        </p>
+      </div>
+      <div class="founder">
+        <img src="Marco2.webp" alt="Founder 2" />
+        <h3>Marco P. Keller</h3>
+        <p>CEO & Co-founder</p>
+        <p>
+          Marco ist ein strategischer Kopf, bekannt dafür, Teams zu inspirieren und 
+          starke Partnerschaften aufzubauen.
+        </p>
+      </div>
+      <div class="founder">
+        <img src="Marius.webp" alt="Founder 3" />
+        <h3>Marius Jörger</h3>
+        <p>CFO & Co-founder</p>
+        <p>
+          Marius ist ein Finanzstratege mit Blick für nachhaltiges Wachstum 
+          und effiziente Ressourcennutzung.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (optional) -->
+  <!--
+  <footer>
+    <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
+  </footer>
+  -->
+
+  <!-- JS für Mobile-Menü -->
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
