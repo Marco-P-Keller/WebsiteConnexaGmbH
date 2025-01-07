@@ -122,25 +122,43 @@
     transition: 0.4s;
   }
   
+  @media (max-width: 768px) {
+    .navbar-toggle {
+      display: flex;
+    }
+  }
+  
   /* Hero-Sektion (Home-Bereich oben) */
   .hero-section {
     min-height: 100vh; /* damit man den ganzen Screen füllt */
     display: flex;
-    flex-direction: column; /* Damit Text unter "Connexa GmbH" positioniert wird */
     align-items: center;
-    justify-content: center;
-    position: relative; /* Falls man etwas positionieren möchte */
+    justify-content: flex-start; /* Inhalte nach links */
+    position: relative;
+    padding-left: 4rem; /* etwas Platz zum linken Rand */
   }
   
-  /* Center Text */
+  /* Container für Titel und Text auf der linken Seite */
+  .hero-content {
+    width: 70%;       /* 70% der Bildschirmbreite */
+    text-align: left; /* Text linksbündig */
+  }
+  
+  /* Titel */
   #centerText {
-    font-size: 60px;
-    font-weight: bold;
+    /* font-size: 5rem; */
+    font-size: clamp(1.5rem, 5vw, 4rem);
     color: #50e2ff;
     text-shadow: 0 0 20px rgba(80, 141, 255, 0.8);
     pointer-events: none;
     animation: glow 2s infinite alternate;
+    margin-bottom: 1rem;
   }
+  .indent {
+    display: inline-block; /* Damit wir margin-left gezielt anwenden können */
+    margin-left: 2em;      /* Hier den gewünschten Einzug/Abstand einstellen */
+  }
+
   @keyframes glow {
     0% {
       text-shadow: 0 0 20px rgba(80, 109, 255, 0.8);
@@ -150,17 +168,17 @@
     }
   }
   
-  /* Neuer Bereich unterhalb von Connexa GmbH */
+  /* Text darunter */
   .hero-description {
-    margin-top: 20px;
-    text-align: center;
     color: #F1FAEE;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
   }
   
-  /* Schöner Button (CTA) */
+  /* Button */
   .btn-cta {
     display: inline-block;
-    margin-top: 10px;
     padding: 12px 24px;
     background-color: #44a1bd;
     color: #fff;
@@ -179,8 +197,7 @@
     max-width: 1200px;
     margin: 0 auto;
     color: #F1FAEE;
-    /* Halbtransparenter Hintergrund (optional) */
-    background: rgba(29, 53, 87, 0.5);
+    background: rgba(29, 53, 87, 0.5); /* Halbtransparenter Hintergrund (optional) */
     border-radius: 10px;
     margin-bottom: 50px;
   }
@@ -201,16 +218,20 @@
     margin-bottom: 0.5rem;
   }
   
-  /* Responsive Design */
-  /* Mobile/Tablet */
+  /* Responsive Anpassungen */
   @media (max-width: 768px) {
-    .navbar-toggle {
-      display: flex;
+    /* Hero: in der Mitte ausrichten bei kleineren Screens */
+    .hero-section {
+      justify-content: center;
+      padding-left: 1rem;
     }
-  
-    /* Kleineres Hero-Text */
+    .hero-content {
+      /* width: 90%; */
+      /* text-align: center; */
+      text-align: left;
+    }
     #centerText {
-      font-size: 40px;
+      font-size: 2rem;
     }
   }
   
