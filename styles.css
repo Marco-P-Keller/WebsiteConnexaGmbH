@@ -222,12 +222,15 @@
   @media (max-width: 768px) {
     /* Hero: in der Mitte ausrichten bei kleineren Screens */
     .hero-section {
-      justify-content: center;
-      padding-left: 1rem;
+      justify-content: left
+      /* padding-left: 0%; */
+      /* padding-left: 1rem; */ 
+      
     }
     .hero-content {
       /* width: 90%; */
       /* text-align: center; */
+      padding: 0;
       text-align: left;
     }
     #centerText {
