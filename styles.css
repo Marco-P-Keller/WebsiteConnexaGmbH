@@ -218,13 +218,52 @@
     margin-bottom: 0.5rem;
   }
   
+  /* Footer */
+  .footer {
+    background: linear-gradient(135deg, #152C48, #1F4E5D);
+    color: #f1faee;
+    padding: 20px;
+    text-align: center;
+    /* Falls du den Footer oben anpinnen willst, ggf. position: fixed; bottom: 0; */
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .footer-links li a {
+    color: #f1faee;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .footer-links li a:hover {
+    color: #44a1bd;
+  }
+
+  .footer-copyright {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
   /* Responsive Anpassungen */
   @media (max-width: 768px) {
     /* Hero: in der Mitte ausrichten bei kleineren Screens */
     .hero-section {
-      justify-content: left
+      /* justify-content: left */
       /* padding-left: 0%; */
       /* padding-left: 1rem; */ 
+      justify-content: flex-start; 
+      padding-left: 5%; /* Auf 0 setzen, damit nichts „eingerückt“ wird */
       
     }
     .hero-content {
