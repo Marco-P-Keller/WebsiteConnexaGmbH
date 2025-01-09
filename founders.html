@@ -39,91 +39,106 @@
        Navigation Styles
     --------------------------------- */
     .navbar {
-      position: fixed;   /* fest am oberen Rand */
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 50pt;
-      background: rgba(22, 47, 85, 0.7);
-      color: #fff;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 1000; 
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        position: sticky;
+        top: 0;
+        width: 100%;
+        /* Halbtransparenter Farbverlauf */
+        background: linear-gradient(
+        135deg,
+        rgba(22, 47, 85, 0.7),
+        rgba(48, 87, 110, 0.7)
+        );
+        color: #fff;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 1000; /* vor dem Canvas */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
+    
+    /* Brand links */
     .navbar-brand a {
-      color: #f1faee;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 1.3rem;
+        color: #f1faee;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 1.5rem;
     }
+    
+    /* Menü */
     .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      /* Standard geschlossen: Höhe 0, damit man nichts sieht */
-      width: 100vw;
-      height: 0;
-      background: rgba(48, 87, 110, 0.95);
-      overflow: hidden;
-      transition: height 0.4s ease;
-      z-index: 9999;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+        list-style: none;
+        display: flex;  /* Desktop: horizontal */
+        gap: 30px;
+        /* Für Mobile Overlay-Effekt */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: linear-gradient(
+        135deg,
+        rgba(9, 22, 51, 0.95),
+        rgba(69, 123, 157, 0.95),
+        rgba(34, 88, 90, 0.95)
+        );
+        overflow: hidden;
+        transition: height 0.4s ease;
+        z-index: 9999;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
-    /* Desktop: horizontale Anzeige */
+    
+    /* Desktop: Menü normal (keine Overlay-Eigenschaften) */
     @media (min-width: 769px) {
-      .nav-links {
+        .nav-links {
         position: static;
         height: auto;
-        width: auto;
         background: none;
         flex-direction: row;
         justify-content: flex-end;
         transition: none;
-      }
+        }
     }
+    
+    /* Menü-Links */
     .nav-links li a {
-      color: #f1faee;
-      text-decoration: none;
-      font-size: 1.1rem;
-      font-weight: 500;
-      transition: color 0.3s;
+        color: #f1faee;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 600;
+        transition: color 0.3s;
     }
     .nav-links li a:hover {
-      color: #44a1bd;
+        color: #44a1bd;
     }
     .nav-links li a.active {
-      color: #3faab8;
-      text-decoration: underline;
+        color: #3faab8;
+        text-decoration: underline;
     }
-    /* Vollbild Overlay, wenn .active */
+    /* Vollbild Overlay, wenn active */
     .nav-links.active {
-      height: 100vh; /* Deckt ganzen Screen ab */
+        height: 100vh;
     }
-    /* Hamburger-Icon (nur auf kleinen Geräten) */
+    /* Hamburger Icon (nur sichtbar auf Mobile/Tablet) */
     .navbar-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
     }
     .bar {
-      height: 3px;
-      width: 25px;
-      background-color: #f1faee;
-      margin: 4px 0;
-      transition: 0.4s;
+        height: 3px;
+        width: 25px;
+        background-color: #f1faee;
+        margin: 4px 0;
+        transition: 0.4s;
     }
+    
     @media (max-width: 768px) {
-      .navbar-toggle {
+        .navbar-toggle {
         display: flex;
-      }
+        }
     }
 
     /* --------------------------------
