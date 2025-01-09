@@ -102,12 +102,10 @@
     color: #3faab8;
     text-decoration: underline;
   }
-  
   /* Vollbild Overlay, wenn active */
   .nav-links.active {
     height: 100vh;
   }
-  
   /* Hamburger Icon (nur sichtbar auf Mobile/Tablet) */
   .navbar-toggle {
     display: none;

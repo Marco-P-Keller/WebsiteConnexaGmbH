@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>SoulBond Pitch</title>
+  <!-- Responsive Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,8 +15,8 @@
   >
 
   <style>
-    /* ------------------------------
-       Base Reset & Box Sizing
+    /* ------------------------------ 
+       1) BASIS-RESET & BOX-SIZING 
     ------------------------------- */
     *, *::before, *::after {
       margin: 0;
@@ -22,19 +24,24 @@
       box-sizing: border-box;
     }
 
-    /* ------------------------------
-       Body - Gradient Background
+    /* ------------------------------ 
+       2) BODY - HINTERGRUND 
     ------------------------------- */
     body {
       font-family: 'Poppins', sans-serif;
+      /* Ursprünglicher animierter Farbverlauf */
       background: linear-gradient(120deg, #c2e9fb, #1c4d74, #6ef5ff);
       background-size: 400% 400%;
       animation: gradientBg 15s ease infinite;
       color: #333;
       line-height: 1.6;
-      padding: 40px 20px;
+      /* Da Navbar fixed ist, etwas Platz nach oben freihalten */
+      padding-top: 70px; 
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 40px;
+      overflow-x: hidden;
     }
-
     @keyframes gradientBg {
       0% {
         background-position: 0% 50%;
@@ -47,13 +54,116 @@
       }
     }
 
-    /* ------------------------------
-       Container & Basic Layout
+    /* ------------------------------ 
+       3) CANVAS-HINTERGRUND 
+    ------------------------------- */
+    #networkCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1; /* Hinter allem */
+      width: 100vw;
+      height: 100vh; 
+    }
+
+    /* ------------------------------ 
+       4) NAVIGATION + HAMBURGER 
+    ------------------------------- */
+    .navbar {
+      position: fixed;   /* fest am oberen Rand */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50pt;
+      background: rgba(22, 47, 85, 0.7);
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000; 
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .navbar-brand a {
+      color: #f1faee;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1.3rem;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      /* Standard geschlossen: Höhe 0, damit man nichts sieht */
+      width: 100vw;
+      height: 0;
+      background: rgba(48, 87, 110, 0.95);
+      overflow: hidden;
+      transition: height 0.4s ease;
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Desktop: horizontale Anzeige */
+    @media (min-width: 769px) {
+      .nav-links {
+        position: static;
+        height: auto;
+        width: auto;
+        background: none;
+        flex-direction: row;
+        justify-content: flex-end;
+        transition: none;
+      }
+    }
+    .nav-links li a {
+      color: #f1faee;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links li a:hover {
+      color: #44a1bd;
+    }
+    .nav-links li a.active {
+      color: #3faab8;
+      text-decoration: underline;
+    }
+    /* Vollbild Overlay, wenn .active */
+    .nav-links.active {
+      height: 100vh; /* Deckt ganzen Screen ab */
+    }
+    /* Hamburger-Icon (nur auf kleinen Geräten) */
+    .navbar-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .bar {
+      height: 3px;
+      width: 25px;
+      background-color: #f1faee;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+    @media (max-width: 768px) {
+      .navbar-toggle {
+        display: flex;
+      }
+    }
+
+    /* ------------------------------ 
+       5) CONTAINER (INHALT) 
     ------------------------------- */
     .container {
       max-width: 900px;
       margin: 0 auto;
-      background-color: #ffffffcc; /* slight transparency */
+      background-color: #ffffffcc; /* leichte Transparenz */
       backdrop-filter: blur(8px);
       border-radius: 10px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -64,7 +174,6 @@
       color: #2c3e50;
       margin-bottom: 0.6em;
     }
-
     h1 {
       font-size: 1.8rem;
       margin-top: 0;
@@ -72,55 +181,41 @@
       font-weight: 700;
       text-align: center;
     }
-
     h2 {
       font-size: 1.4rem;
       margin-top: 1.5rem;
       margin-bottom: 1rem;
       font-weight: 600;
     }
-
     p, li {
       margin-bottom: 1em;
       text-align: justify;
       font-weight: 300;
       color: #444;
     }
-
     ul, ol {
       margin-left: 1.4em;
       margin-bottom: 1.5em;
     }
-
     li strong {
       font-weight: 500;
     }
-
-    /* Section Spacing */
     .section {
       margin-bottom: 2.5rem;
     }
-
-    /* Callout / Quotation Box */
     .callout {
       font-style: italic;
       background: #ffffff;
       padding: 1rem;
-      border-left: 4px solid #ffffff; /* accent color */
+      border-left: 4px solid #ffffff;
       margin: 1.5rem 0;
       color: #555;
       border: 2px solid #ffffff;
-      border-radius: 15px; /
+      border-radius: 15px;
     }
-
-    /* Bold Text Helper */
     .bold {
       font-weight: 700;
     }
-
-    /* Footer or Summary 
-       (Not mandatory here, but for style consistency)
-    */
     .summary-title {
       margin-top: 2rem;
       margin-bottom: 1rem;
@@ -129,24 +224,50 @@
       color: #2c3e50;
     }
 
-    /* Media Queries (optional) */
+    /* ------------------------------ 
+       6) RESPONSIVE QUERIES 
+    ------------------------------- */
     @media (max-width: 600px) {
-      body {
-        padding: 20px 10px;
-      }
-      .container {
-        padding: 20px;
-      }
+      /* Text & Heading etwas verkleinern auf Handy */
       h1 {
         font-size: 1.5rem;
       }
       h2 {
         font-size: 1.2rem;
       }
+      p, li {
+        font-size: 0.95rem; /* Ein bisschen kleiner als Standard */
+      }
+      .container {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- NAVIGATION mit Hamburger -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="#">SoulBond</a>
+    </div>
+    <div class="navbar-toggle" id="mobileMenu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" class="active">Pitch</a></li>
+      <li><a href="#">Crowdfunding</a></li>
+      <li><a href="#">White Paper</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- CANVAS für die Hintergrund-Animation -->
+  <canvas id="networkCanvas"></canvas>
+
+  <!-- HAUPTINHALT -->
   <div class="container">
     <h1>SoulBond — A Fresh Take on Social Media</h1>
 
@@ -366,5 +487,104 @@
       <li><strong>CTA:</strong> Join us in building a social network free from addiction and data scandals.</li>
     </ul>
   </div><!-- /container -->
+
+  <!-- Hintergrund-Animation (Netzwerk) -->
+  <script>
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let devices = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      createDevices(Math.floor((canvas.width * canvas.height) / 5000));
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    let lastExecution = 0;
+    window.addEventListener('resize', () => {
+      const now = Date.now();
+      if (now - lastExecution >= 200) {
+        resizeCanvas();
+        lastExecution = now;
+      }
+    });
+
+    function createDevices(count) {
+      devices = [];
+      for (let i = 0; i < count; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        devices.push({
+          x,
+          y,
+          dx: Math.random() - 0.5,
+          dy: Math.random() - 0.5
+        });
+      }
+    }
+
+    function drawNetwork() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Farbverlauf
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#051E41FF');
+      gradient.addColorStop(0.5, '#2C5772FF');
+      gradient.addColorStop(1, '#3647A5FF');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Punkte
+      devices.forEach(device => {
+        ctx.beginPath();
+        ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFD700';
+        ctx.fill();
+      });
+
+      // Linien
+      devices.forEach((device, i) => {
+        for (let j = i + 1; j < devices.length; j++) {
+          const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(device.x, device.y);
+            ctx.lineTo(devices[j].x, devices[j].y);
+            ctx.strokeStyle = 'rgba(255, 127, 80, 0.1)';
+            ctx.stroke();
+          }
+        }
+      });
+    }
+
+    function updatePositions() {
+      devices.forEach(device => {
+        device.x += device.dx;
+        device.y += device.dy;
+        // Begrenzung am Rand
+        if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
+        if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
+      });
+    }
+
+    function animate() {
+      updatePositions();
+      drawNetwork();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
+  <!-- MOBILE MENÜ TOGGLE -->
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = document.getElementById('navLinks');
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
