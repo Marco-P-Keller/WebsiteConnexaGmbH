@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Connexa GmbH - Single Page</title>
   <link rel="icon" href="LogoV1.jpg" type="image/png" />
-  <!-- Gemeinsame CSS-Datei -->
+  <!-- Main CSS File -->
   <link rel="stylesheet" href="styles.css" />
   <!-- Google Fonts -->
   <link
@@ -14,11 +14,11 @@
   />
 </head>
 <body>
- <!-- Navigation -->
- <nav class="navbar">
+  <!-- Navigation -->
+  <nav class="navbar">
     <div class="navbar-brand">
-        <!-- <img src="LogoV1.jpg"  width="10%" > -->
-        <a href="index.html">Connexa</a>
+      <!-- <img src="LogoV1.jpg" width="10%" alt="Connexa Logo"> -->
+      <a href="index.html">Connexa</a>
     </div>
     <div class="navbar-toggle" id="mobileMenu">
       <span class="bar"></span>
@@ -26,6 +26,7 @@
       <span class="bar"></span>
     </div>
     <ul class="nav-links" id="navLinks">
+      <!-- Adjust or uncomment the Home link if needed -->
       <!-- <li><a href="index.html">Home</a></li> -->
       <li><a href="pitch.html">Pitch</a></li>
       <li><a href="white-paper.html">White Paper</a></li>
@@ -36,85 +37,101 @@
     </ul>
   </nav>
 
-  <!-- CANVAS im Hintergrund -->
+  <!-- Background Canvas -->
   <canvas id="networkCanvas"></canvas>
 
-  <!-- HERO-Bereich (Home) -->
+  <!-- HERO SECTION (Home) -->
   <section id="home" class="hero-section">
     <div class="hero-content">
-      <!-- <h1 id="centerText">CONNECT WITH PURPOSE</h1> -->
       <h1 id="centerText">
         CONNECT<br>
-        <span class="indent">WITH PURPOSE</span>
+        <span class="indent">WITH AUTHENTICITY</span>
       </h1>
       <p class="hero-description">
-        Imagine a social media platform free from addiction, time-wasting, envy, 
-        and fake personas. No like counts, no follower races, no influencers vying 
-        for attention—just real, meaningful connections. SoulBond redefines what 
-        social media can be, putting authentic relationships at its core and 
-        sparking a revolution in how we connect.
+        Welcome to a new era of social networking, where meaningful connections 
+        take center stage. No endless feeds, no like counters, and no influencer 
+        hype—just genuine, face-to-face encounters that nurture real relationships. 
+        With SoulBond, you only connect with people you meet offline, ensuring 
+        authentic bonds and freeing you from the noise, pressure, and invasive 
+        data collection common to traditional social media.
       </p>
-      <a href="totheapp.html" class="btn-cta">To The Beta App</a>
+      <a href="totheapp.html" class="btn-cta">Try the Beta App</a>
     </div>
   </section>
 
-  <!-- INFO-Bereich (Idea, Concept, Benefits) -->
+  <!-- INFO SECTION (Vision, Concept, Benefits) -->
   <section id="info" class="content-section">
-    <h2>Idea</h2>
+    <h2>Our Vision</h2>
     <p>
-      A social media platform inspired by popular platforms like Instagram 
-      but without the typical negative aspects such as time-wasting, 
-      irrelevant or unnecessary content (“trash content”), 
-      overly staged influencers, and artificiality (“fakeness”).
+      SoulBond transforms social media into a force for authentic human interaction, 
+      letting you connect only when you physically meet someone. Forget about fake 
+      profiles, endless scrolling, and attention-driven algorithms. By blending 
+      the convenience of digital communication with the warmth of real-life encounters, 
+      SoulBond puts genuine relationships first.
     </p>
+
     <h2>Concept</h2>
     <ul>
-      <li>A combination of Instagram and WhatsApp.</li>
       <li>
-        A platform that merges the visual appeal and sharing features 
-        of Instagram with the private and direct communication of WhatsApp.
+        <strong>Physical Pairing Only:</strong> 
+        You form connections by tapping your smartphones together (NFC or Bluetooth), 
+        ensuring every friend in your feed is someone you truly know.
       </li>
       <li>
-        The focus is on real connections and authentic content that adds value 
-        and doesn’t waste time.
+        <strong>No Likes, No Follower Counts:</strong> 
+        We remove the numbers game to eliminate competition and social pressure.
+      </li>
+      <li>
+        <strong>Privacy by Design:</strong> 
+        No data-harvesting or ad-targeting. Your personal information isn’t up for sale.
+      </li>
+      <li>
+        <strong>Authentic Content:</strong> 
+        Posts reflect real experiences shared with the people who were actually there.
       </li>
     </ul>
-    <h2>Benefits (Pro's)</h2>
+
+    <h2>Key Benefits</h2>
     <ol>
       <li>
-        <strong>No irrelevant content:</strong><br />
-        Filters or curation mechanisms prevent trashy or unnecessary content 
-        from cluttering the feed.
+        <strong>Reduced Screen Time:</strong><br />
+        By limiting connections to real friends, SoulBond removes the endless content 
+        flood and addictive scrolling found on other platforms.
       </li>
       <li>
-        <strong>Efficient use of time:</strong><br />
-        Designed to avoid addictive endless scrolling, enabling meaningful
-        and valuable interactions instead.
+        <strong>Genuine Social Experience:</strong><br />
+        No artificial facades, no staged posts. Each friendship starts offline and 
+        builds online.
       </li>
       <li>
-        <strong>Stay up-to-date with friends:</strong><br />
-        Keep in touch with what’s happening in your friends’ lives in a meaningful, 
-        direct way – without artificial facades.
+        <strong>Stronger Data Protection:</strong><br />
+        We don’t track or sell your data. Zero targeted ads—just private communication 
+        in your hands.
       </li>
       <li>
-        <strong>Authenticity and realness:</strong><br />
-        No over-the-top self-promotion by influencers. The focus is on genuine 
-        communication and authentic content.
+        <strong>Empowering, Not Distracting:</strong><br />
+        SoulBond aims to enrich your real-life connections, rather than distract you 
+        with notifications and numbers.
       </li>
     </ol>
     <p>
-      This platform would appeal to people who want to use social media 
-      but are looking for a more conscious, time-efficient, 
-      and authentic alternative.
+      Whether you’re looking to keep in touch with close friends or strengthen your 
+      real-life community, SoulBond offers a secure, authentic alternative to 
+      mainstream social media.
     </p>
   </section>
 
-  <!-- FOUNDERS-Bereich (Beispiel) -->
+  <!-- FOUNDERS SECTION -->
   <section id="founders" class="content-section">
     <h2>The Founders</h2>
-    <p>Hier könnte ein kurzer Absatz über die Gründer stehen oder Bilder etc.</p>
-    <!-- Beispiel (falls du Bilder hast) -->
-    <!--
+    <p>
+      SoulBond was born from a shared belief that social media should enhance our 
+      real-world connections, not replace them. Our founders—visionaries in both 
+      technology and community-building—combined expertise in secure mobile 
+      development and ethical design to create a platform that puts genuine human 
+      relationships first.
+    </p>
+    <!-- If you have founder images, you can add them here
     <div class="founders">
       <div class="founder">
         <img src="Janis.webp" alt="Janis" />
@@ -126,7 +143,7 @@
     -->
   </section>
 
-  <!-- Footer mit Links zu anderen Unterseiten -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-content">
       <ul class="footer-links">
@@ -139,13 +156,11 @@
         <li><a href="privacy-policy.html">Privacy Policy</a></li>
         <li><a href="imprint.html">Imprint</a></li>
       </ul>
-      <p class="footer-copyright">
-        &copy; 2025 Connexa GmbH. All rights reserved.
-      </p>
+      <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- Hintergrund-Animation -->
+  <!-- Background Animation -->
   <script>
     const canvas = document.getElementById('networkCanvas');
     const ctx = canvas.getContext('2d');
@@ -155,10 +170,10 @@
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight * 5; 
-      // Du kannst hier * 2, * 3 oder *5 nehmen, 
-      // wenn du viel Content hast (damit das Canvas den ganzen Inhalt bedeckt).
+      // If you have a long page, multiply accordingly so the canvas covers all.
       createDevices(Math.floor((canvas.width * canvas.height) / 5000));
     }
+
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
@@ -186,20 +201,17 @@
     }
 
     function drawNetwork() {
-      // Leeren
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Schöner Farbverlauf als Canvas-Hintergrund
+      // Gradient background
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
       gradient.addColorStop(0, '#051E41FF');
       gradient.addColorStop(0.5, '#2C5772FF');
       gradient.addColorStop(1, '#3647A5FF');
-
-      // Hintergrund zeichnen mit dem Farbverlauf
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Punkte (devices)
+      // Points (devices)
       devices.forEach(device => {
         ctx.beginPath();
         ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
@@ -207,7 +219,7 @@
         ctx.fill();
       });
 
-      // Verbindungslinien
+      // Connecting lines
       devices.forEach((device, i) => {
         for (let j = i + 1; j < devices.length; j++) {
           const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
@@ -226,7 +238,7 @@
       devices.forEach(device => {
         device.x += device.dx;
         device.y += device.dy;
-        // Begrenzung an den Rändern
+        // Reverse direction upon hitting boundaries
         if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
         if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
       });
@@ -240,7 +252,7 @@
     animate();
   </script>
 
-  <!-- Mobile-Menü per JavaScript ein-/ausklappen -->
+  <!-- Mobile Menu Toggle -->
   <script>
     const mobileMenu = document.getElementById('mobileMenu');
     const navLinks = document.getElementById('navLinks');
