@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SoulBond Pitch</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" 
+    rel="stylesheet"
+  >
+
+  <style>
+    /* -------------------------------
+       RESET & BOX SIZING
+    --------------------------------*/
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* -------------------------------
+       ROOT STYLE VARIABLES
+    --------------------------------*/
+    :root {
+      --font-primary: 'Poppins', sans-serif;
+      --color-bg-light: #f5f7fa;
+      --color-bg-dark: #2c3e50;
+      --color-accent: #f39c12; /* for highlight accents */
+      --color-accent-light: #ffe6b3; 
+      --text-dark: #444;
+      --text-light: #fff;
+      --card-bg: #ffffffee; /* slight transparency for card backgrounds */
+      --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* -------------------------------
+       BODY & GLOBAL
+    --------------------------------*/
+    body {
+      font-family: var(--font-primary);
+      background: linear-gradient(135deg, #c2e9fb, #edf1f4, #fde2fc);
+      background-size: 300% 300%;
+      animation: gradientBg 18s ease infinite;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    @keyframes gradientBg {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--color-accent);
+    }
+    a:hover {
+      color: #d35400;
+    }
+
+    /* -------------------------------
+       HERO SECTION
+    --------------------------------*/
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-light);
+      background: linear-gradient(
+        135deg, 
+        rgba(44,62,80,0.85) 0%, 
+        rgba(52,73,94,0.85) 50%, 
+        rgba(41,128,185,0.85) 100%
+      ), 
+      url('https://picsum.photos/1920/1080?grayscale&blur=1') center/cover no-repeat;
+      background-blend-mode: overlay;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5em;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5em;
+      max-width: 700px;
+    }
+    .hero .btn-cta {
+      font-size: 1rem;
+      padding: 0.75em 1.5em;
+      color: var(--text-light);
+      background-color: var(--color-accent);
+      border-radius: 30px;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .hero .btn-cta:hover {
+      background-color: #d35400;
+      transform: translateY(-2px);
+    }
+
+    /* -------------------------------
+       MAIN CONTENT WRAPPER
+    --------------------------------*/
+    .content-wrapper {
+      margin: -80px auto 0 auto; /* overlaps hero */
+      padding: 40px;
+      max-width: 1100px;
+    }
+
+    /* -------------------------------
+       SECTION STYLES
+    --------------------------------*/
+    .section {
+      margin-bottom: 4rem;
+    }
+    .section h2 {
+      font-size: 1.8rem;
+      color: var(--color-bg-dark);
+      margin-bottom: 1rem;
+      font-weight: 600;
+      position: relative;
+    }
+    .section h2::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background-color: var(--color-accent);
+      margin-top: 8px;
+      border-radius: 2px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: var(--box-shadow);
+      padding: 30px;
+      margin-bottom: 2rem;
+    }
+
+    .card p, .card li {
+      text-align: justify;
+      margin-bottom: 0.8em;
+      color: var(--text-dark);
+    }
+
+    /* OL & UL inside card */
+    .card ol, .card ul {
+      margin-left: 1.5em;
+      margin-bottom: 1.2em;
+    }
+
+    .card li strong {
+      color: var(--color-bg-dark);
+      font-weight: 500;
+    }
+
+    /* Callout (quote box) */
+    .callout {
+      font-style: italic;
+      background: var(--color-accent-light);
+      padding: 1em;
+      border-left: 4px solid var(--color-accent);
+      margin: 1.5em 0;
+      color: #666;
+    }
+
+    .summary-title {
+      margin-top: 1em;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--color-bg-dark);
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .content-wrapper {
+        margin-top: -50px;
+      }
+    }
+
+    @media(max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero p {
+        font-size: 0.95rem;
+      }
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>SoulBond — A Fresh Take on Social Media</h1>
+    <p>
+      Have you ever found social media more stressful than connecting? 
+      SoulBond offers a radically different path—less about likes and followers, 
+      more about <strong>real-life encounters</strong>, privacy, and genuine human bonds.
+    </p>
+    <a href="#pitch" class="btn-cta">Discover the Pitch</a>
+  </section>
+
+  <!-- CONTENT WRAPPER -->
+  <div class="content-wrapper" id="pitch">
+    
+    <!-- INTRODUCTION -->
+    <div class="section card">
+      <h2>1. Introduction</h2>
+      <div class="callout">
+        “Have you ever wondered why social media often leaves us stressed instead of truly connected?”
+      </div>
+      <p>
+        Many of us find current social platforms to be time-draining, superficial, or even toxic—packed 
+        with likes, follower counts, and infinite scrolling. At <strong>SoulBond</strong>, we believe 
+        there's a better way.
+      </p>
+    </div>
+
+    <!-- PROBLEM -->
+    <div class="section card">
+      <h2>2. The Problem</h2>
+      <ol>
+        <li>
+          <strong>Surface-Level Online Culture:</strong><br />
+          Likes, follower metrics, and algorithmic rankings tend to encourage self-promotion instead of genuine closeness.
+        </li>
+        <li>
+          <strong>Excessive Time & Addictive Mechanics:</strong><br />
+          Endless feeds and constant notifications absorb our attention, often without meaningful return.
+        </li>
+        <li>
+          <strong>Privacy Concerns:</strong><br />
+          Most platforms rely on personalized ads and user data sales, leading to growing mistrust.
+        </li>
+      </ol>
+    </div>
+
+    <!-- SOLUTION -->
+    <div class="section card">
+      <h2>3. The SoulBond Solution</h2>
+      <p><strong>SoulBond</strong> introduces a radically different approach to social media:</p>
+      <ol>
+        <li>
+          <strong>Offline-First:</strong><br />
+          New connections can only be created when people meet in person and pair their smartphones 
+          (NFC or Bluetooth), preventing fake profiles and fostering authentic relationships.
+        </li>
+        <li>
+          <strong>No Likes or Follower Counts:</strong><br />
+          We replace numeric competition with genuine posts, real stories, and true friendships.
+        </li>
+        <li>
+          <strong>Data-Sparing & Ad-Free:</strong><br />
+          Minimal data collection and no personalized ads. No tracking scripts, no data sales.
+        </li>
+        <li>
+          <strong>Real Memories:</strong><br />
+          During pairing, participants can capture a quick photo or video together, automatically 
+          shared with everyone involved—real moments rather than staged content.
+        </li>
+      </ol>
+    </div>
+
+    <!-- MARKET POTENTIAL -->
+    <div class="section card">
+      <h2>4. Market Potential</h2>
+      <ul>
+        <li>
+          <strong>Target Audience:</strong> 
+          Young people wanting to limit screen time, privacy-conscious users, authenticity seekers, 
+          and families/friends craving more genuine contact.
+        </li>
+        <li>
+          <strong>Trend:</strong> 
+          “Digital Detox” and privacy concerns are on the rise. SoulBond meets the need for online 
+          experiences without addictive patterns or data exploitation.
+        </li>
+      </ul>
+    </div>
+
+    <!-- BUSINESS MODEL -->
+    <div class="section card">
+      <h2>5. Business Model</h2>
+      <ol>
+        <li>
+          <strong>Free Core Features:</strong><br />
+          The base app and fundamental functions remain free for broader access.
+        </li>
+        <li>
+          <strong>Optional Premium Add-Ons:</strong><br />
+          Advanced group tools, extra cloud storage, or business functionalities via monthly/yearly subscriptions.
+        </li>
+        <li>
+          <strong>Partnerships / Crowdfunding:</strong><br />
+          Collaborations with privacy-oriented companies, plus potential community-driven funding for expansion.
+        </li>
+      </ol>
+    </div>
+
+    <!-- COMPETITIVE EDGE -->
+    <div class="section card">
+      <h2>6. Competitive Edge</h2>
+      <ol>
+        <li>
+          <strong>Real Contacts, Not Follower Frenzy:</strong><br />
+          No social-media stress or bots, since offline pairing is mandatory before connecting.
+        </li>
+        <li>
+          <strong>Zero-Waste Social:</strong><br />
+          No bottomless feeds of irrelevant posts—just curated updates from real friends.
+        </li>
+        <li>
+          <strong>Privacy Focus:</strong><br />
+          No targeted ads or data reselling, building user trust and loyalty.
+        </li>
+        <li>
+          <strong>Shared Moments:</strong><br />
+          Automatic group posts create fun memories tied to real encounters.
+        </li>
+      </ol>
+    </div>
+
+    <!-- TEAM -->
+    <div class="section card">
+      <h2>7. The Team</h2>
+      <ul>
+        <li>
+          <strong>CEO & Co-Founder:</strong> [Name] – 
+          Long-standing experience in community building and strategic leadership.
+        </li>
+        <li>
+          <strong>CTO & Co-Founder:</strong> [Name] – 
+          Specializes in secure mobile development, encryption, and data architecture.
+        </li>
+        <li>
+          <strong>Marketing Lead:</strong> [Name] – 
+          Focus on user-centric campaigns, sustainable branding, and growth.
+        </li>
+      </ul>
+      <p>
+        Together, we share a vision for a healthier social-media culture where real relationships come first.
+      </p>
+    </div>
+
+    <!-- ROADMAP -->
+    <div class="section card">
+      <h2>8. Current Status & Roadmap</h2>
+      <ul>
+        <li>
+          <strong>Beta (Now):</strong><br />
+          Core features (pairing, chat, post sharing) are available; pilot groups are testing.
+        </li>
+        <li>
+          <strong>Public Launch (3–6 months):</strong><br />
+          App store release, early marketing, community building.
+        </li>
+        <li>
+          <strong>Future:</strong><br />
+          International expansion, multilingual versions, expanded premium features (group events, extra storage, video calls).
+        </li>
+      </ul>
+    </div>
+
+    <!-- INVESTMENT / SUPPORT -->
+    <div class="section card">
+      <h2>9. Investment / Support</h2>
+      <p>
+        We’re seeking <strong>partners and investors</strong> who align with our focus on 
+        <em>privacy, authenticity</em>, and <em>human connection</em>. Investments in SoulBond will boost:
+      </p>
+      <ul>
+        <li>
+          <strong>Scalable Development & Infrastructure:</strong> 
+          More robust server capacity, stable and secure features.
+        </li>
+        <li>
+          <strong>Marketing & Outreach:</strong> 
+          Targeted campaigns, collaborations with universities and community groups.
+        </li>
+        <li>
+          <strong>Global Expansion:</strong> 
+          Localization, regional compliance, and user onboarding.
+        </li>
+      </ul>
+      <p>
+        <strong>Your advantage:</strong> Join a rising counter-movement to data-driven social giants 
+        and invest in a sustainable, forward-thinking project.
+      </p>
+    </div>
+
+    <!-- CONCLUSION & CTA -->
+    <div class="section card">
+      <h2>10. Conclusion (Call-to-Action)</h2>
+      <div class="callout">
+        “Imagine social media that enriches rather than ensnares you — where privacy and genuine friendships align perfectly.”
+      </div>
+      <p>
+        At <strong>SoulBond</strong>, we’re shaping that future. Let’s redefine social media 
+        together. We welcome your questions, your partnership, and your support.
+      </p>
+      <h2 class="summary-title">In Brief</h2>
+      <ul>
+        <li>
+          <strong>Vision:</strong> An honest social platform grounded in real-world interactions.
+        </li>
+        <li>
+          <strong>Problem:</strong> Superficial, addictive, privacy-lacking mainstream networks.
+        </li>
+        <li>
+          <strong>Solution:</strong> Offline-first pairing, no follower counts, privacy-centric model.
+        </li>
+        <li>
+          <strong>Team:</strong> Experts in secure mobile dev, community building, and strategic marketing.
+        </li>
+        <li>
+          <strong>Roadmap:</strong> Beta → Public Launch → Premium → Global Scale
+        </li>
+        <li>
+          <strong>CTA:</strong> Join us in crafting a social network free from data scandals and addictive designs.
+        </li>
+      </ul>
+    </div>
+  </div> <!-- /content-wrapper -->
+</body>
+</html>
