@@ -15,59 +15,29 @@
   >
 
   <style>
-    /* ------------------------------ 
-       1) BASIS-RESET & BOX-SIZING 
-    ------------------------------- */
+    /* --------------------------------
+       Basic Reset & Box Sizing
+    --------------------------------- */
     *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    /* ------------------------------ 
-       2) BODY - HINTERGRUND 
-    ------------------------------- */
+    /* --------------------------------
+       Body
+    --------------------------------- */
     body {
       font-family: 'Poppins', sans-serif;
-      /* Ursprünglicher animierter Farbverlauf */
-      /* background: linear-gradient(120deg, #c2e9fb, #1c4d74, #6ef5ff);
-      background-size: 400% 400%;
-      animation: gradientBg 15s ease infinite;
       color: #333;
       line-height: 1.6;
-      padding-top: 80px; 
-      padding-left: 20px;
-      padding-right: 20px;
-      padding-bottom: 40px; */
-      overflow-x: hidden;
-    }
-    /* @keyframes gradientBg {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    } */
-
-    /* ------------------------------ 
-       3) CANVAS-HINTERGRUND 
-    ------------------------------- */
-    #networkCanvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: -1; /* Damit es hinter allen Inhalten liegt */
+      margin: 0;
+      overflow-x: hidden; /* prevent horizontal scroll */
     }
 
-    /* ------------------------------ 
-       4) NAVIGATION + HAMBURGER 
-    ------------------------------- */
-      /* Navigation (oben fixiert) */
-    /* Navigation (oben fixiert) */
+    /* --------------------------------
+       Navigation Styles
+    --------------------------------- */
     .navbar {
         position: sticky;
         top: 0;
@@ -171,6 +141,16 @@
         }
     }
 
+
+    /* --------------------------------
+       Canvas (Background Animation)
+    --------------------------------- */
+    #networkCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1; /* behind content */
+    }
     /* ------------------------------ 
        5) CONTAINER (INHALT) 
     ------------------------------- */
@@ -178,10 +158,10 @@
       max-width: 900px;
       margin: 0 auto;
       background-color: #ffffffcc; /* leichte Transparenz */
-      backdrop-filter: blur(8px);
+      padding: 40px;
       border-radius: 10px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      padding: 40px;
+      backdrop-filter: blur(8px);
     }
 
     h1, h2 {
