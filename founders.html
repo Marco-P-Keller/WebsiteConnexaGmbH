@@ -2,17 +2,254 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Connexa GmbH - Founders</title>
+  <title>Founders - Connexa GmbH</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon (optional) -->
   <link rel="icon" href="LogoV1.jpg" type="image/png" />
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
     rel="stylesheet"
   />
+
+  <style>
+    /* --------------------------------
+       Basic Reset and Box Sizing
+    --------------------------------- */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* --------------------------------
+       Body
+    --------------------------------- */
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* --------------------------------
+       Navigation Styles
+    --------------------------------- */
+    .navbar {
+      position: fixed;   /* fest am oberen Rand */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50pt;
+      background: rgba(22, 47, 85, 0.7);
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000; 
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .navbar-brand a {
+      color: #f1faee;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1.3rem;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      /* Standard geschlossen: Höhe 0, damit man nichts sieht */
+      width: 100vw;
+      height: 0;
+      background: rgba(48, 87, 110, 0.95);
+      overflow: hidden;
+      transition: height 0.4s ease;
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Desktop: horizontale Anzeige */
+    @media (min-width: 769px) {
+      .nav-links {
+        position: static;
+        height: auto;
+        width: auto;
+        background: none;
+        flex-direction: row;
+        justify-content: flex-end;
+        transition: none;
+      }
+    }
+    .nav-links li a {
+      color: #f1faee;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links li a:hover {
+      color: #44a1bd;
+    }
+    .nav-links li a.active {
+      color: #3faab8;
+      text-decoration: underline;
+    }
+    /* Vollbild Overlay, wenn .active */
+    .nav-links.active {
+      height: 100vh; /* Deckt ganzen Screen ab */
+    }
+    /* Hamburger-Icon (nur auf kleinen Geräten) */
+    .navbar-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .bar {
+      height: 3px;
+      width: 25px;
+      background-color: #f1faee;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+    @media (max-width: 768px) {
+      .navbar-toggle {
+        display: flex;
+      }
+    }
+
+    /* --------------------------------
+       Canvas (Background Animation)
+    --------------------------------- */
+    #networkCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1; /* behind content */
+    }
+
+    /* --------------------------------
+       Founders Section
+    --------------------------------- */
+    .founders-section {
+      position: relative;
+      margin-top: 80px; /* space below navbar */
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .founders-header {
+      text-align: center;
+      margin-bottom: 2em;
+    }
+
+    .founders-header h1 {
+      font-size: 2rem;
+      color: #d5e3f1;
+      margin-bottom: 0.5em;
+    }
+
+    .founders-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #f1e3e3;
+      margin-bottom: 2.5em;
+    }
+
+    /* Founders Grid */
+    .founders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2em;
+    }
+
+    .founder-card {
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(6px);
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .founder-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .founder-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1em;
+    }
+    .founder-card h2 {
+      font-size: 1.2rem;
+      color: #82909e;
+      margin-bottom: 0.5em;
+    }
+    .founder-card h3 {
+      font-size: 1rem;
+      color: #777;
+      margin-bottom: 1em;
+      font-weight: 500;
+    }
+    .founder-card p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    /* --------------------------------
+       Footer
+    --------------------------------- */
+    .footer {
+      background-color: #2c3e50;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 2em;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      margin-bottom: 1em;
+    }
+    .footer-links li a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .footer-links li a:hover {
+      text-decoration: underline;
+    }
+    .footer p {
+      font-size: 0.9rem;
+      margin-top: 0.5em;
+    }
+  </style>
 </head>
 <body>
-  <!-- Navigation -->
+
+  <!-- NAVIGATION BAR -->
   <nav class="navbar">
     <div class="navbar-brand">
       <a href="index.html">Connexa</a>
@@ -23,54 +260,174 @@
       <span class="bar"></span>
     </div>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="founders.html" class="active">Founders</a></li>
-      <!-- <li><a href="product.html">Product</a></li> -->
+      <li><a href="pitch.html">Pitch</a></li>
+      <li><a href="white-paper.html">White Paper</a></li>
+      <li><a href="crowdfunding.html">Crowdfunding</a></li>
+      <li><a href="founders.html" style="color: #ffdb99;">Our Founders</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="get-started.html">Download</a></li>
     </ul>
   </nav>
 
-  <section id="founders" class="content-section">
-    <h2>The Founders</h2>
-    <div class="founders">
-      <div class="founder">
-        <img src="Janis.webp" alt="Founder 1" />
-        <h3>Janis Papagiorgio</h3>
-        <p>CTO & Co-founder</p>
+  <!-- BACKGROUND CANVAS -->
+  <canvas id="networkCanvas"></canvas>
+
+  <!-- FOUNDERS SECTION -->
+  <section class="founders-section">
+    <div class="founders-header">
+      <h1>Our Founders</h1>
+      <p class="founders-intro">
+        SoulBond was built on the principle that real, meaningful connections start in the offline world.
+        Meet the team of visionaries who turned that idea into a reality.
+      </p>
+    </div>
+
+    <div class="founders-grid">
+      <!-- Founder 1 -->
+      <div class="founder-card">
+        <img src="founder1.jpg" alt="Founder 1" />
+        <h2>Marco P. Keller</h2>
+        <h3>CEO & Co-Founder</h3>
         <p>
-          Janis ist ein visionärer Technologe mit außergewöhnlichen
-          Problemlösungsfähigkeiten und tiefem Verständnis für Softwarearchitektur.
+          With a decade of experience in community building, Marco leads Connexa with a passion for 
+          bridging the gap between offline and online interactions. 
         </p>
       </div>
-      <div class="founder">
-        <img src="Marco2.webp" alt="Founder 2" />
-        <h3>Marco P. Keller</h3>
-        <p>CEO & Co-founder</p>
+
+      <!-- Founder 2 -->
+      <div class="founder-card">
+        <img src="founder2.jpg" alt="Founder 2" />
+        <h2>Janis Papagiorgio</h2>
+        <h3>CTO & Co-Founder</h3>
         <p>
-          Marco ist ein strategischer Kopf, bekannt dafür, Teams zu inspirieren und 
-          starke Partnerschaften aufzubauen.
+          Janis is a secure mobile development expert, responsible for ensuring SoulBond's 
+          first approach is both technologically robust and user-friendly.
         </p>
       </div>
-      <div class="founder">
-        <img src="Marius.webp" alt="Founder 3" />
-        <h3>Marius Jörger</h3>
-        <p>CFO & Co-founder</p>
+
+      <!-- Founder 3 -->
+      <div class="founder-card">
+        <img src="founder3.jpg" alt="Founder 3" />
+        <h2>Marius Joerger</h2>
+        <h3>Head of Product & Co-Founder</h3>
         <p>
-          Marius ist ein Finanzstratege mit Blick für nachhaltiges Wachstum 
-          und effiziente Ressourcennutzung.
+          Marius focuses on building features that truly enhance user well-being, ensuring 
+          SoulBond remains free from endless feeds or addictive mechanics.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Footer (optional) -->
-  <!--
-  <footer>
-    <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="pitch.html">Pitch</a></li>
+        <li><a href="white-paper.html">White Paper</a></li>
+        <li><a href="crowdfunding.html">Crowdfunding</a></li>
+        <li><a href="founders.html">Our Founders</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="get-started.html">Download</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="imprint.html">Imprint</a></li>
+      </ul>
+      <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
+    </div>
   </footer>
-  -->
 
-  <!-- JS für Mobile-Menü -->
+  <!-- BACKGROUND ANIMATION SCRIPT -->
+  <script>
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let devices = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight * 5; 
+      // If you have long content, multiply the height so the canvas covers everything.
+      createDevices(Math.floor((canvas.width * canvas.height) / 5000));
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    let lastExecution = 0;
+    window.addEventListener('resize', () => {
+      const now = Date.now();
+      if (now - lastExecution >= 200) {
+        resizeCanvas();
+        lastExecution = now;
+      }
+    });
+
+    function createDevices(count) {
+      devices = [];
+      for (let i = 0; i < count; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        devices.push({
+          x,
+          y,
+          dx: Math.random() - 0.5,
+          dy: Math.random() - 0.5
+        });
+      }
+    }
+
+    function drawNetwork() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Gradient background
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#051E41FF');
+      gradient.addColorStop(0.5, '#2C5772FF');
+      gradient.addColorStop(1, '#3647A5FF');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Points (devices)
+      devices.forEach(device => {
+        ctx.beginPath();
+        ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFD700';
+        ctx.fill();
+      });
+
+      // Connecting lines
+      devices.forEach((device, i) => {
+        for (let j = i + 1; j < devices.length; j++) {
+          const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(device.x, device.y);
+            ctx.lineTo(devices[j].x, devices[j].y);
+            ctx.strokeStyle = 'rgba(255, 127, 80, 0.1)';
+            ctx.stroke();
+          }
+        }
+      });
+    }
+
+    function updatePositions() {
+      devices.forEach(device => {
+        device.x += device.dx;
+        device.y += device.dy;
+        // Reverse direction upon hitting boundaries
+        if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
+        if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
+      });
+    }
+
+    function animate() {
+      updatePositions();
+      drawNetwork();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
+  <!-- MOBILE MENU TOGGLE -->
   <script>
     const mobileMenu = document.getElementById('mobileMenu');
     const navLinks = document.getElementById('navLinks');
@@ -79,5 +436,6 @@
       navLinks.classList.toggle('active');
     });
   </script>
+
 </body>
 </html>
