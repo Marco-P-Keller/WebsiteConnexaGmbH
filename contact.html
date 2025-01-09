@@ -321,7 +321,11 @@
 
     <div class="contact-form-wrapper">
       <h2>Get In Touch</h2>
-      <form class="contact-form" action="#" method="post">
+
+      <!-- Formspree-Formular -->
+      <form class="contact-form"
+            action="https://formspree.io/f/mzzzyzbz"
+            method="POST">
         <label for="name">Name *</label>
         <input type="text" id="name" name="name" placeholder="Your full name" required />
 
@@ -330,6 +334,17 @@
 
         <label for="message">Message *</label>
         <textarea id="message" name="message" placeholder="Your message" required></textarea>
+
+        <!-- optional: ein verstecktes Feld, um Betreff in der Mail zu ändern -->
+        <input type="hidden" name="_subject" value="Neue Nachricht vom Kontaktformular" />
+
+        <!-- optional: Weiterleitungsziel nach Absenden (Danke-Seite) -->
+        <!-- 
+        <input type="hidden" name="_next" value="https://example.com/thank-you.html" />
+        -->
+
+        <!-- optional: Schutz vor Bots (CAPTCHA) aktivieren -->
+        <!-- <input type="hidden" name="_captcha" value="true"> -->
 
         <button type="submit">Send Message</button>
       </form>
@@ -363,7 +378,6 @@
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight * 5; 
-      // If you have long content, multiply the height so the canvas covers everything.
       createDevices(Math.floor((canvas.width * canvas.height) / 5000));
     }
 
