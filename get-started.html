@@ -128,10 +128,12 @@
     .nav-links li a:hover {
       color: #44a1bd;
     }
+
     .nav-links li a.active {
       color: #3faab8;
       text-decoration: underline;
     }
+
     /* Vollbild Overlay, wenn active */
     .nav-links.active {
       height: 100vh;
@@ -286,7 +288,7 @@
         <li><a href="crowdfunding.html">Crowdfunding</a></li>
         <li><a href="founders.html">Our Founders</a></li>
         <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="get-started.html">Download</a></li>
+        <li><a href="get-started.html" class="active">Download</a></li>
       </ul>
     </nav>
 
@@ -436,7 +438,7 @@
   <!-- COUNTDOWN SCRIPT -->
   <script>
     // Set a target launch date/time:
-    const launchDate = new Date("Feb 31, 2025 23:59:59").getTime();
+    const launchDate = new Date("Mar 01, 2025 23:59:59").getTime();
 
     const timerDisplay = document.getElementById("timerDisplay");
 

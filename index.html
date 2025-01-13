@@ -27,7 +27,7 @@
     </div>
     <ul class="nav-links" id="navLinks">
       <!-- Adjust or uncomment the Home link if needed -->
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="pitch.html">Pitch</a></li>
       <li><a href="white-paper.html">White Paper</a></li>
       <li><a href="crowdfunding.html">Crowdfunding</a></li>
@@ -59,66 +59,228 @@
     </div>
   </section>
 
-  <!-- INFO SECTION (Vision, Concept, Benefits) -->
-  <section id="info" class="content-section">
-    <h2>Our Vision</h2>
+  <!-- EXECUTIVE SUMMARY / OVERVIEW -->
+  <section class="content-section" id="overview">
+    <h2>SoulBond – The New Approach to Genuine Social Connections</h2>
     <p>
-      SoulBond transforms social media into a force for authentic human interaction, 
-      letting you connect only when you physically meet someone. Forget about fake 
-      profiles, endless scrolling, and attention-driven algorithms. By blending 
-      the convenience of digital communication with the warmth of real-life encounters, 
-      SoulBond puts genuine relationships first.
+      SoulBond reimagines social networking by focusing on real-life encounters, 
+      data privacy, and trust. Instead of endless content streams or faceless 
+      online acquaintances, you form “friendships” or “connections” only when you 
+      physically meet and pair your smartphones via NFC or Bluetooth.
     </p>
 
-    <h2>Concept</h2>
+    <h3>Key Highlights</h3>
     <ul>
-      <li>
-        <strong>Physical Pairing Only:</strong> 
-        You form connections by tapping your smartphones together (NFC or Bluetooth), 
-        ensuring every friend in your feed is someone you truly know.
-      </li>
-      <li>
-        <strong>No Likes, No Follower Counts:</strong> 
-        We remove the numbers game to eliminate competition and social pressure.
-      </li>
-      <li>
-        <strong>Privacy by Design:</strong> 
-        No data-harvesting or ad-targeting. Your personal information isn’t up for sale.
-      </li>
-      <li>
-        <strong>Authentic Content:</strong> 
-        Posts reflect real experiences shared with the people who were actually there.
-      </li>
+      <li><strong>No follower or like counts:</strong> No competition, no addictive loops</li>
+      <li><strong>Automated group post upon pairing:</strong> Real memories rather than staged content</li>
+      <li><strong>Fully ad-free and privacy-first:</strong> No data collection, no user data sales</li>
+      <li><strong>Free core features:</strong> Future optional premium features remain voluntary</li>
     </ul>
 
-    <h2>Key Benefits</h2>
+    <p>
+      SoulBond primarily caters to young users seeking to control their screen time, 
+      privacy-conscious individuals, those craving authenticity, and people wanting 
+      to stay connected with friends & family without the usual stress or addictive 
+      nature of conventional social media.
+    </p>
+  </section>
+
+  <!-- PROBLEM STATEMENT -->
+  <section class="content-section" id="problems">
+    <h2>Problem Statement</h2>
+    
+    <h3>Time Wasting & Potential Addiction</h3>
+    <p>
+      Popular networks often rely on infinite scrolling, likes, and follower metrics 
+      that trigger psychological cues. The outcome is potential addiction, excessive 
+      screen time, and a marked loss of productivity.
+    </p>
+
+    <h3>Privacy Concerns & Monetization</h3>
+    <p>
+      Many platforms earn revenue from ads and targeted advertising, which involves 
+      vast user data collection. This raises increasing doubts about data security 
+      and privacy.
+    </p>
+
+    <h3>Lack of Authenticity & Superficial Interactions</h3>
+    <p>
+      Likes, follower counts, and influencer-driven behavior often lead to superficial 
+      engagement. Most connections remain purely virtual, lacking genuine interaction 
+      and diluting meaningful relationships with close friends or family.
+    </p>
+
+    <h3>Content Overload</h3>
+    <p>
+      Constant streams of ads, memes, and self-promotional posts can overwhelm users, 
+      making it tough to find updates from genuine contacts amid the clutter.
+    </p>
+  </section>
+
+  <!-- SOLUTION (SoulBond) -->
+  <section class="content-section" id="solution">
+    <h2>SoulBond: The Solution</h2>
+    
+    <h3>Physical Pairing via NFC or Bluetooth</h3>
+    <p>
+      New connections arise only through offline meetings, where two people briefly 
+      bring their phones together (NFC) or pair via Bluetooth. This method is 
+      tamper-proof and blocks strangers, bots, or fake profiles.
+    </p>
+
+    <h3>Automatic Post with Every Pairing</h3>
+    <p>
+      Upon successful pairing, both individuals can capture a photo or video, which 
+      appears on each participant’s profile. This encourages genuine shared experiences, 
+      firmly tied to real-life encounters.
+    </p>
+
+    <h3>Minimal Content Flood & Reduced Addictive Tendencies</h3>
+    <ul>
+      <li><strong>No likes or follower counts:</strong> No “numbers game” fueling competition</li>
+      <li><strong>Curated media consumption:</strong> Without feed algorithms, time-wasting doomscrolling is minimized</li>
+    </ul>
+
+    <h3>Privacy & Ad-Free Operation</h3>
+    <p>
+      SoulBond is ad-free and does not monetize user data. We store only minimal, 
+      essential details (e.g., encrypted IDs). Our business approach rests on 
+      optional premium features, meaning we have no interest in analyzing or 
+      selling personal data.
+    </p>
+
+    <h3>Free Core Application</h3>
+    <p>
+      SoulBond’s fundamental functionalities (pairing, posting, chatting) are 
+      completely free. Potential premium add-ons may include expanded group 
+      features, distinctive designs, or extra cloud space, but remain optional.
+    </p>
+  </section>
+
+  <!-- TECHNICAL ARCHITECTURE -->
+  <section class="content-section" id="tech">
+    <h2>Technical Architecture</h2>
+
+    <h3>App Design</h3>
+    <ul>
+      <li><strong>Mobile App (iOS/Android):</strong> Intuitive interface with separate views for chats, profiles, and posts.</li>
+      <li><strong>Optional Web Access:</strong> A browser-based version for convenience and messaging on desktop.</li>
+    </ul>
+
+    <h3>NFC/Bluetooth Pairing</h3>
+    <ul>
+      <li><strong>NFC:</strong> Phones come within close range for a secure handshake</li>
+      <li><strong>Bluetooth:</strong> If NFC is unavailable, a similar pairing process is done wirelessly</li>
+      <li><strong>Fraud-Resistant:</strong> Purely online friend requests are impossible, preventing fake additions</li>
+    </ul>
+
+    <h3>Security & Encryption</h3>
+    <ul>
+      <li><strong>End-to-end encryption (E2EE):</strong> Used for private chats and sensitive data whenever possible</li>
+      <li><strong>Hosted in Switzerland:</strong> Subject to stringent Swiss data protection regulations</li>
+      <li><strong>Minimal data retention:</strong> We follow a data minimization principle, retaining only core metadata</li>
+    </ul>
+  </section>
+
+  <!-- BUSINESS MODEL -->
+  <section class="content-section" id="business">
+    <h2>Business Model</h2>
+
+    <h3>Free Core Features</h3>
+    <ul>
+      <li>Establishing connections (pairing)</li>
+      <li>Joint posts (photos/videos) upon pairing</li>
+      <li>Basic chat and profile functionality</li>
+    </ul>
+
+    <h3>Potential Premium Features</h3>
+    <p>
+      Future paid upgrades may be offered to support ongoing development:
+    </p>
+    <ul>
+      <li>Advanced group/event tools (e.g., team chats, scheduling)</li>
+      <li>Additional cloud storage for media</li>
+      <li>Customized themes or design packages</li>
+      <li>Video/voice group calls</li>
+    </ul>
+    <p>
+      The free plan always remains ad-free and essential features fully intact.
+    </p>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="content-section" id="roadmap">
+    <h2>Roadmap</h2>
     <ol>
       <li>
-        <strong>Reduced Screen Time:</strong><br />
-        By limiting connections to real friends, SoulBond removes the endless content 
-        flood and addictive scrolling found on other platforms.
+        <strong>Alpha Phase (current):</strong>
+        Core NFC/Bluetooth pairing functionality, basic app (iOS/Android).
       </li>
       <li>
-        <strong>Genuine Social Experience:</strong><br />
-        No artificial facades, no staged posts. Each friendship starts offline and 
-        builds online.
+        <strong>Beta Phase (Q1 2025):</strong>
+        Inviting young audiences, privacy advocates, families, friend groups.
+        Testing the automated group post process, initial refinements (UI, performance).
       </li>
       <li>
-        <strong>Stronger Data Protection:</strong><br />
-        We don’t track or sell your data. Zero targeted ads—just private communication 
-        in your hands.
+        <strong>Public Launch (Q2 2025):</strong>
+        Release on major app stores, media campaign for privacy and responsible screen use.
+        Soft launch of optional premium features.
       </li>
       <li>
-        <strong>Empowering, Not Distracting:</strong><br />
-        SoulBond aims to enrich your real-life connections, rather than distract you 
-        with notifications and numbers.
+        <strong>Growth & Continuous Development:</strong>
+        International expansion, multilingual capabilities, expanded group/community functionalities.
+        Ongoing UI/UX improvements and security enhancements.
       </li>
     </ol>
+  </section>
+
+  <!-- MARKET POTENTIAL -->
+  <section class="content-section" id="market-potential">
+    <h2>Market Potential</h2>
+    <h3>Target Audiences</h3>
+    <ul>
+      <li>Younger users eager to limit screen time</li>
+      <li>Privacy-conscious individuals</li>
+      <li>Authenticity seekers, tired of fake accounts and influencer hype</li>
+      <li>Friends & families valuing genuine, private interaction</li>
+    </ul>
+
+    <h3>Competitive Advantage</h3>
     <p>
-      Whether you’re looking to keep in touch with close friends or strengthen your 
-      real-life community, SoulBond offers a secure, authentic alternative to 
-      mainstream social media.
+      SoulBond merges real-life exclusivity (physical pairing) with a friendly interface, 
+      avoids addictive triggers, and safeguards user privacy. This is a significant 
+      departure from conventional social platforms reliant on big data and massive 
+      ad revenues.
     </p>
+  </section>
+
+  <!-- VISION & OUTLOOK -->
+  <section class="content-section" id="vision">
+    <h2>Vision and Outlook</h2>
+    <p>
+      The vision behind SoulBond is a return to essentials in digital communication: 
+      meaningful friendships, face-to-face connections, and a respectful, private 
+      online space. Instead of bombarding users with countless posts, likes, and 
+      endless follower battles, SoulBond promotes direct, personal exchange.
+    </p>
+    <p>
+      <strong>Goal:</strong> Building a network where grandparents and grandchildren, 
+      peer groups, and colleagues interact securely, sharing real moments—free from 
+      addictive loops, algorithmic manipulations, or spam-laden feeds.
+    </p>
+  </section>
+
+  <!-- SUMMARY -->
+  <section class="content-section" id="summary">
+    <h2>Summary</h2>
+    <ul>
+      <li><strong>Pairing only through physical encounters (NFC/Bluetooth):</strong> No purely online friend requests</li>
+      <li><strong>Automatic post (photo/video) with each pairing:</strong> Genuine memories, not staged content</li>
+      <li><strong>No addictive mechanics:</strong> Absent are likes, follower counts, or infinite feed loops</li>
+      <li><strong>Privacy & Ad-Free:</strong> Minimal data usage, zero targeted ads</li>
+      <li><strong>Sustainable approach:</strong> Free core, optional premium expansions</li>
+      <li><strong>Audience:</strong> Young screen-time managers, privacy advocates, authenticity enthusiasts, friends & families</li>
+    </ul>
   </section>
 
   <!-- FOUNDERS SECTION
@@ -140,7 +302,7 @@
       ...
     </div>
     -->
-  <!-- </section> --> -->
+  <!-- </section> -->
   
     <!-- HOW IT WORKS
     <section id="how-it-works" class="content-section">
