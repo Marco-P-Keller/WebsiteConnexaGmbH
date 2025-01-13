@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SoulBond Pitch</title>
-  <!-- Responsive Meta -->
+  <title>SoulBond – A Fresh Take on Social Media</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="LogoV1.jpg" type="image/png" />
+
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
     rel="stylesheet"
-  >
+  />
 
   <style>
     /* --------------------------------
@@ -33,114 +33,118 @@
       line-height: 1.6;
       margin: 0;
       overflow-x: hidden; /* prevent horizontal scroll */
+      background-color: #f4f4f4;
     }
 
     /* --------------------------------
        Navigation Styles
     --------------------------------- */
     .navbar {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        /* Halbtransparenter Farbverlauf */
-        background: linear-gradient(
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(
         135deg,
         rgba(22, 47, 85, 0.7),
         rgba(48, 87, 110, 0.7)
-        );
-        color: #fff;
-        padding: 15px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        z-index: 1000; /* vor dem Canvas */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      );
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000; /* vor dem Canvas */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     /* Brand links */
     .navbar-brand a {
-        color: #f1faee;
-        font-weight: 600;
-        text-decoration: none;
-        font-size: 1.5rem;
+      color: #f1faee;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.5rem;
     }
-    
+
     /* Menü */
     .nav-links {
-        list-style: none;
-        display: flex;  /* Desktop: horizontal */
-        gap: 30px;
-        /* Für Mobile Overlay-Effekt */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 0;
-        background: linear-gradient(
+      list-style: none;
+      display: flex;  /* Desktop: horizontal */
+      gap: 30px;
+      /* Für Mobile Overlay-Effekt */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(
         135deg,
         rgba(9, 22, 51, 0.95),
         rgba(69, 123, 157, 0.95),
         rgba(34, 88, 90, 0.95)
-        );
-        overflow: hidden;
-        transition: height 0.4s ease;
-        z-index: 9999;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+      );
+      overflow: hidden;
+      transition: height 0.4s ease;
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
-    
+
     /* Desktop: Menü normal (keine Overlay-Eigenschaften) */
     @media (min-width: 769px) {
-        .nav-links {
+      .nav-links {
         position: static;
         height: auto;
         background: none;
         flex-direction: row;
         justify-content: flex-end;
         transition: none;
-        }
-    }
-    
-    /* Menü-Links */
-    .nav-links li a {
-        color: #f1faee;
-        text-decoration: none;
-        font-size: 1.2rem;
-        font-weight: 600;
-        transition: color 0.3s;
-    }
-    .nav-links li a:hover {
-        color: #44a1bd;
-    }
-    .nav-links li a.active {
-        color: #3faab8;
-        text-decoration: underline;
-    }
-    /* Vollbild Overlay, wenn active */
-    .nav-links.active {
-        height: 100vh;
-    }
-    /* Hamburger Icon (nur sichtbar auf Mobile/Tablet) */
-    .navbar-toggle {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-    }
-    .bar {
-        height: 3px;
-        width: 25px;
-        background-color: #f1faee;
-        margin: 4px 0;
-        transition: 0.4s;
-    }
-    
-    @media (max-width: 768px) {
-        .navbar-toggle {
-        display: flex;
-        }
+      }
     }
 
+    /* Menü-Links */
+    .nav-links li a {
+      color: #f1faee;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #44a1bd;
+    }
+
+    .nav-links li a.active {
+      color: #3faab8;
+      text-decoration: underline;
+    }
+
+    /* Vollbild Overlay, wenn active */
+    .nav-links.active {
+      height: 100vh;
+    }
+
+    /* Hamburger Icon (nur sichtbar auf Mobile/Tablet) */
+    .navbar-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .bar {
+      height: 3px;
+      width: 25px;
+      background-color: #f1faee;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-toggle {
+        display: flex;
+      }
+    }
 
     /* --------------------------------
        Canvas (Background Animation)
@@ -151,117 +155,128 @@
       left: 0;
       z-index: -1; /* behind content */
     }
-    /* ------------------------------ 
-       5) CONTAINER (INHALT) 
-    ------------------------------- */
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      background-color: #ffffffcc; /* leichte Transparenz */
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      backdrop-filter: blur(8px);
+
+    /* --------------------------------
+       Main Content Section
+    --------------------------------- */
+    .main-section {
+      position: relative;
+      margin-top: 80px; /* space below navbar */
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(6px);
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    h1, h2 {
-      color: #2c3e50;
-      margin-bottom: 0.6em;
-    }
-    h1 {
-      font-size: 1.8rem;
-      margin-top: 0;
-      margin-bottom: 1.2rem;
-      font-weight: 700;
+    .main-header {
       text-align: center;
-    }
-    h2 {
-      font-size: 1.4rem;
-      margin-top: 1.5rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-    p, li {
-      margin-bottom: 1em;
-      text-align: justify;
-      font-weight: 300;
-      color: #444;
-    }
-    ul, ol {
-      margin-left: 1.4em;
-      margin-bottom: 1.5em;
-    }
-    li strong {
-      font-weight: 500;
-    }
-    .section {
-      margin-bottom: 2.5rem;
-    }
-    .callout {
-      font-style: italic;
-      background: #ffffff;
-      padding: 1rem;
-      border-left: 4px solid #ffffff;
-      margin: 1.5rem 0;
-      color: #555;
-      border: 2px solid #ffffff;
-      border-radius: 15px;
-    }
-    .bold {
-      font-weight: 700;
-    }
-    .summary-title {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #2c3e50;
+      margin-bottom: 2em;
     }
 
-    /* ------------------------------ 
-       6) RESPONSIVE QUERIES 
-    ------------------------------- */
-    @media (max-width: 600px) {
-      /* Text & Heading etwas verkleinern auf Handy */
-      h1 {
-        font-size: 1.5rem;
-      }
-      h2 {
-        font-size: 1.2rem;
-      }
-      p, li {
-        font-size: 0.95rem; /* Ein bisschen kleiner als Standard */
-      }
-      .container {
-        padding: 20px;
-      }
+    .main-header h1 {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 0.5em;
     }
+
+    .main-header p {
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 2.5em;
+      color: #555;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    /* Section Headings */
+    .soulbond-section {
+      margin-bottom: 2em;
+    }
+
+    .soulbond-section h2 {
+      font-size: 1.5rem;
+      color: #2c3e50;
+      margin-bottom: 0.5em;
+      border-left: 4px solid #47cbcf;
+      padding-left: 10px;
+    }
+
+    .soulbond-section p {
+      margin: 0.5em 0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .soulbond-quote {
+      font-style: italic;
+      color: #555;
+      margin: 1em 0;
+      padding-left: 1em;
+      border-left: 3px solid #47cbcf;
+    }
+
+    /* Lists */
+    .soulbond-section ul {
+      margin: 1em 0 1em 1.5em;
+      list-style-type: disc;
+    }
+
+    .soulbond-section li {
+      margin: 0.4em 0;
+    }
+
+    /* --------------------------------
+       Footer
+    --------------------------------- */
+    .footer {
+      background-color: #2c3e50;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 2em;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      margin-bottom: 1em;
+      flex-wrap: wrap;
+    }
+
+    .footer-links li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .footer-links li a:hover {
+      text-decoration: underline;
+    }
+
+    .footer p {
+      font-size: 0.9rem;
+      margin-top: 0.5em;
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION mit Hamburger -->
-  <!-- <nav class="navbar">
-    <div class="navbar-brand">
-      <a href="#">SoulBond</a>
-    </div>
-    <div class="navbar-toggle" id="mobileMenu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#" class="active">Pitch</a></li>
-      <li><a href="#">Crowdfunding</a></li>
-      <li><a href="#">White Paper</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav> -->
-
+  <!-- NAVIGATION BAR -->
   <nav class="navbar">
     <div class="navbar-brand">
-      <!-- <img src="LogoV1.jpg" width="10%" alt="Connexa Logo"> -->
-      <a href="index.html">Pitch</a>
+      <a href="index.html">SoulBond</a>
     </div>
     <div class="navbar-toggle" id="mobileMenu">
       <span class="bar"></span>
@@ -269,9 +284,8 @@
       <span class="bar"></span>
     </div>
     <ul class="nav-links" id="navLinks">
-      <!-- Adjust or uncomment the Home link if needed -->
       <li><a href="index.html">Home</a></li>
-      <li><a href="pitch.html">Pitch</a></li>
+      <li><a href="pitch.html" class="active">Pitch</a></li>
       <li><a href="white-paper.html">White Paper</a></li>
       <li><a href="crowdfunding.html">Crowdfunding</a></li>
       <li><a href="founders.html">Our Founders</a></li>
@@ -280,231 +294,159 @@
     </ul>
   </nav>
 
-  <!-- CANVAS für die Hintergrund-Animation -->
+  <!-- BACKGROUND CANVAS -->
   <canvas id="networkCanvas"></canvas>
 
-  <!-- HAUPTINHALT -->
-  <div class="container">
-    <h1>SoulBond — A Fresh Take on Social Media</h1>
+  <!-- MAIN SECTION -->
+  <section class="main-section">
+    <div class="main-header">
+      <h1>SoulBond — A Fresh Take on Social Media</h1>
+      <p>
+        Willkommen zum Pitch von SoulBond. Erfahre hier, wie wir die digitale Welt neu denken – 
+        für mehr echte Verbindungen und weniger oberflächliches Scrollen.
+      </p>
+    </div>
 
-    <!-- 1. Introduction / Hook -->
-    <div class="section">
+    <!-- Introduction -->
+    <div class="soulbond-section">
       <h2>1. Introduction</h2>
-      <div class="callout">
+      <p class="soulbond-quote">
         “Have you ever wondered why social media often leaves us stressed rather than truly connected?”
-      </div>
+      </p>
       <p>
-        Many of us experience social platforms as time-consuming, superficial, or even toxic—filled with 
-        likes, follower counts, and infinite feeds. At <strong>SoulBond</strong>, we believe there's a better way.
+        Many of us experience social platforms as time-consuming, superficial, or even toxic—
+        filled with likes, follower counts, and infinite feeds. At SoulBond, we believe there's a better way.
       </p>
     </div>
 
-    <!-- 2. Problem -->
-    <div class="section">
+    <!-- The Problem -->
+    <div class="soulbond-section">
       <h2>2. The Problem</h2>
-      <ol>
-        <li>
-          <strong>Surface-Level Online Culture:</strong><br />
-          Likes, followers, and algorithmic rankings often promote self-branding 
-          rather than genuine closeness.
-        </li>
-        <li>
-          <strong>Excessive Time & Addictive Mechanics:</strong><br />
-          Endless scrolling, constant notifications, and infinite posts steal our attention, 
-          without real value.
-        </li>
-        <li>
-          <strong>Privacy Concerns:</strong><br />
-          Many platforms rely on personalized ads and data sales, eroding user trust.
-        </li>
-      </ol>
+      <p><strong>Surface-Level Online Culture:</strong> Likes, followers, and algorithmic rankings often promote self-branding rather than genuine closeness.</p>
+      <p><strong>Excessive Time & Addictive Mechanics:</strong> Endless scrolling, constant notifications, and infinite posts steal our attention, without real value.</p>
+      <p><strong>Privacy Concerns:</strong> Many platforms rely on personalized ads and data sales, eroding user trust.</p>
     </div>
 
-    <!-- 3. Solution: SoulBond -->
-    <div class="section">
+    <!-- The SoulBond Solution -->
+    <div class="soulbond-section">
       <h2>3. The SoulBond Solution</h2>
-      <p>
-        <strong>SoulBond</strong> is a radically different approach to social media:
-      </p>
-      <ol>
-        <li>
-          <strong>Offline-First:</strong><br />
-          New contacts form only when people meet in person and pair their smartphones 
-          via NFC or Bluetooth. This prevents fake profiles and fosters real relationships.
-        </li>
-        <li>
-          <strong>No Likes or Follower Counts:</strong><br />
-          Instead of numeric competition, SoulBond offers space for authentic posts, true 
-          stories, and genuine friendship.
-        </li>
-        <li>
-          <strong>Data-Sparing & Ad-Free:</strong><br />
-          We collect as little data as possible and avoid all targeted advertising—no 
-          tracking scripts, no sale of personal info.
-        </li>
-        <li>
-          <strong>Real Memories:</strong><br />
-          When pairing, users can quickly take a photo or video together, automatically 
-          shared among participants—real moments instead of staged content.
-        </li>
-      </ol>
+      <ul>
+        <li><strong>Offline-First:</strong> New contacts form only when people meet in person and pair their smartphones via NFC or Bluetooth. This prevents fake profiles and fosters real relationships.</li>
+        <li><strong>No Likes or Follower Counts:</strong> Instead of numeric competition, SoulBond offers space for authentic posts, true stories, and genuine friendship.</li>
+        <li><strong>Data-Sparing & Ad-Free:</strong> We collect as little data as possible and avoid all targeted advertising—no tracking scripts, no sale of personal info.</li>
+        <li><strong>Real Memories:</strong> When pairing, users can quickly take a photo or video together, automatically shared among participants—real moments instead of staged content.</li>
+      </ul>
     </div>
 
-    <!-- 4. Market Potential -->
-    <div class="section">
+    <!-- Market Potential -->
+    <div class="soulbond-section">
       <h2>4. Market Potential</h2>
-      <ul>
-        <li>
-          <strong>Target Audience:</strong> 
-          Young people who want to limit screen time, privacy-conscious users, authenticity 
-          seekers, and families/friend groups who value genuine contact.
-        </li>
-        <li>
-          <strong>Trend:</strong> 
-          “Digital Detox” and privacy demands are on the rise. SoulBond serves those seeking 
-          online experiences without addiction or data exploitation.
-        </li>
-      </ul>
+      <p><strong>Target Audience:</strong> Young people who want to limit screen time, privacy-conscious users, authenticity seekers, and families/friend groups who value genuine contact.</p>
+      <p><strong>Trend:</strong> “Digital Detox” and privacy demands are on the rise. SoulBond serves those seeking online experiences without addiction or data exploitation.</p>
     </div>
 
-    <!-- 5. Business Model -->
-    <div class="section">
+    <!-- Business Model -->
+    <div class="soulbond-section">
       <h2>5. Business Model</h2>
-      <ol>
-        <li>
-          <strong>Free Core Features:</strong><br />
-          Basic app download and main functionalities remain free for high accessibility.
-        </li>
-        <li>
-          <strong>Optional Premium Add-Ons:</strong><br />
-          Advanced group management, extra cloud storage, business tools, or custom themes 
-          via monthly or yearly subscriptions.
-        </li>
-        <li>
-          <strong>Partnerships / Crowdfunding:</strong><br />
-          Strategic collaborations with privacy-oriented organizations, plus potential 
-          community-based funding for growth.
-        </li>
-      </ol>
-    </div>
-
-    <!-- 6. Competitive Edge -->
-    <div class="section">
-      <h2>6. Competitive Edge</h2>
-      <ol>
-        <li>
-          <strong>Real Contacts, Not Follower Frenzy</strong><br />
-          No social-media stress, no bots and trolls—because you must meet offline first.
-        </li>
-        <li>
-          <strong>Zero-Waste Social</strong><br />
-          No cluttered feed or irrelevant posts. Only hand-picked content from real-life friends.
-        </li>
-        <li>
-          <strong>Privacy-Focused</strong><br />
-          No targeted ads or data reselling—fostering user trust.
-        </li>
-        <li>
-          <strong>Shared Memories</strong><br />
-          Automatic group posts when pairing document real experiences, boosting the fun factor.
-        </li>
-      </ol>
-    </div>
-
-    <!-- 7. Team -->
-    <div class="section">
-      <h2>7. The Team</h2>
       <ul>
-        <li>
-          <strong>CEO & Co-Founder:</strong> Marco P. Keller – Years of experience in community-building 
-          and strategic leadership.
-        </li>
-        <li>
-          <strong>CTO & Co-Founder:</strong> Janis Papagiorgio – Expert in secure mobile app development, 
-          encryption, and data architecture.
-        </li>
-        <li>
-          <strong>Marketing Lead:</strong> Marius Joerger – Specializing in sustainable branding 
-          and user-centric campaigns.
-        </li>
+        <li><strong>Free Core Features:</strong> Basic app download and main functionalities remain free for high accessibility.</li>
+        <li><strong>Optional Premium Add-Ons:</strong> Advanced group management, extra cloud storage, business tools, or custom themes via monthly or yearly subscriptions.</li>
+        <li><strong>Partnerships / Crowdfunding:</strong> Strategic collaborations with privacy-oriented organizations, plus potential community-based funding for growth.</li>
       </ul>
+    </div>
+
+    <!-- Competitive Edge -->
+    <div class="soulbond-section">
+      <h2>6. Competitive Edge</h2>
+      <ul>
+        <li><strong>Real Contacts, Not Follower Frenzy:</strong> No social-media stress, no bots and trolls—because you must meet offline first.</li>
+        <li><strong>Zero-Waste Social:</strong> No cluttered feed or irrelevant posts. Only hand-picked content from real-life friends.</li>
+        <li><strong>Privacy-Focused:</strong> No targeted ads or data reselling—fostering user trust.</li>
+        <li><strong>Shared Memories:</strong> Automatic group posts when pairing document real experiences, boosting the fun factor.</li>
+      </ul>
+    </div>
+
+    <!-- The Team -->
+    <div class="soulbond-section">
+      <h2>7. The Team</h2>
+      <p><strong>CEO & Co-Founder: Marco P. Keller</strong> – Years of experience in community-building and strategic leadership.</p>
+      <p><strong>CTO & Co-Founder: Janis Papagiorgio</strong> – Expert in secure mobile app development, encryption, and data architecture.</p>
+      <p><strong>Marketing Lead: Marius Joerger</strong> – Specializing in sustainable branding and user-centric campaigns.</p>
       <p>
-        Together, we share a vision of a healthier social-media culture where true 
-        relationships come first.
+        Together, we share a vision of a healthier social-media culture 
+        where true relationships come first.
       </p>
     </div>
 
-    <!-- 8. Roadmap -->
-    <div class="section">
+    <!-- Current Status & Roadmap -->
+    <div class="soulbond-section">
       <h2>8. Current Status & Roadmap</h2>
       <ul>
-        <li>
-          <strong>Beta Phase (Now):</strong><br />
-          Core functions (pairing, chat, post sharing) are live; small focus groups are testing.
-        </li>
-        <li>
-          <strong>Public Launch (3–6 months):</strong><br />
-          Release on major app stores, initial marketing campaigns, community-building.
-        </li>
-        <li>
-          <strong>Future:</strong><br />
-          International expansion, multilingual versions, and expanded premium features 
-          (group events, extra cloud storage, video calls).
-        </li>
+        <li><strong>Beta Phase (Now):</strong> Core functions (pairing, chat, post sharing) are live; small focus groups are testing.</li>
+        <li><strong>Public Launch (3–6 months):</strong> Release on major app stores, initial marketing campaigns, community-building.</li>
+        <li><strong>Future:</strong> International expansion, multilingual versions, and expanded premium features (group events, extra cloud storage, video calls).</li>
       </ul>
     </div>
 
-    <!-- 9. Investment / Support -->
-    <div class="section">
+    <!-- Investment / Support -->
+    <div class="soulbond-section">
       <h2>9. Investment / Support</h2>
       <p>
-        We are seeking <strong>partners and investors</strong> who share our commitment 
-        to <em>privacy, authenticity</em>, and <em>real human connection</em>. Investments in 
-        SoulBond will drive:
+        We are seeking partners and investors who share our commitment to privacy, authenticity, and real human connection. 
+        Investments in SoulBond will drive:
       </p>
       <ul>
-        <li>
-          <strong>Scalable Development & Infrastructure</strong> (server capacity, stable features)
-        </li>
-        <li>
-          <strong>Marketing & Outreach</strong> (campaigns, collaboration with universities and communities)
-        </li>
-        <li>
-          <strong>International Expansion</strong> (localization, legal adaptations)
-        </li>
+        <li>Scalable Development & Infrastructure (server capacity, stable features)</li>
+        <li>Marketing & Outreach (campaigns, collaboration with universities and communities)</li>
+        <li>International Expansion (localization, legal adaptations)</li>
       </ul>
       <p>
-        <strong>Your gain:</strong> Become part of a growing counter-movement to data-driven 
-        social giants—while investing in a sustainable, forward-thinking project.
+        <strong>Your gain:</strong> Become part of a growing counter-movement to data-driven social giants—
+        while investing in a sustainable, forward-thinking project.
       </p>
     </div>
 
-    <!-- 10. Conclusion (Call-to-Action) -->
-    <div class="section">
+    <!-- Conclusion (Call-to-Action) -->
+    <div class="soulbond-section">
       <h2>10. Conclusion (Call-to-Action)</h2>
-      <div class="callout">
-        “Imagine a world where social media enriches rather than hooks you—where data privacy 
-        and genuine friendships go hand in hand.”
-      </div>
+      <p class="soulbond-quote">
+        “Imagine a world where social media enriches rather than hooks you—
+        where data privacy and genuine friendships go hand in hand.”
+      </p>
       <p>
-        With <strong>SoulBond</strong>, we’re shaping that future. Let’s redefine social media 
-        together. We welcome your feedback, your questions, and your support.
+        With SoulBond, we’re shaping that future. Let’s redefine social media together. 
+        We welcome your feedback, your questions, and your support.
+      </p>
+      <p>
+        <strong>In Brief</strong><br>
+        Vision: An honest social network that begins with real-life encounters.<br>
+        Problem: Superficiality, addictive elements, and lack of privacy in mainstream platforms.<br>
+        Solution: Offline-first pairing, no like/follower metrics, privacy-focused model.<br>
+        Team: Experts in mobile development, community building, and marketing.<br>
+        Roadmap: Beta → Public Launch → Premium Features → Global Expansion.<br>
+        CTA: Join us in building a social network free from addiction and data scandals.
       </p>
     </div>
+  </section>
 
-    <!-- Summary -->
-    <h2 class="summary-title">In Brief</h2>
-    <ul>
-      <li><strong>Vision:</strong> An honest social network that begins with real-life encounters.</li>
-      <li><strong>Problem:</strong> Superficiality, addictive elements, and lack of privacy in mainstream platforms.</li>
-      <li><strong>Solution:</strong> Offline-first pairing, no like/follower metrics, privacy-focused model.</li>
-      <li><strong>Team:</strong> Experts in mobile development, community building, and marketing.</li>
-      <li><strong>Roadmap:</strong> Beta → Public Launch → Premium Features → Global Expansion.</li>
-      <li><strong>CTA:</strong> Join us in building a social network free from addiction and data scandals.</li>
-    </ul>
-  </div><!-- /container -->
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="pitch.html">Pitch</a></li>
+        <li><a href="white-paper.html">White Paper</a></li>
+        <li><a href="crowdfunding.html">Crowdfunding</a></li>
+        <li><a href="founders.html">Our Founders</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="get-started.html">Download</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="imprint.html">Imprint</a></li>
+      </ul>
+      <p>&copy; 2025 SoulBond. All rights reserved.</p>
+    </div>
+  </footer>
 
-  <!-- Hintergrund-Animation (Netzwerk) -->
+  <!-- BACKGROUND ANIMATION SCRIPT -->
   <script>
     const canvas = document.getElementById('networkCanvas');
     const ctx = canvas.getContext('2d');
@@ -513,9 +455,10 @@
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.height = window.innerHeight * 5; 
       createDevices(Math.floor((canvas.width * canvas.height) / 5000));
     }
+
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
@@ -545,7 +488,7 @@
     function drawNetwork() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Farbverlauf
+      // Gradient background
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
       gradient.addColorStop(0, '#051E41FF');
       gradient.addColorStop(0.5, '#2C5772FF');
@@ -553,7 +496,7 @@
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Punkte
+      // Points (devices)
       devices.forEach(device => {
         ctx.beginPath();
         ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
@@ -561,7 +504,7 @@
         ctx.fill();
       });
 
-      // Linien
+      // Connecting lines
       devices.forEach((device, i) => {
         for (let j = i + 1; j < devices.length; j++) {
           const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
@@ -580,7 +523,7 @@
       devices.forEach(device => {
         device.x += device.dx;
         device.y += device.dy;
-        // Begrenzung am Rand
+        // Reverse direction upon hitting boundaries
         if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
         if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
       });
@@ -594,10 +537,11 @@
     animate();
   </script>
 
-  <!-- MOBILE MENÜ TOGGLE -->
+  <!-- MOBILE MENU TOGGLE -->
   <script>
     const mobileMenu = document.getElementById('mobileMenu');
     const navLinks = document.getElementById('navLinks');
+
     mobileMenu.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });

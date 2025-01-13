@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SoulBond Whitepaper</title>
+  <title>SoulBond – New Approach Whitepaper</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="LogoV1.jpg" type="image/png" />
+
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
     rel="stylesheet"
-  >
+  />
 
   <style>
     /* --------------------------------
@@ -32,115 +33,115 @@
       line-height: 1.6;
       margin: 0;
       overflow-x: hidden; /* prevent horizontal scroll */
+      background-color: #f4f4f4;
     }
 
     /* --------------------------------
        Navigation Styles
     --------------------------------- */
     .navbar {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        height: 50pt;
-        /* Halbtransparenter Farbverlauf */
-        background: linear-gradient(
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(
         135deg,
         rgba(22, 47, 85, 0.7),
         rgba(48, 87, 110, 0.7)
-        );
-        color: #fff;
-        padding: 15px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        z-index: 1000; /* vor dem Canvas */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      );
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000; /* vor dem Canvas */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     /* Brand links */
     .navbar-brand a {
-        color: #f1faee;
-        font-weight: 600;
-        text-decoration: none;
-        font-size: 1.5rem;
+      color: #f1faee;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.5rem;
     }
-    
+
     /* Menü */
     .nav-links {
-        list-style: none;
-        display: flex;  /* Desktop: horizontal */
-        gap: 30px;
-        /* Für Mobile Overlay-Effekt */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 0;
-        background: linear-gradient(
+      list-style: none;
+      display: flex;  /* Desktop: horizontal */
+      gap: 30px;
+      /* Für Mobile Overlay-Effekt */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(
         135deg,
         rgba(9, 22, 51, 0.95),
         rgba(69, 123, 157, 0.95),
         rgba(34, 88, 90, 0.95)
-        );
-        overflow: hidden;
-        transition: height 0.4s ease;
-        z-index: 9999;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+      );
+      overflow: hidden;
+      transition: height 0.4s ease;
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
-    
+
     /* Desktop: Menü normal (keine Overlay-Eigenschaften) */
     @media (min-width: 769px) {
-        .nav-links {
+      .nav-links {
         position: static;
         height: auto;
         background: none;
         flex-direction: row;
         justify-content: flex-end;
         transition: none;
-        }
-    }
-    
-    /* Menü-Links */
-    .nav-links li a {
-        color: #f1faee;
-        text-decoration: none;
-        font-size: 1.2rem;
-        font-weight: 600;
-        transition: color 0.3s;
-    }
-    .nav-links li a:hover {
-        color: #44a1bd;
-    }
-    .nav-links li a.active {
-        color: #3faab8;
-        text-decoration: underline;
-    }
-    /* Vollbild Overlay, wenn active */
-    .nav-links.active {
-        height: 100vh;
-    }
-    /* Hamburger Icon (nur sichtbar auf Mobile/Tablet) */
-    .navbar-toggle {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-    }
-    .bar {
-        height: 3px;
-        width: 25px;
-        background-color: #f1faee;
-        margin: 4px 0;
-        transition: 0.4s;
-    }
-    
-    @media (max-width: 768px) {
-        .navbar-toggle {
-        display: flex;
-        }
+      }
     }
 
+    /* Menü-Links */
+    .nav-links li a {
+      color: #f1faee;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    .nav-links li a:hover {
+      color: #44a1bd;
+    }
+    .nav-links li a.active {
+      color: #3faab8;
+      text-decoration: underline;
+    }
+
+    /* Vollbild Overlay, wenn active */
+    .nav-links.active {
+      height: 100vh;
+    }
+
+    /* Hamburger Icon (nur sichtbar auf Mobile/Tablet) */
+    .navbar-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .bar {
+      height: 3px;
+      width: 25px;
+      background-color: #f1faee;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-toggle {
+        display: flex;
+      }
+    }
 
     /* --------------------------------
        Canvas (Background Animation)
@@ -152,101 +153,76 @@
       z-index: -1; /* behind content */
     }
 
-    /* -------------------------------------------------------
-       5) Main Container (dein Whitepaper-Inhalt)
-    -------------------------------------------------------- */
-    .container {
-      /* margin-top: 300px; */
-      max-width: 900px;
-      margin: 0 auto;
-      background-color: #ffffffee; /* leicht transparent */
-      border-radius: 10px;
-      padding: 40px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-      backdrop-filter: blur(8px);
+    /* --------------------------------
+       Main Content Section
+    --------------------------------- */
+    .main-section {
+      position: relative;
+      margin-top: 80px; /* space below navbar */
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(6px);
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    /* -------------------------------------------------------
-       Header Section (Whitepaper)
-    -------------------------------------------------------- */
-    .header {
+    .main-header {
       text-align: center;
       margin-bottom: 2em;
     }
-    .header h1 {
-      font-size: 2.2em;
-      margin-bottom: 0.3em;
-      color: #2E3A59;
-    }
-    .header p {
-      color: #555;
+
+    .main-header h1 {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 0.5em;
     }
 
-    /* -------------------------------------------------------
-       Headings (Whitepaper)
-    -------------------------------------------------------- */
-    h2 {
-      color: #2E3A59;
-      margin-top: 1.8em;
-      margin-bottom: 0.6em;
-      font-size: 1.5em;
-      font-weight: 600;
-    }
-    h3 {
-      margin-top: 1.2em;
-      margin-bottom: 0.4em;
-      color: #555;
-      font-size: 1.1em;
-      font-weight: 500;
+    /* Container für den exakten Text */
+    .exact-text-wrapper {
+      background-color: #fafafa;
+      margin: 2em auto;
+      padding: 2em 2em;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 90%; /* Passe nach Bedarf an */
+      color: #333;
+      font-size: 1rem;
+      line-height: 1.7;
     }
 
-    /* -------------------------------------------------------
-       Paragraphs & Lists (Whitepaper)
-    -------------------------------------------------------- */
-    p {
-      margin-bottom: 1.2em;
-      text-align: justify;
-      font-weight: 400;
-      color: #333;  /* etwas dunkler für Lesbarkeit */
-    }
-    ul, ol {
-      margin-bottom: 1.2em;
-      margin-left: 1.5em;
-    }
-    li {
-      margin-bottom: 0.6em;
+    /* Hier können wir einfache Inline-Stile für Bold/Italic/Fontgrößen verwenden */
+    .exact-text-wrapper pre {
+      white-space: pre-wrap; /* Zeilenumbrüche wie im Originaltext */
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 1em;
     }
 
-    /* -------------------------------------------------------
-       Footer (Whitepaper)
-    -------------------------------------------------------- */
-    .footer {
-      margin-top: 3em;
-      text-align: center;
-      font-size: 0.9em;
-      color: #666;
-      border-top: 1px solid #ccc;
-      padding-top: 1em;
+    /* Selektion innerhalb des Textes farblich hervorheben */
+    .exact-text-wrapper pre::selection {
+      background-color: #cce0ff;
     }
 
-    /* -------------------------------------------------------
-       Misc (Whitepaper)
-    -------------------------------------------------------- */
-    strong {
-      font-weight: 600;
+    /* Beispiel-Klassen, um unterschiedlich formatieren zu können */
+    .large-text {
+      font-size: 1.2em; /* etwas größer */
     }
-    em {
-      font-style: italic;
+    .bold-text {
+      font-weight: 600; /* Fettschrift */
+    }
+    .italic-text {
+      font-style: italic; 
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation mit Hamburger -->
+  <!-- NAVIGATION BAR -->
   <nav class="navbar">
     <div class="navbar-brand">
-      <!-- <img src="LogoV1.jpg" width="10%" alt="Connexa Logo"> -->
-      <a href="index.html">Connexa</a>
+      <a href="index.html">SoulBond</a>
     </div>
     <div class="navbar-toggle" id="mobileMenu">
       <span class="bar"></span>
@@ -254,10 +230,9 @@
       <span class="bar"></span>
     </div>
     <ul class="nav-links" id="navLinks">
-      <!-- Adjust or uncomment the Home link if needed -->
       <li><a href="index.html">Home</a></li>
       <li><a href="pitch.html">Pitch</a></li>
-      <li><a href="white-paper.html">White Paper</a></li>
+      <li><a href="white-paper.html" class="active">White Paper</a></li>
       <li><a href="crowdfunding.html">Crowdfunding</a></li>
       <li><a href="founders.html">Our Founders</a></li>
       <li><a href="contact.html">Contact Us</a></li>
@@ -265,277 +240,203 @@
     </ul>
   </nav>
 
-  <!-- Canvas für die Netzwerk-Animation -->
+  <!-- BACKGROUND CANVAS -->
   <canvas id="networkCanvas"></canvas>
 
-  <!-- Hier dein Whitepaper-Container -->
-  <div class="container">
-    <!-- Header Section -->
-    <div class="header">
-      <h1>SoulBond – The New Approach to Genuine Social Connections</h1>
-      <p><strong>Version:</strong> 1.0</p>
-      <p><strong>Published by:</strong> Connexa GmbH (Switzerland)</p>
-      <p><strong>Date:</strong> January 2025</p>
+  <!-- MAIN SECTION -->
+  <section class="main-section">
+    <div class="main-header">
+      <h1>SoulBond – WhitePaper</h1>
     </div>
 
-    <!-- 1. Executive Summary -->
-    <h2>1. Executive Summary</h2>
-    <p>
-      <strong>SoulBond</strong> reimagines social networking by focusing on 
-      <strong>real-life encounters</strong>, <strong>data privacy</strong>, 
-      and <strong>trust</strong>. Instead of endless content streams or faceless 
-      online acquaintances, users form “friendships” or “connections” only when 
-      they physically meet and pair their smartphones via NFC or Bluetooth.
-    </p>
-    <p>
-      A unique highlight is that <strong>an automatic post (photo or video)</strong> 
-      can be created during the pairing process and appears on both (or all) 
-      connected profiles, ensuring <strong>authentic moments</strong> are captured. 
-      This effectively excludes fake connections or bots.
-    </p>
-    <p>
-      <strong>Key Highlights:</strong>
-    </p>
-    <ul>
-      <li>No follower or like counts – no competition, no addictive loops</li>
-      <li>Automated group post upon pairing – real memories rather than staged content</li>
-      <li>Fully ad-free and privacy-first – no data collection, no user data sales</li>
-      <li>Free core features – future optional premium features remain voluntary</li>
-    </ul>
-    <p>
-      SoulBond primarily caters to <strong>young users</strong> seeking to control 
-      their screen time, <strong>privacy-conscious individuals</strong>, those 
-      craving <strong>authenticity</strong>, and people wanting to stay connected 
-      with <strong>friends & family</strong> without the usual stress or addictive 
-      nature of conventional social media.
-    </p>
+    <div class="exact-text-wrapper">
+      <pre>
+<span class="large-text bold-text">SoulBond – The New Approach to Genuine Social Connections</span>
+<span class="italic-text">Version: 1.0</span>
 
-    <!-- 2. Problem Statement -->
-    <h2>2. Problem Statement</h2>
-    <h3>2.1 Time Wasting & Potential Addiction</h3>
-    <p>
-      Popular networks often rely on infinite scrolling, likes, and follower metrics 
-      that trigger psychological cues. The outcome is <strong>potential addiction</strong>, 
-      excessive screen time, and a marked loss of productivity.
-    </p>
+<span class="bold-text">Published by:</span> Connexa GmbH (Switzerland)
 
-    <h3>2.2 Privacy Concerns & Monetization</h3>
-    <p>
-      Many platforms earn revenue from <strong>ads</strong> and 
-      <strong>targeted advertising</strong>, which involves vast user data collection. 
-      This raises increasing doubts about data security and privacy.
-    </p>
+<span class="bold-text">Date:</span> January 2025
 
-    <h3>2.3 Lack of Authenticity & Superficial Interactions</h3>
-    <p>
-      Likes, follower counts, and influencer-driven behavior often lead to superficial 
-      engagement. Most connections remain purely virtual, lacking <strong>genuine</strong> 
-      interaction and diluting meaningful relationships with close friends or family.
-    </p>
 
-    <h3>2.4 Content Overload</h3>
-    <p>
-      Constant streams of ads, memes, and self-promotional posts can overwhelm users, 
-      making it tough to find updates from genuine contacts amid the clutter.
-    </p>
+<span class="bold-text">1. Executive Summary</span>
+SoulBond reimagines social networking by focusing on <span class="italic-text">real-life encounters</span>, data privacy, and trust. Instead of endless content streams or faceless online acquaintances, users form “friendships” or “connections” only when they physically meet and pair their smartphones via NFC or Bluetooth.
 
-    <!-- 3. SoulBond: The Solution -->
-    <h2>3. SoulBond: The Solution</h2>
-    <h3>3.1 Physical Pairing via NFC or Bluetooth</h3>
-    <p>
-      <strong>New connections</strong> arise only through <em>offline meetings</em>, 
-      where two people briefly bring their phones together (NFC) or pair via Bluetooth. 
-      This method is <strong>tamper-proof</strong> and blocks strangers, bots, or fake profiles.
-    </p>
+A unique highlight is that an automatic post (<span class="italic-text">photo or video</span>) can be created during the pairing process and appears on both (or all) connected profiles, ensuring authentic moments are captured. This effectively excludes fake connections or bots.
 
-    <h3>3.2 Automatic Post with Every Pairing</h3>
-    <p>
-      Upon successful pairing, both individuals can <strong>capture a photo or video</strong>, 
-      which appears on each participant’s profile. This encourages genuine shared experiences, 
-      firmly tied to real-life encounters.
-    </p>
+<span class="bold-text">Key Highlights:</span>
 
-    <h3>3.3 Minimal Content Flood & Reduced Addictive Tendencies</h3>
-    <p>
-      Since SoulBond only shows posts from <strong>real friends</strong> (those 
-      physically connected), users avoid the overwhelming onslaught of irrelevant 
-      or “fake” content:
-    </p>
-    <ul>
-      <li>No likes or follower counts: No “numbers game” fueling FOMO or competition</li>
-      <li>Curated media consumption: Without feed algorithms, time-wasting doomscrolling is minimized</li>
-    </ul>
+- No follower or like counts – no competition, no addictive loops
+- Automated group post upon pairing – real memories rather than staged content
+- Fully ad-free and privacy-first – no data collection, no user data sales
+- Free core features – future optional premium features remain voluntary
+<span class="bold-text"> </span>
+SoulBond primarily caters to young users seeking to control their screen time, privacy-conscious individuals, those craving authenticity, and people wanting to stay connected with friends & family without the usual stress or addictive nature of conventional social media.
 
-    <h3>3.4 Privacy & Ad-Free Operation</h3>
-    <p>
-      SoulBond is <strong>ad-free</strong> and does not monetize user data. We store 
-      only minimal, essential details (e.g., encrypted IDs). Our business approach 
-      rests on <strong>optional premium features</strong>, meaning we have 
-      <strong>no interest</strong> in analyzing or selling personal data.
-    </p>
 
-    <h3>3.5 Free Core Application</h3>
-    <p>
-      SoulBond’s fundamental functionalities (pairing, posting, chatting) are 
-      <strong>completely free</strong>. Potential <strong>premium add-ons</strong> 
-      may include expanded group features, distinctive designs, or extra cloud space, 
-      but remain optional.
-    </p>
+<span class="bold-text">2. Problem Statement</span>
+<span class="bold-text">2.1 Time Wasting & Potential Addiction</span>
+Popular networks often rely on infinite scrolling, likes, and follower metrics that trigger psychological cues. The outcome is potential addiction, excessive screen time, and a marked loss of productivity.
 
-    <!-- 4. Technical Architecture -->
-    <h2>4. Technical Architecture</h2>
-    <h3>4.1 App Design</h3>
-    <p>
-      - <strong>Mobile App (iOS/Android):</strong> Intuitive interface with separate views for 
-        chats, profiles, and posts.<br>
-      - <strong>Optional Web Access:</strong> A browser-based version for convenience and messaging 
-        on desktop.
-    </p>
 
-    <h3>4.2 NFC/Bluetooth Pairing</h3>
-    <p>
-      - <strong>NFC:</strong> Phones come within close range (just a few centimeters) for a secure handshake<br>
-      - <strong>Bluetooth:</strong> If NFC is unavailable, a similar pairing process is done wirelessly<br>
-      - <strong>Fraud-Resistant:</strong> Purely online friend requests are impossible, preventing fake additions
-    </p>
+<span class="bold-text">2.2 Privacy Concerns & Monetization</span>
+Many platforms earn revenue from ads and targeted advertising, which involves vast user data collection. This raises increasing doubts about data security and privacy.
 
-    <h3>4.3 Security & Encryption</h3>
-    <p>
-      - <strong>End-to-end encryption (E2EE):</strong> Used for private chats and sensitive data whenever possible<br>
-      - <strong>Hosted in Switzerland:</strong> Subject to stringent Swiss data protection regulations<br>
-      - <strong>Minimal data retention:</strong> We follow a data minimization principle, retaining only core metadata
-    </p>
 
-    <!-- 5. Business Model -->
-    <h2>5. Business Model</h2>
-    <h3>5.1 Free Core Features</h3>
-    <p>
-      - Establishing connections (pairing)<br>
-      - Joint posts (photos/videos) upon pairing<br>
-      - Basic chat and profile functionality
-    </p>
+<span class="bold-text">2.3 Lack of Authenticity & Superficial Interactions</span>
+Likes, follower counts, and influencer-driven behavior often lead to superficial engagement. Most connections remain purely virtual, lacking genuine interaction and diluting meaningful relationships with close friends or family.
 
-    <h3>5.2 Potential Premium Features</h3>
-    <p>
-      Future <strong>paid upgrades</strong> may be offered to support ongoing development:
-    </p>
-    <ul>
-      <li>Advanced group/event tools (e.g., team chats, scheduling)</li>
-      <li>Additional cloud storage for media</li>
-      <li>Customized themes or design packages</li>
-      <li>Video/voice group calls</li>
-    </ul>
-    <p>
-      The free plan always remains <strong>ad-free</strong> and essential features fully intact.
-    </p>
 
-    <!-- 6. Roadmap -->
-    <h2>6. Roadmap</h2>
-    <ol>
-      <li><strong>Alpha Phase (current)</strong>
-        <ul>
-          <li>Core NFC/Bluetooth pairing functionality</li>
-          <li>Basic app (iOS/Android): Profiles, chat, posting</li>
-        </ul>
-      </li>
-      <li><strong>Beta Phase (Q1 2025)</strong>
-        <ul>
-          <li>Inviting young audiences, privacy advocates, families, friend groups</li>
-          <li>Testing the automated group post process</li>
-          <li>Initial refinements (UI, performance)</li>
-        </ul>
-      </li>
-      <li><strong>Public Launch (Q2 2025)</strong>
-        <ul>
-          <li>Release on major app stores</li>
-          <li>Media campaign for privacy and responsible screen use</li>
-          <li>Soft launch of optional premium features</li>
-        </ul>
-      </li>
-      <li><strong>Growth & Continuous Development</strong>
-        <ul>
-          <li>International expansion, multilingual capabilities</li>
-          <li>Expanded group/community functionalities</li>
-          <li>Ongoing UI/UX improvements and security enhancements</li>
-        </ul>
-      </li>
-    </ol>
+<span class="bold-text">2.4 Content Overload</span>
+Constant streams of ads, memes, and self-promotional posts can overwhelm users, making it tough to find updates from genuine contacts amid the clutter.
 
-    <!-- 7. Market Potential -->
-    <h2>7. Market Potential</h2>
-    <h3>7.1 Target Audiences</h3>
-    <ul>
-      <li><strong>Younger users eager to limit screen time</strong><br>
-          Seeking a social platform with minimal scrolling.</li>
-      <li><strong>Privacy-conscious individuals</strong><br>
-          Preferring services that do not trade personal data for ad revenue.</li>
-      <li><strong>Authenticity seekers</strong><br>
-          Tired of fake accounts, influencer hype, and superficial “like” metrics.</li>
-      <li><strong>People wanting to stay in touch with friends & family</strong><br>
-          Valuing genuine interactions in a safe, private environment.</li>
-    </ul>
+<span class="bold-text">3. SoulBond: The Solution</span>
 
-    <h3>7.2 Competitive Advantage</h3>
-    <p>
-      SoulBond merges <strong>real-life exclusivity</strong> (physical pairing) 
-      with a <strong>friendly interface</strong>, avoids addictive triggers, 
-      and safeguards <strong>user privacy</strong>. This is a significant departure 
-      from conventional social platforms reliant on big data and massive ad revenues.
-    </p>
+<span class="bold-text">3.1 Physical Pairing via NFC or Bluetooth</span>
+New connections arise only through offline meetings, where two people briefly bring their phones together (NFC) or pair via Bluetooth. This method is tamper-proof and blocks strangers, bots, or fake profiles.
 
-    <!-- 8. Vision and Outlook -->
-    <h2>8. Vision and Outlook</h2>
-    <p>
-      The vision behind SoulBond is a <strong>return to essentials</strong> 
-      in digital communication: <em>meaningful friendships</em>, <em>face-to-face 
-      connections</em>, and a <em>respectful, private</em> online space. Instead of 
-      bombarding users with countless posts, likes, and endless follower battles, 
-      SoulBond promotes <strong>direct, personal exchange</strong>.
-    </p>
-    <p>
-      <strong>Goal:</strong> Building a network where grandparents and grandchildren, 
-      peer groups, and colleagues interact securely, sharing real moments—free from 
-      addictive loops, algorithmic manipulations, or spam-laden feeds.
-    </p>
 
-    <!-- 9. Summary -->
-    <h2>9. Summary</h2>
-    <ul>
-      <li><strong>Pairing only through physical encounters</strong> (NFC/Bluetooth)—no purely 
-          online friend requests</li>
-      <li><strong>Automatic post</strong> (photo/video) with each pairing—genuine memories, 
-          not staged content</li>
-      <li><strong>No addictive mechanics</strong>: Absent are likes, follower counts, or 
-          infinite feed loops</li>
-      <li><strong>Privacy & Ad-Free</strong>: Minimal data usage, zero targeted ads</li>
-      <li><strong>Sustainable approach</strong>: Free core, optional premium expansions</li>
-      <li><strong>Audience</strong>: Young screen-time managers, privacy advocates, authenticity 
-          enthusiasts, friends & families</li>
-    </ul>
+<span class="bold-text">3.2 Automatic Post with Every Pairing</span>
+Upon successful pairing, both individuals can capture a photo or video, which appears on each participant’s profile. This encourages genuine shared experiences, firmly tied to real-life encounters.
 
-    <!-- 10. Contact -->
-    <h2>10. Contact</h2>
-    <p>
-      <strong>Connexa GmbH</strong><br>
-      Wilerstarsse 82<br>
-      8370, Sirnach – Switzerland<br><br>
-      <strong>Email:</strong> info@connexa-gmbh.ch<br>
-      <!-- <strong>Phone:</strong> [Phone Number, if desired] -->
-    </p>
 
-    <h3>Legal Note</h3>
-    <p>
-      This document is for informational purposes only and does not constitute a 
-      legally binding offer. All mentioned data, features, and timelines are subject 
-      to change during development. For further details, please contact us directly.
-    </p>
+<span class="bold-text">3.3 Minimal Content Flood & Reduced Addictive Tendencies</span>
+Since SoulBond only shows posts from real friends (those physically connected), users avoid the overwhelming onslaught of irrelevant or “fake” content:
 
-    <div class="footer">
-      &copy; 2025 Connexa GmbH. All rights reserved.
+No likes or follower counts: No “numbers game” fueling FOMO or competition
+Curated media consumption: Without feed algorithms, time-wasting doomscrolling is minimized
+
+<span class="bold-text">3.4 Privacy & Ad-Free Operation</span>
+SoulBond is ad-free and does not monetize user data. We store only minimal, essential details (e.g., encrypted IDs). Our business approach rests on optional premium features, meaning we have no interest in analyzing or selling personal data.
+
+
+ <span class="bold-text">3.5 Free Core Application</span>
+SoulBond’s fundamental functionalities (pairing, posting, chatting) are completely free. Potential premium add-ons may include expanded group features, distinctive designs, or extra cloud space, but remain optional.
+
+
+<span class="bold-text">4. Technical Architecture</span>
+
+ <span class="bold-text">4.1 App Design</span>
+- Mobile App (iOS/Android): Intuitive interface with separate views for chats, profiles, and posts.
+- Optional Web Access: A browser-based version for convenience and messaging on desktop.
+
+
+ <span class="bold-text">4.2NFC/Bluetooth Pairing</span>
+- NFC: Phones come within close range (just a few centimeters) for a secure handshake
+- Bluetooth: If NFC is unavailable, a similar pairing process is done wirelessly
+- Fraud-Resistant: Purely online friend requests are impossible, preventing fake additions
+
+
+<span class="bold-text">4.3 Security & Encryption</span>
+- End-to-end encryption (E2EE): Used for private chats and sensitive data whenever possible
+- Hosted in Switzerland: Subject to stringent Swiss data protection regulations
+- Minimal data retention: We follow a data minimization principle, retaining only core metadata
+
+ 
+<span class="bold-text">5. Business Model</span>
+
+<span class="bold-text">5.1 Free Core Features</span>
+- Establishing connections (pairing)
+- Joint posts (photos/videos) upon pairing
+- Basic chat and profile functionality
+
+
+<span class="bold-text">5.2 Potential Premium Features</span>
+Future paid upgrades may be offered to support ongoing development:
+
+Advanced group/event tools (e.g., team chats, scheduling)
+Additional cloud storage for media
+Customized themes or design packages
+Video/voice group calls
+The free plan always remains ad-free and essential features fully intact.
+
+
+<span class="bold-text">6. Roadmap</span>
+Alpha Phase (current)
+Core NFC/Bluetooth pairing functionality
+Basic app (iOS/Android): Profiles, chat, posting
+
+Beta Phase (Q1 2025)
+Inviting young audiences, privacy advocates, families, friend groups
+Testing the automated group post process
+Initial refinements (UI, performance)
+
+Public Launch (Q2 2025)
+Release on major app stores
+Media campaign for privacy and responsible screen use
+Soft launch of optional premium features
+
+Growth & Continuous Development
+International expansion, multilingual capabilities
+Expanded group/community functionalities
+Ongoing UI/UX improvements and security enhancements
+
+
+<span class="bold-text">7. Market Potential</span>
+
+<span class="bold-text">7.1 Target Audiences</span>
+Younger users eager to limit screen time
+Seeking a social platform with minimal scrolling.
+Privacy-conscious individuals
+Preferring services that do not trade personal data for ad revenue.
+Authenticity seekers
+Tired of fake accounts, influencer hype, and superficial “like” metrics.
+People wanting to stay in touch with friends & family
+Valuing genuine interactions in a safe, private environment.
+
+
+<span class="bold-text">7.2 Competitive Advantage</span>
+SoulBond merges real-life exclusivity (physical pairing) with a friendly interface, avoids addictive triggers, and safeguards user privacy. This is a significant departure from conventional social platforms reliant on big data and massive ad revenues.
+
+
+<span class="bold-text">8. Vision and Outlook</span>
+The vision behind SoulBond is a return to essentials in digital communication: meaningful friendships, face-to-face connections, and a respectful, private online space. Instead of bombarding users with countless posts, likes, and endless follower battles, SoulBond promotes direct, personal exchange.
+
+Goal: Building a network where grandparents and grandchildren, peer groups, and colleagues interact securely, sharing real moments—free from addictive loops, algorithmic manipulations, or spam-laden feeds.
+
+
+<span class="bold-text">9. Summary</span>
+Pairing only through physical encounters (NFC/Bluetooth)—no purely online friend requests
+Automatic post (photo/video) with each pairing—genuine memories, not staged content
+No addictive mechanics: Absent are likes, follower counts, or infinite feed loops
+Privacy & Ad-Free: Minimal data usage, zero targeted ads
+Sustainable approach: Free core, optional premium expansions
+Audience: Young screen-time managers, privacy advocates, authenticity enthusiasts, friends & families
+
+
+<span class="bold-text">10. Contact</span>
+Connexa GmbH
+Wilerstarsse 82
+8370, Sirnach – Switzerland
+
+Email: info@connexa-gmbh.ch
+
+Legal Note
+This document is for informational purposes only and does not constitute a legally binding offer. All mentioned data, features, and timelines are subject to change during development. For further details, please contact us directly.
+
+© 2025 Connexa GmbH. All rights reserved.
+      </pre>
     </div>
-  </div><!-- /container -->
+  </section>
 
-  <!-- JS für die Netzwerk-Animation -->
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="pitch.html">Pitch</a></li>
+        <li><a href="white-paper.html">White Paper</a></li>
+        <li><a href="crowdfunding.html">Crowdfunding</a></li>
+        <li><a href="founders.html">Our Founders</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="get-started.html">Download</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="imprint.html">Imprint</a></li>
+      </ul>
+      <p>&copy; 2025 SoulBond. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- BACKGROUND ANIMATION SCRIPT -->
   <script>
     const canvas = document.getElementById('networkCanvas');
     const ctx = canvas.getContext('2d');
@@ -544,9 +445,10 @@
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.height = window.innerHeight * 5;
       createDevices(Math.floor((canvas.width * canvas.height) / 5000));
     }
+
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
@@ -576,7 +478,7 @@
     function drawNetwork() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Farbverlauf als Hintergrund im Canvas
+      // Gradient background
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
       gradient.addColorStop(0, '#051E41FF');
       gradient.addColorStop(0.5, '#2C5772FF');
@@ -584,7 +486,7 @@
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Punkte (Devices)
+      // Points (devices)
       devices.forEach(device => {
         ctx.beginPath();
         ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
@@ -592,7 +494,7 @@
         ctx.fill();
       });
 
-      // Linien zwischen Devices
+      // Connecting lines
       devices.forEach((device, i) => {
         for (let j = i + 1; j < devices.length; j++) {
           const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
@@ -611,7 +513,7 @@
       devices.forEach(device => {
         device.x += device.dx;
         device.y += device.dy;
-        // Rand-Kollision
+        // Reverse direction upon hitting boundaries
         if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
         if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
       });
@@ -625,14 +527,14 @@
     animate();
   </script>
 
-  <!-- Mobile-Menü Toggle -->
+  <!-- MOBILE MENU TOGGLE -->
   <script>
     const mobileMenu = document.getElementById('mobileMenu');
     const navLinks = document.getElementById('navLinks');
+
     mobileMenu.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
   </script>
-
 </body>
 </html>
