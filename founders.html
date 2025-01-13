@@ -16,7 +16,7 @@
 
   <style>
     /* --------------------------------
-       Basic Reset and Box Sizing
+       Grundlegendes Reset & Box Sizing
     --------------------------------- */
     *, *::before, *::after {
       margin: 0;
@@ -24,121 +24,136 @@
       box-sizing: border-box;
     }
 
-    /* --------------------------------
-       Body
-    --------------------------------- */
+    /* 
+      WICHTIG: HTML und Body auf 100% Höhe setzen 
+      + flex layout im Body für Sticky-Footer 
+    */
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
     body {
+      display: flex;
+      flex-direction: column;
       font-family: 'Poppins', sans-serif;
       color: #333;
       line-height: 1.6;
-      margin: 0;
       overflow-x: hidden;
+    }
+
+    /* Dieser Wrapper nimmt den ganzen Platz ein,
+       damit der Footer nach unten rutscht */
+    .main-content {
+      flex: 1; /* füllt den restlichen Platz aus */
+      display: block; /* oder block, je nach Bedarf */
     }
 
     /* --------------------------------
        Navigation Styles
     --------------------------------- */
     .navbar {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        /* Halbtransparenter Farbverlauf */
-        background: linear-gradient(
+      position: sticky;
+      top: 0;
+      width: 100%;
+      /* Halbtransparenter Farbverlauf */
+      background: linear-gradient(
         135deg,
         rgba(22, 47, 85, 0.7),
         rgba(48, 87, 110, 0.7)
-        );
-        color: #fff;
-        padding: 15px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        z-index: 1000; /* vor dem Canvas */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      );
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000; /* vor dem Canvas */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     /* Brand links */
     .navbar-brand a {
-        color: #f1faee;
-        font-weight: 600;
-        text-decoration: none;
-        font-size: 1.5rem;
+      color: #f1faee;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.5rem;
     }
-    
+
     /* Menü */
     .nav-links {
-        list-style: none;
-        display: flex;  /* Desktop: horizontal */
-        gap: 30px;
-        /* Für Mobile Overlay-Effekt */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 0;
-        background: linear-gradient(
+      list-style: none;
+      display: flex;  /* Desktop: horizontal */
+      gap: 30px;
+      /* Für Mobile Overlay-Effekt */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(
         135deg,
         rgba(9, 22, 51, 0.95),
         rgba(69, 123, 157, 0.95),
         rgba(34, 88, 90, 0.95)
-        );
-        overflow: hidden;
-        transition: height 0.4s ease;
-        z-index: 9999;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+      );
+      overflow: hidden;
+      transition: height 0.4s ease;
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
-    
+
     /* Desktop: Menü normal (keine Overlay-Eigenschaften) */
     @media (min-width: 769px) {
-        .nav-links {
+      .nav-links {
         position: static;
         height: auto;
         background: none;
         flex-direction: row;
         justify-content: flex-end;
         transition: none;
-        }
+      }
     }
-    
+
     /* Menü-Links */
     .nav-links li a {
-        color: #f1faee;
-        text-decoration: none;
-        font-size: 1.2rem;
-        font-weight: 600;
-        transition: color 0.3s;
+      color: #f1faee;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: color 0.3s;
     }
     .nav-links li a:hover {
-        color: #44a1bd;
+      color: #44a1bd;
     }
     .nav-links li a.active {
-        color: #3faab8;
-        text-decoration: underline;
+      color: #3faab8;
+      text-decoration: underline;
     }
     /* Vollbild Overlay, wenn active */
     .nav-links.active {
-        height: 100vh;
+      height: 100vh;
     }
+
     /* Hamburger Icon (nur sichtbar auf Mobile/Tablet) */
     .navbar-toggle {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
     }
     .bar {
-        height: 3px;
-        width: 25px;
-        background-color: #f1faee;
-        margin: 4px 0;
-        transition: 0.4s;
+      height: 3px;
+      width: 25px;
+      background-color: #f1faee;
+      margin: 4px 0;
+      transition: 0.4s;
     }
-    
+
     @media (max-width: 768px) {
-        .navbar-toggle {
+      .navbar-toggle {
         display: flex;
-        }
+      }
     }
 
     /* --------------------------------
@@ -231,108 +246,120 @@
        Footer
     --------------------------------- */
     .footer {
-      background-color: #2c3e50;
-      color: #fff;
+      background: linear-gradient(135deg, #152C48, #1F4E5D);
+      color: #f1faee;
+      padding: 20px;
       text-align: center;
-      padding: 20px 0;
-      margin-top: 2em;
+
+      /* Wichtig: Damit der Footer unten "klebt" */
+      margin-top: auto;
     }
+
     .footer-content {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 20px;
     }
+
     .footer-links {
       list-style: none;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 1.5em;
-      margin-bottom: 1em;
+      gap: 15px;
+      margin-bottom: 15px;
     }
+
     .footer-links li a {
-      color: #fff;
+      color: #f1faee;
       text-decoration: none;
+      transition: color 0.3s ease;
     }
     .footer-links li a:hover {
-      text-decoration: underline;
+      color: #44a1bd;
     }
-    .footer p {
+
+    .footer-copyright {
       font-size: 0.9rem;
-      margin-top: 0.5em;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION BAR -->
-  <nav class="navbar">
-    <div class="navbar-brand">
-      <a href="index.html">Connexa</a>
-    </div>
-    <div class="navbar-toggle" id="mobileMenu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="pitch.html">Pitch</a></li>
-      <li><a href="white-paper.html">White Paper</a></li>
-      <li><a href="crowdfunding.html">Crowdfunding</a></li>
-      <li><a href="founders.html" style="color: #ffdb99;">Our Founders</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
-      <li><a href="get-started.html">Download</a></li>
-    </ul>
-  </nav>
+  <!-- Hüll-Container für Hauptinhalt, damit Footer unten bleibt -->
+  <div class="main-content">
 
-  <!-- BACKGROUND CANVAS -->
-  <canvas id="networkCanvas"></canvas>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <a href="index.html">Connexa</a>
+      </div>
+      <div class="navbar-toggle" id="mobileMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pitch.html">Pitch</a></li>
+        <li><a href="white-paper.html">White Paper</a></li>
+        <li><a href="crowdfunding.html">Crowdfunding</a></li>
+        <li><a href="founders.html" style="color: #ffdb99;">Our Founders</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="get-started.html">Download</a></li>
+      </ul>
+    </nav>
 
-  <!-- FOUNDERS SECTION -->
-  <section class="founders-section">
-    <div class="founders-header">
-      <h1>Our Founders</h1>
-      <p class="founders-intro">
-        SoulBond was built on the principle that real, meaningful connections start in the offline world.
-        Meet the team of visionaries who turned that idea into a reality.
-      </p>
-    </div>
+    <!-- BACKGROUND CANVAS -->
+    <canvas id="networkCanvas"></canvas>
 
-    <div class="founders-grid">
-      <!-- Founder 1 -->
-      <div class="founder-card">
-        <img src="founder1.jpg" alt="Founder 1" />
-        <h2>Marco P. Keller</h2>
-        <h3>CEO & Co-Founder</h3>
-        <p>
-          With a decade of experience in community building, Marco leads Connexa with a passion for 
-          bridging the gap between offline and online interactions. 
+    <!-- FOUNDERS SECTION -->
+    <section class="founders-section">
+      <div class="founders-header">
+        <h1>Our Founders</h1>
+        <p class="founders-intro">
+          SoulBond was built on the principle that real, meaningful connections start in the offline world.
+          Meet the team of visionaries who turned that idea into a reality.
         </p>
       </div>
 
-      <!-- Founder 2 -->
-      <div class="founder-card">
-        <img src="founder2.jpg" alt="Founder 2" />
-        <h2>Janis Papagiorgio</h2>
-        <h3>CTO & Co-Founder</h3>
-        <p>
-          Janis is a secure mobile development expert, responsible for ensuring SoulBond's 
-          first approach is both technologically robust and user-friendly.
-        </p>
-      </div>
+      <div class="founders-grid">
+        <!-- Founder 1 -->
+        <div class="founder-card">
+          <img src="founder1.jpg" alt="Founder 1" />
+          <h2>Marco P. Keller</h2>
+          <h3>CEO & Co-Founder</h3>
+          <p>
+            With a decade of experience in community building, Marco leads Connexa with a passion for 
+            bridging the gap between offline and online interactions. 
+          </p>
+        </div>
 
-      <!-- Founder 3 -->
-      <div class="founder-card">
-        <img src="founder3.jpg" alt="Founder 3" />
-        <h2>Marius Joerger</h2>
-        <h3>Head of Product & Co-Founder</h3>
-        <p>
-          Marius focuses on building features that truly enhance user well-being, ensuring 
-          SoulBond remains free from endless feeds or addictive mechanics.
-        </p>
+        <!-- Founder 2 -->
+        <div class="founder-card">
+          <img src="founder2.jpg" alt="Founder 2" />
+          <h2>Janis Papagiorgio</h2>
+          <h3>CTO & Co-Founder</h3>
+          <p>
+            Janis is a secure mobile development expert, responsible for ensuring SoulBond's 
+            first approach is both technologically robust and user-friendly.
+          </p>
+        </div>
+
+        <!-- Founder 3 -->
+        <div class="founder-card">
+          <img src="founder3.jpg" alt="Founder 3" />
+          <h2>Marius Joerger</h2>
+          <h3>Head of Product & Co-Founder</h3>
+          <p>
+            Marius focuses on building features that truly enhance user well-being, ensuring 
+            SoulBond remains free from endless feeds or addictive mechanics.
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+  </div> <!-- Ende .main-content -->
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -360,8 +387,11 @@
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
+      /*
+        Bei sehr langen Seiten kann man hier die 
+        Canvas-Höhe entsprechend anpassen.
+      */
       canvas.height = window.innerHeight * 5; 
-      // If you have long content, multiply the height so the canvas covers everything.
       createDevices(Math.floor((canvas.width * canvas.height) / 5000));
     }
 
