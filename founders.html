@@ -44,7 +44,7 @@
     }
 
     /* --------------------------------
-       NAVIGATION (aus Coming Soon Snippet)
+       NAVIGATION
     --------------------------------- */
     .navbar {
       position: sticky;
@@ -90,7 +90,7 @@
       );
       overflow: hidden;
       transition: height 0.4s ease;
-      z-index: 9999;
+      z-index: 9998;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -183,6 +183,7 @@
       margin: 0 auto;
       color: #f1e3e3;
       margin-bottom: 2.5em;
+      font-size: 1rem;
     }
 
     .founders-grid {
@@ -246,7 +247,7 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.4s ease, visibility 0.4s ease;
-      z-index: 9999;
+      z-index: 10000;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -267,6 +268,10 @@
       padding: 2rem;
       border-radius: 8px;
       position: relative;
+      /* NEU: Modal-Inhalt begrenzen und scrollbar machen */
+      max-height: 80vh; 
+      overflow-y: auto;  
+      -webkit-overflow-scrolling: touch; 
       transform: scale(0.8) translateY(20px);
       animation: popIn 0.4s forwards ease;
     }
@@ -323,6 +328,7 @@
       color: #444;
       line-height: 1.6;
       margin-bottom: 1rem;
+      white-space: pre-line; /* Für Zeilenumbrüche per \n */
     }
 
     /* --------------------------------
@@ -358,6 +364,31 @@
     .footer-links li a:hover {
       color: #44a1bd;
     }
+
+    /* --------------------------------
+       MEDIA QUERIES für weitere Feinheiten
+    --------------------------------- */
+    @media (max-width: 480px) {
+      .founders-header h1 {
+        font-size: 1.4rem;
+      }
+      .founders-intro {
+        font-size: 0.85rem;
+      }
+      .founder-card h2 {
+        font-size: 1rem;
+      }
+      .founder-card h3 {
+        font-size: 0.9rem;
+      }
+      .founder-card p {
+        font-size: 0.75rem;
+      }
+      .founder-card img {
+        width: 80px;
+        height: 80px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -375,10 +406,10 @@
       </div>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
-        <li><a href="pitch.html" >Pitch</a></li>
+        <li><a href="pitch.html">Pitch</a></li>
         <li><a href="white-paper.html">White Paper</a></li>
         <li><a href="crowdfunding.html">Crowdfunding</a></li>
-        <li><a href="founders.html"class="active">Our Founders</a></li>
+        <li><a href="founders.html" class="active">Our Founders</a></li>
         <li><a href="contact.html">Contact Us</a></li>
         <li><a href="get-started.html">Download</a></li>
       </ul>
@@ -399,25 +430,27 @@
 
       <div class="founders-grid">
         <!-- Founder 1 -->
-        <div 
+        <div
+
           class="founder-card" 
-          data-founder-img="founder1.jpg"
+          data-founder-img="Marco.webp"
           data-founder-name="Marco P. Keller"
           data-founder-title="CEO & Co-Founder"
           data-founder-text="I am Marco, the Founder and CEO of Connexa GmbH, the Swiss-based creator of SoulBond. With a solid background in automation and mechatronics, I specialized in rapid prototyping and IoT before advancing my expertise as a software engineer. My military service in the reconnaissance units sharpened my strategic thinking and problem-solving skills—qualities that now guide my leadership and vision at Connexa.
 
-Drawing on these diverse experiences, I have shaped SoulBond into an ad-free, privacy-oriented social network that fosters genuine, face-to-face connections rather than chasing likes or follower counts. My mission is to ensure that our platform empowers users to form authentic bonds, reclaim control over their digital lives, and celebrate real moments without the pressure or superficiality found in conventional social media."
+  Drawing on these diverse experiences, I have shaped SoulBond into an ad-free, privacy-oriented social network that fosters genuine, face-to-face connections rather than chasing likes or follower counts. My mission is to ensure that our platform empowers users to form authentic bonds, reclaim control over their digital lives, and celebrate real moments without the pressure or superficiality found in conventional social media."
         >
-          <img src="founder1.jpg" alt="Founder 1" />
+          <img src="Marco.webp" alt="Founder 1" />
           <h2>Marco P. Keller</h2>
           <h3>CEO &amp; Co-Founder</h3>
           <p>
-            Automation &amp; Mechatronics background, plus Reconnaissance Unit expertise.
+            Automation &amp; Software Engineer background, plus expertise in a Reconnaissance Unit.
           </p>
+          
         </div>
 
         <!-- Founder 2 -->
-        <div 
+        <div
           class="founder-card"
           data-founder-img="founder2.jpg"
           data-founder-name="Janis Papagiorgio"
@@ -435,16 +468,18 @@ Drawing on these diverse experiences, I have shaped SoulBond into an ad-free, pr
         <!-- Founder 3 -->
         <div 
           class="founder-card"
-          data-founder-img="founder3.jpg"
+          data-founder-img="Marius.webp"
           data-founder-name="Marius Joerger"
-          data-founder-title="Head of Product & Co-Founder"
-          data-founder-text="Marius focuses on building features that truly enhance user well-being, ensuring SoulBond remains free from endless feeds or addictive mechanics. He believes in tech that enriches lives rather than consuming them."
+          data-founder-title="CFO & Co-Founder"
+          data-founder-text="I am Marius, the Co-Founder and CFO of Connexa GmbH, the Swiss company behind SoulBond. My career began as a Software Engineer, where I honed my analytical skills and passion for innovative technologies. Over time, I discovered my enthusiasm for finance and economics—a combination that allows me to approach financial strategies with a technical and data-driven perspective.
+
+This unique blend of technical and financial expertise shapes my work at Connexa. From optimizing resource allocation to ensuring long-term financial stability, I bring a precise approach to all financial matters. At the same time, my technical background enables me to make data-informed decisions and develop innovative solutions that give us a competitive edge."
         >
-          <img src="founder3.jpg" alt="Founder 3" />
+          <img src="Marius.webp" alt="Founder 3" />
           <h2>Marius Joerger</h2>
-          <h3>Head of Product &amp; Co-Founder</h3>
+          <h3>CFO &amp; Co-Founder</h3>
           <p>
-            Building features that truly enhance user well-being.
+            Finance and Economics expert with extensive experience in startup growth, strategy, and sustainability.
           </p>
         </div>
       </div>
@@ -483,7 +518,8 @@ Drawing on these diverse experiences, I have shaped SoulBond into an ad-free, pr
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight * 5;
+      // Erhöhe hier die Canvas-Höhe nur moderat, damit nicht zu lang gescrollt wird
+      canvas.height = window.innerHeight * 3; 
       createDevices(Math.floor((canvas.width * canvas.height) / 5000));
     }
 
@@ -563,6 +599,16 @@ Drawing on these diverse experiences, I have shaped SoulBond into an ad-free, pr
     mobileMenu.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
+
+    // Menü schließt sich, wenn man auf einen Link klickt (Mobile)
+    const navLinkItems = navLinks.querySelectorAll('li a');
+    navLinkItems.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 769) {
+          navLinks.classList.remove('active');
+        }
+      });
+    });
   </script>
 
   <!-- MODAL SCRIPT -->
@@ -585,7 +631,7 @@ Drawing on these diverse experiences, I have shaped SoulBond into an ad-free, pr
           <img src="${imgSrc}" alt="${name}" />
           <h2>${name}</h2>
           <h3>${title}</h3>
-          <p>${text.replace(/\n/g, '<br>')}</p>
+          <p>${text}</p>
         `;
 
         modalContent.innerHTML = modalInnerHTML;
