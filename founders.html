@@ -268,7 +268,6 @@
       padding: 2rem;
       border-radius: 8px;
       position: relative;
-      /* NEU: Modal-Inhalt begrenzen und scrollbar machen */
       max-height: 80vh; 
       overflow-y: auto;  
       -webkit-overflow-scrolling: touch; 
@@ -309,6 +308,17 @@
       border-radius: 50%;
       display: block;
       margin: 0 auto 1.5rem auto;
+      cursor: zoom-in; /* Beim ersten Klick soll man sehen, dass man zoomen kann */
+      transition: transform 0.3s ease;
+    }
+
+    /* Neue Klasse für vergrößertes Bild */
+    .modal-content img.enlarged {
+      width: 80%;
+      height: auto;
+      max-width: 800px;
+      max-height: 80vh;
+      cursor: zoom-out; /* Beim zweiten Klick wieder verkleinern */
     }
 
     .modal-content h2 {
@@ -431,22 +441,20 @@
       <div class="founders-grid">
         <!-- Founder 1 -->
         <div
-
           class="founder-card" 
-          data-founder-img="Marco.webp"
+          data-founder-img="Marco.png"
           data-founder-name="Marco P. Keller"
           data-founder-title="CEO & Co-Founder"
           data-founder-text="I am Marco, the Founder and CEO of Connexa GmbH, the Swiss-based creator of SoulBond. With a solid background in automation and mechatronics, I specialized in rapid prototyping and IoT before advancing my expertise as a software engineer. My military service in the reconnaissance units sharpened my strategic thinking and problem-solving skills—qualities that now guide my leadership and vision at Connexa.
 
   Drawing on these diverse experiences, I have shaped SoulBond into an ad-free, privacy-oriented social network that fosters genuine, face-to-face connections rather than chasing likes or follower counts. My mission is to ensure that our platform empowers users to form authentic bonds, reclaim control over their digital lives, and celebrate real moments without the pressure or superficiality found in conventional social media."
         >
-          <img src="Marco.webp" alt="Founder 1" />
+          <img src="Marco.png" alt="Founder 1" />
           <h2>Marco P. Keller</h2>
           <h3>CEO &amp; Co-Founder</h3>
           <p>
             Automation &amp; Software Engineer background, plus expertise in a Reconnaissance Unit.
           </p>
-          
         </div>
 
         <!-- Founder 2 -->
@@ -637,15 +645,21 @@ This unique blend of technical and financial expertise shapes my work at Connexa
         modalContent.innerHTML = modalInnerHTML;
         modalOverlay.classList.add('active');
 
-        // Neu gerenderten Close-Button abfragen
+        // Close-Button im frisch gerenderten Inhalt holen
         const newCloseBtn = modalContent.querySelector('#modalClose');
         newCloseBtn.addEventListener('click', () => {
           modalOverlay.classList.remove('active');
         });
+
+        // --- NEU: Bild vergrößern beim Klick ---
+        const modalImg = modalContent.querySelector('img');
+        modalImg.addEventListener('click', () => {
+          modalImg.classList.toggle('enlarged');
+        });
       });
     });
 
-    // Klick auf Overlay schließt das Modal
+    // Klick auf Overlay schließt das Modal, wenn man neben den Inhalt klickt
     modalOverlay.addEventListener('click', (e) => {
       if (e.target === modalOverlay) {
         modalOverlay.classList.remove('active');
