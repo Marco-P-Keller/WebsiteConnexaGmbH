@@ -38,32 +38,69 @@
     }
 
     /* --------------------------------
-       NAVIGATION (Beispiel)
+       Navigation Styles
     --------------------------------- */
     .navbar {
       position: sticky;
       top: 0;
       width: 100%;
-      background: linear-gradient(135deg, rgba(22, 47, 85, 0.7), rgba(48, 87, 110, 0.7));
+      /* Halbtransparenter Farbverlauf */
+      background: linear-gradient(
+        135deg,
+        rgba(22, 47, 85, 0.7),
+        rgba(48, 87, 110, 0.7)
+      );
       color: #fff;
       padding: 15px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 1000; /* vor dem Canvas */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
+    
     .navbar-brand a {
       color: #f1faee;
       font-weight: 600;
       text-decoration: none;
       font-size: 1.5rem;
     }
+    
     .nav-links {
       list-style: none;
-      display: flex; 
+      display: flex;  /* Desktop: horizontal */
       gap: 30px;
+      /* Für Mobile Overlay-Effekt */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(9, 22, 51, 0.95),
+        rgba(69, 123, 157, 0.95),
+        rgba(34, 88, 90, 0.95)
+      );
+      overflow: hidden;
+      transition: height 0.4s ease;
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
+    
+    @media (min-width: 769px) {
+      .nav-links {
+        position: static;
+        height: auto;
+        background: none;
+        flex-direction: row;
+        justify-content: flex-end;
+        transition: none;
+      }
+    }
+    
     .nav-links li a {
       color: #f1faee;
       text-decoration: none;
@@ -74,9 +111,33 @@
     .nav-links li a:hover {
       color: #44a1bd;
     }
+
     .nav-links li a.active {
       color: #3faab8;
       text-decoration: underline;
+    }
+
+    .nav-links.active {
+      height: 100vh;
+    }
+
+    .navbar-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .bar {
+      height: 3px;
+      width: 25px;
+      background-color: #f1faee;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+    
+    @media (max-width: 768px) {
+      .navbar-toggle {
+        display: flex;
+      }
     }
 
     /* --------------------------------
@@ -93,7 +154,7 @@
        FOUNDERS SECTION
     --------------------------------- */
     .founders-section {
-      margin-top: 60px;
+      /* margin-top: 60px; */
       padding: 60px 20px;
       max-width: 1200px;
       margin-left: auto;
@@ -245,49 +306,70 @@
     }
 
     /* --------------------------------
-       FOOTER (optional)
+       Footer
     --------------------------------- */
     .footer {
       background: linear-gradient(135deg, #152C48, #1F4E5D);
       color: #f1faee;
       padding: 20px;
       text-align: center;
-      margin-top: auto; 
+      /* Wichtig: Damit der Footer unten bleibt */
+      margin-top: auto;
     }
 
-    /* --------------------------------
-       MEDIA QUERIES
-    --------------------------------- */
-    @media (max-width: 480px) {
-      .founder-card img {
-        width: 100px;
-        height: 100px;
-      }
-      .modal-content img {
-        width: 150px;
-        height: 150px;
-      }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .footer-links li a {
+      color: #f1faee;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-links li a:hover {
+      color: #44a1bd;
+    }
+
+    .footer-copyright {
+      font-size: 0.9rem;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
 
-<div class="main-content">
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="navbar-brand">
-      <a href="#">SoulBond</a>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Pitch</a></li>
-      <li><a href="#">White Paper</a></li>
-      <li><a href="#">Crowdfunding</a></li>
-      <li><a href="#" class="active">Our Founders</a></li>
-      <li><a href="#">Contact Us</a></li>
-      <li><a href="#">Download</a></li>
-    </ul>
-  </nav>
+  <!-- Hauptinhalt in Wrapper, damit der Footer sticky sein kann -->
+  <div class="main-content">
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <a href="index.html">Connexa</a>
+      </div>
+      <div class="navbar-toggle" id="mobileMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pitch.html">Pitch</a></li>
+        <li><a href="white-paper.html">White Paper</a></li>
+        <li><a href="crowdfunding.html">Crowdfunding</a></li>
+        <li><a href="founders.html" class="active">Our Founders</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="get-started.html">Download</a></li>
+      </ul>
+    </nav>
 
   <!-- HINTERGRUND CANVAS (optional) -->
   <canvas id="networkCanvas"></canvas>
@@ -334,7 +416,7 @@ Drawing on these diverse experiences, I have shaped SoulBond into an ad-free, pr
       <h2>Janis Papagiorgio</h2>
       <h3>CTO &amp; Co-Founder</h3>
       <p>
-        Secure mobile development &amp; privacy-first approach.
+        Lead Developer with years of experience in software and app development.
       </p>
     </div>
 
@@ -367,10 +449,22 @@ This unique blend of technical and financial expertise shapes my work at Connexa
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
-</footer>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="pitch.html">Pitch</a></li>
+        <li><a href="white-paper.html">White Paper</a></li>
+        <li><a href="crowdfunding.html">Crowdfunding</a></li>
+        <li><a href="founders.html">Our Founders</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="get-started.html">Download</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="imprint.html">Imprint</a></li>
+      </ul>
+      <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
+    </div>
+  </footer>
 
 <script>
   /* ----------------------------------
@@ -519,5 +613,17 @@ This unique blend of technical and financial expertise shapes my work at Connexa
     modalImg.style.transform = `scale(${newScale})`;
   }
 </script>
+
+  <!-- MOBILE MENU TOGGLE -->
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+
+  
 </body>
 </html>
