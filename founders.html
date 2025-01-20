@@ -163,7 +163,7 @@
     --------------------------------- */
     .founders-section {
       position: relative;
-      margin-top: 80px; /* Platz unter der Navbar */
+      margin-top: 60px; /* Platz unter der Navbar */
       padding: 60px 20px;
       max-width: 1200px;
       margin-left: auto;
@@ -188,7 +188,7 @@
 
     .founders-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 2em;
     }
 
@@ -211,8 +211,8 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .founder-card img {
-      width: 100px;
-      height: 100px;
+      width: 230px;
+      height: 230px;
       object-fit: cover;
       border-radius: 50%;
       margin-bottom: 1em;
@@ -302,14 +302,16 @@
     }
 
     .modal-content img {
-      width: 150px;
-      height: 150px;
+      width: 200px;
+      height: 200px;
       object-fit: cover;
       border-radius: 50%;
       display: block;
       margin: 0 auto 1.5rem auto;
       cursor: zoom-in; /* Beim ersten Klick soll man sehen, dass man zoomen kann */
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
+      /* Optional: erlauben, dass ein Nutzer auf dem Smartphone pinch-to-zoom machen kann */
+      touch-action: none; 
     }
 
     /* Neue Klasse für vergrößertes Bild */
@@ -319,6 +321,16 @@
       max-width: 800px;
       max-height: 80vh;
       cursor: zoom-out; /* Beim zweiten Klick wieder verkleinern */
+      /* eine weiche Animation beim Vergrößern */
+      transition: transform 0.4s ease, width 0.4s ease;
+    }
+
+    /* Für sehr kleine Screens (z.B. Smartphones) das Bild ruhig so groß wie möglich machen */
+    @media (max-width: 480px) {
+      .modal-content img.enlarged {
+        width: 100%;
+        max-height: 80vh;
+      }
     }
 
     .modal-content h2 {
@@ -460,34 +472,36 @@
         <!-- Founder 2 -->
         <div
           class="founder-card"
-          data-founder-img="founder2.jpg"
+          data-founder-img="janis2.png"
           data-founder-name="Janis Papagiorgio"
           data-founder-title="CTO & Co-Founder"
-          data-founder-text="Janis is a secure mobile development expert, responsible for ensuring SoulBond’s privacy-first approach is both technologically robust and user-friendly. His passion lies in creating cutting-edge solutions that respect user data and deliver a seamless experience."
+          data-founder-text="I am Janis, the lead developer at Connexa GmbH, the Swiss company behind SoulBond. My career began with a strong focus on computer science, where I discovered my passion for modern technologies and efficient programming structures. Over the past five years, I have been deeply involved in software and app development, building a diverse skill set across various programming languages and frameworks.
+
+This expertise in software development significantly shapes my work at Connexa. Whether it’s designing robust architectures or implementing highly scalable applications, I always place great importance on clean code and sound design principles. At the same time, my curiosity drives me to constantly explore new trends and technologies, integrating them into our projects. This approach leads to innovative solutions that deliver genuine value to our clients and continuously inspires our team."
         >
-          <img src="founder2.jpg" alt="Founder 2" />
+          <img src="janis2.png" alt="Founder 2" />
           <h2>Janis Papagiorgio</h2>
           <h3>CTO &amp; Co-Founder</h3>
           <p>
-            Secure mobile development &amp; privacy-first approach.
+            Lead Developer with years of experience in software and app development.
           </p>
         </div>
 
         <!-- Founder 3 -->
         <div 
           class="founder-card"
-          data-founder-img="Marius.webp"
+          data-founder-img="marius.png"
           data-founder-name="Marius Joerger"
           data-founder-title="CFO & Co-Founder"
           data-founder-text="I am Marius, the Co-Founder and CFO of Connexa GmbH, the Swiss company behind SoulBond. My career began as a Software Engineer, where I honed my analytical skills and passion for innovative technologies. Over time, I discovered my enthusiasm for finance and economics—a combination that allows me to approach financial strategies with a technical and data-driven perspective.
 
 This unique blend of technical and financial expertise shapes my work at Connexa. From optimizing resource allocation to ensuring long-term financial stability, I bring a precise approach to all financial matters. At the same time, my technical background enables me to make data-informed decisions and develop innovative solutions that give us a competitive edge."
         >
-          <img src="Marius.webp" alt="Founder 3" />
+          <img src="marius.png" alt="Founder 3" />
           <h2>Marius Joerger</h2>
-          <h3>CFO &amp; Co-Founder</h3>
+          <h3>CFO & Co-Founder</h3>
           <p>
-            Finance and Economics expert with extensive experience in startup growth, strategy, and sustainability.
+            Finance and Economics expert with extensive experience in startup growth, strategy and sustainability.
           </p>
         </div>
       </div>
