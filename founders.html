@@ -5,9 +5,6 @@
   <title>Founders - Connexa GmbH</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Favicon (optional) -->
-  <link rel="icon" href="LogoV1.jpg" type="image/png" />
-
   <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
@@ -16,14 +13,13 @@
 
   <style>
     /* --------------------------------
-       RESET & BASIC STYLES
+       RESET & BASISSTYLES
     --------------------------------- */
     *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     html, body {
       width: 100%;
       height: 100%;
@@ -31,83 +27,43 @@
       color: #333;
       overflow-x: hidden; /* Kein horizontales Scrollen */
     }
-
     body {
       display: flex;
       flex-direction: column;
       line-height: 1.6;
     }
-
     .main-content {
       flex: 1;
       display: block;
     }
 
     /* --------------------------------
-       NAVIGATION
+       NAVIGATION (Beispiel)
     --------------------------------- */
     .navbar {
       position: sticky;
       top: 0;
       width: 100%;
-      background: linear-gradient(
-        135deg,
-        rgba(22, 47, 85, 0.7),
-        rgba(48, 87, 110, 0.7)
-      );
+      background: linear-gradient(135deg, rgba(22, 47, 85, 0.7), rgba(48, 87, 110, 0.7));
       color: #fff;
       padding: 15px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      z-index: 1000; /* vor Canvas */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-
     .navbar-brand a {
       color: #f1faee;
       font-weight: 600;
       text-decoration: none;
       font-size: 1.5rem;
     }
-
-    /* NAV-LINKS */
     .nav-links {
       list-style: none;
-      display: flex;  /* Desktop: horizontal */
+      display: flex; 
       gap: 30px;
-      /* Overlay-Effekt für Mobile */
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(9, 22, 51, 0.95),
-        rgba(69, 123, 157, 0.95),
-        rgba(34, 88, 90, 0.95)
-      );
-      overflow: hidden;
-      transition: height 0.4s ease;
-      z-index: 9998;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
     }
-
-    /* Desktop: Normale Anzeige */
-    @media (min-width: 769px) {
-      .nav-links {
-        position: static;
-        height: auto;
-        background: none;
-        flex-direction: row;
-        justify-content: flex-end;
-        transition: none;
-      }
-    }
-
     .nav-links li a {
       color: #f1faee;
       text-decoration: none;
@@ -123,60 +79,32 @@
       text-decoration: underline;
     }
 
-    /* Vollbild Overlay bei Mobile */
-    .nav-links.active {
-      height: 100vh;
-    }
-
-    /* Hamburger Icon (nur bei Mobile sichtbar) */
-    .navbar-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .bar {
-      height: 3px;
-      width: 25px;
-      background-color: #f1faee;
-      margin: 4px 0;
-      transition: 0.4s;
-    }
-
-    @media (max-width: 768px) {
-      .navbar-toggle {
-        display: flex;
-      }
-    }
-
     /* --------------------------------
-       BACKGROUND CANVAS
+       HINTERGRUND-CANVAS (optional)
     --------------------------------- */
     #networkCanvas {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -1; /* hinter Content */
+      z-index: -1;
     }
 
     /* --------------------------------
        FOUNDERS SECTION
     --------------------------------- */
     .founders-section {
-      position: relative;
-      /* margin-top: 60px; Platz unter der Navbar */
+      margin-top: 60px;
       padding: 60px 20px;
       max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
     }
-
     .founders-header h1 {
       text-align: center;
       font-size: 2rem;
       color: #d5e3f1;
       margin-bottom: 0.5em;
     }
-
     .founders-intro {
       text-align: center;
       max-width: 700px;
@@ -185,7 +113,6 @@
       margin-bottom: 2.5em;
       font-size: 1rem;
     }
-
     .founders-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -204,34 +131,17 @@
       padding: 30px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      position: relative;
     }
     .founder-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .founder-card img {
-      width: 230px;
-      height: 230px;
+      width: 180px;
+      height: 180px;
       object-fit: cover;
       border-radius: 50%;
       margin-bottom: 1em;
-    }
-    .founder-card h2 {
-      font-size: 1.2rem;
-      color: #82909e;
-      margin-bottom: 0.5em;
-    }
-    .founder-card h3 {
-      font-size: 1rem;
-      color: #777;
-      margin-bottom: 1em;
-      font-weight: 500;
-    }
-    .founder-card p {
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.5;
     }
 
     /* --------------------------------
@@ -247,12 +157,11 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.4s ease, visibility 0.4s ease;
-      z-index: 10000;
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-
     .modal-overlay.active {
       opacity: 1;
       visibility: visible;
@@ -269,12 +178,10 @@
       border-radius: 8px;
       position: relative;
       max-height: 80vh; 
-      overflow-y: auto;  
+      overflow-y: auto; 
       -webkit-overflow-scrolling: touch; 
-      transform: scale(0.8) translateY(20px);
-      animation: popIn 0.4s forwards ease;
+      animation: popIn 0.4s forwards ease; /* popIn fürs Modal */
     }
-
     @keyframes popIn {
       from {
         opacity: 0;
@@ -301,36 +208,20 @@
       color: #333;
     }
 
+    /*
+      Bild-Animation:
+      - Standard: scale(1)
+      - Wir starten in JavaScript bei scale(0.8) und „fahren“ beim Öffnen zu 1 hoch
+      - Dann reagieren wir beim Scrollen: 1 -> 0.8
+    */
     .modal-content img {
-      width: 200px;
-      height: 200px;
+      display: block;
+      margin: 0 auto 1rem auto;
+      width: 400px;
+      height: 400px;
       object-fit: cover;
       border-radius: 50%;
-      display: block;
-      margin: 0 auto 1.5rem auto;
-      cursor: zoom-in; /* Beim ersten Klick soll man sehen, dass man zoomen kann */
-      transition: transform 0.4s ease;
-      /* Optional: erlauben, dass ein Nutzer auf dem Smartphone pinch-to-zoom machen kann */
-      touch-action: none; 
-    }
-
-    /* Neue Klasse für vergrößertes Bild */
-    .modal-content img.enlarged {
-      width: 80%;
-      height: auto;
-      max-width: 800px;
-      max-height: 80vh;
-      cursor: zoom-out; /* Beim zweiten Klick wieder verkleinern */
-      /* eine weiche Animation beim Vergrößern */
-      transition: transform 0.4s ease, width 0.4s ease;
-    }
-
-    /* Für sehr kleine Screens (z.B. Smartphones) das Bild ruhig so groß wie möglich machen */
-    @media (max-width: 480px) {
-      .modal-content img.enlarged {
-        width: 100%;
-        max-height: 80vh;
-      }
+      transition: transform 0.2s linear; /* "Realtime"-Animation beim Scrollen */
     }
 
     .modal-content h2 {
@@ -354,7 +245,7 @@
     }
 
     /* --------------------------------
-       FOOTER
+       FOOTER (optional)
     --------------------------------- */
     .footer {
       background: linear-gradient(135deg, #152C48, #1F4E5D);
@@ -364,49 +255,15 @@
       margin-top: auto; 
     }
 
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 15px;
-    }
-
-    .footer-links li a {
-      color: #f1faee;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    .footer-links li a:hover {
-      color: #44a1bd;
-    }
-
     /* --------------------------------
-       MEDIA QUERIES für weitere Feinheiten
+       MEDIA QUERIES
     --------------------------------- */
     @media (max-width: 480px) {
-      .founders-header h1 {
-        font-size: 1.4rem;
-      }
-      .founders-intro {
-        font-size: 0.85rem;
-      }
-      .founder-card h2 {
-        font-size: 1rem;
-      }
-      .founder-card h3 {
-        font-size: 0.9rem;
-      }
-      .founder-card p {
-        font-size: 0.75rem;
-      }
       .founder-card img {
+        width: 100px;
+        height: 100px;
+      }
+      .modal-content img {
         width: 150px;
         height: 150px;
       }
@@ -414,271 +271,253 @@
   </style>
 </head>
 <body>
-  <div class="main-content">
 
-    <!-- NAVIGATION BAR -->
-    <nav class="navbar">
-      <div class="navbar-brand">
-        <a href="index.html">SoulBond</a>
-      </div>
-      <div class="navbar-toggle" id="mobileMenu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="pitch.html">Pitch</a></li>
-        <li><a href="white-paper.html">White Paper</a></li>
-        <li><a href="crowdfunding.html">Crowdfunding</a></li>
-        <li><a href="founders.html" class="active">Our Founders</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="get-started.html">Download</a></li>
-      </ul>
-    </nav>
+<div class="main-content">
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="#">SoulBond</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Pitch</a></li>
+      <li><a href="#">White Paper</a></li>
+      <li><a href="#">Crowdfunding</a></li>
+      <li><a href="#" class="active">Our Founders</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Download</a></li>
+    </ul>
+  </nav>
 
-    <!-- BACKGROUND CANVAS -->
-    <canvas id="networkCanvas"></canvas>
+  <!-- HINTERGRUND CANVAS (optional) -->
+  <canvas id="networkCanvas"></canvas>
 
-    <!-- FOUNDERS SECTION -->
-    <section class="founders-section">
-      <div class="founders-header">
-        <h1>Our Founders</h1>
-        <p class="founders-intro">
-          SoulBond was built on the principle that real, meaningful connections matter.
-          Meet the team of visionaries who turned that idea into a reality.
+  <!-- FOUNDERS SECTION -->
+  <section class="founders-section">
+    <div class="founders-header">
+      <h1>Our Founders</h1>
+      <p class="founders-intro">
+        SoulBond was built on the principle that real, meaningful connections matter.
+      </p>
+    </div>
+
+    <div class="founders-grid">
+      <!-- Founder 1 -->
+      <div
+        class="founder-card" 
+        data-founder-img="Marco.png"
+        data-founder-name="Marco P. Keller"
+        data-founder-title="CEO & Co-Founder"
+        data-founder-text="I am Marco, the Founder and CEO of Connexa GmbH, the Swiss-based creator of SoulBond. With a solid background in automation and mechatronics, I specialized in rapid prototyping and IoT before advancing my expertise as a software engineer. My military service in the reconnaissance units sharpened my strategic thinking and problem-solving skills—qualities that now guide my leadership and vision at Connexa.
+
+Drawing on these diverse experiences, I have shaped SoulBond into an ad-free, privacy-oriented social network that fosters genuine, face-to-face connections rather than chasing likes or follower counts. My mission is to ensure that our platform empowers users to form authentic bonds, reclaim control over their digital lives, and celebrate real moments without the pressure or superficiality found in conventional social media."
+      >
+        <img src="Marco.png" alt="Founder 1" />
+        <h2>Marco P. Keller</h2>
+        <h3>CEO &amp; Co-Founder</h3>
+        <p>
+          Automation &amp; Software Engineer background, plus expertise in a Reconnaissance Unit.
         </p>
       </div>
 
-      <div class="founders-grid">
-        <!-- Founder 1 -->
-        <div
-          class="founder-card" 
-          data-founder-img="Marco.png"
-          data-founder-name="Marco P. Keller"
-          data-founder-title="CEO & Co-Founder"
-          data-founder-text="I am Marco, the Founder and CEO of Connexa GmbH, the Swiss-based creator of SoulBond. With a solid background in automation and mechatronics, I specialized in rapid prototyping and IoT before advancing my expertise as a software engineer. My military service in the reconnaissance units sharpened my strategic thinking and problem-solving skills—qualities that now guide my leadership and vision at Connexa.
+      <!-- Founder 2 -->
+      <div
+      class="founder-card"
+      data-founder-img="janis2.png"
+      data-founder-name="Janis Papagiorgio"
+      data-founder-title="CTO & Co-Founder"
+      data-founder-text="I am Janis, the lead developer at Connexa GmbH, the Swiss company behind SoulBond. My career began with a strong focus on computer science, where I discovered my passion for modern technologies and efficient programming structures. Over the past five years, I have been deeply involved in software and app development, building a diverse skill set across various programming languages and frameworks.
 
-  Drawing on these diverse experiences, I have shaped SoulBond into an ad-free, privacy-oriented social network that fosters genuine, face-to-face connections rather than chasing likes or follower counts. My mission is to ensure that our platform empowers users to form authentic bonds, reclaim control over their digital lives, and celebrate real moments without the pressure or superficiality found in conventional social media."
-        >
-          <img src="Marco.png" alt="Founder 1" />
-          <h2>Marco P. Keller</h2>
-          <h3>CEO &amp; Co-Founder</h3>
-          <p>
-            Automation &amp; Software Engineer background, plus expertise in a Reconnaissance Unit.
-          </p>
-        </div>
+      This expertise in software development significantly shapes my work at Connexa. Whether it’s designing robust architectures or implementing highly scalable applications, I always place great importance on clean code and sound design principles. At the same time, my curiosity drives me to constantly explore new trends and technologies, integrating them into our projects. This approach leads to innovative solutions that deliver genuine value to our clients and continuously inspires our team."
+    >
+      <img src="janis2.png" alt="Founder 2" />
+      <h2>Janis Papagiorgio</h2>
+      <h3>CTO &amp; Co-Founder</h3>
+      <p>
+        Secure mobile development &amp; privacy-first approach.
+      </p>
+    </div>
 
-        <!-- Founder 2 -->
-        <div
-          class="founder-card"
-          data-founder-img="janis2.png"
-          data-founder-name="Janis Papagiorgio"
-          data-founder-title="CTO & Co-Founder"
-          data-founder-text="I am Janis, the lead developer at Connexa GmbH, the Swiss company behind SoulBond. My career began with a strong focus on computer science, where I discovered my passion for modern technologies and efficient programming structures. Over the past five years, I have been deeply involved in software and app development, building a diverse skill set across various programming languages and frameworks.
-
-This expertise in software development significantly shapes my work at Connexa. Whether it’s designing robust architectures or implementing highly scalable applications, I always place great importance on clean code and sound design principles. At the same time, my curiosity drives me to constantly explore new trends and technologies, integrating them into our projects. This approach leads to innovative solutions that deliver genuine value to our clients and continuously inspires our team."
-        >
-          <img src="janis2.png" alt="Founder 2" />
-          <h2>Janis Papagiorgio</h2>
-          <h3>CTO &amp; Co-Founder</h3>
-          <p>
-            Lead Developer with years of experience in software and app development.
-          </p>
-        </div>
-
-        <!-- Founder 3 -->
-        <div 
-          class="founder-card"
-          data-founder-img="marius.png"
-          data-founder-name="Marius Joerger"
-          data-founder-title="CFO & Co-Founder"
-          data-founder-text="I am Marius, the Co-Founder and CFO of Connexa GmbH, the Swiss company behind SoulBond. My career began as a Software Engineer, where I honed my analytical skills and passion for innovative technologies. Over time, I discovered my enthusiasm for finance and economics—a combination that allows me to approach financial strategies with a technical and data-driven perspective.
+    <!-- Founder 3 -->
+    <div 
+      class="founder-card"
+      data-founder-img="marius.png"
+      data-founder-name="Marius Joerger"
+      data-founder-title="CFO & Co-Founder"
+      data-founder-text="I am Marius, the Co-Founder and CFO of Connexa GmbH, the Swiss company behind SoulBond. My career began as a Software Engineer, where I honed my analytical skills and passion for innovative technologies. Over time, I discovered my enthusiasm for finance and economics—a combination that allows me to approach financial strategies with a technical and data-driven perspective.
 
 This unique blend of technical and financial expertise shapes my work at Connexa. From optimizing resource allocation to ensuring long-term financial stability, I bring a precise approach to all financial matters. At the same time, my technical background enables me to make data-informed decisions and develop innovative solutions that give us a competitive edge."
-        >
-          <img src="marius.png" alt="Founder 3" />
-          <h2>Marius Joerger</h2>
-          <h3>CFO & Co-Founder</h3>
-          <p>
-            Finance and Economics expert with extensive experience in startup growth, strategy and sustainability.
-          </p>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- MODAL OVERLAY -->
-  <div class="modal-overlay" id="founderModal">
-    <div class="modal-content" id="modalContent">
-      <!-- Dynamischer Inhalt via JavaScript -->
+    >
+      <img src="marius.png" alt="Founder 3" />
+      <h2>Marius Joerger</h2>
+      <h3>CFO &amp; Co-Founder</h3>
+      <p>
+        Finance and Economics expert with extensive experience in startup growth, strategy and sustainability.
+      </p>
     </div>
   </div>
+</section>
+</div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <ul class="footer-links">
-        <li><a href="#">Pitch</a></li>
-        <li><a href="#">White Paper</a></li>
-        <li><a href="#">Crowdfunding</a></li>
-        <li><a href="#">Our Founders</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Download</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Imprint</a></li>
-      </ul>
-      <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
-    </div>
-  </footer>
 
-  <!-- BACKGROUND ANIMATION SCRIPT -->
-  <script>
-    const canvas = document.getElementById('networkCanvas');
-    const ctx = canvas.getContext('2d');
-    let devices = [];
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="founderModal">
+  <div class="modal-content" id="modalContent">
+    <!-- Dynamischer Inhalt via JavaScript -->
+  </div>
+</div>
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      // Erhöhe hier die Canvas-Höhe nur moderat, damit nicht zu lang gescrollt wird
-      canvas.height = window.innerHeight * 3; 
-      createDevices(Math.floor((canvas.width * canvas.height) / 5000));
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
+</footer>
+
+<script>
+  /* ----------------------------------
+     CANVAS-Hintergrund (optional)
+  ---------------------------------- */
+  const canvas = document.getElementById('networkCanvas');
+  const ctx = canvas.getContext('2d');
+  let devices = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    // Du kannst den Multiplikator anpassen
+    canvas.height = window.innerHeight * 3; 
+    createDevices(Math.floor((canvas.width * canvas.height) / 5000));
+  }
+  function createDevices(count) {
+    devices = [];
+    for (let i = 0; i < count; i++) {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      devices.push({ x, y, dx: Math.random() - 0.5, dy: Math.random() - 0.5 });
     }
+  }
+  function drawNetwork() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Hintergrund-Gradient
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, '#051E41FF');
+    gradient.addColorStop(0.5, '#2C5772FF');
+    gradient.addColorStop(1, '#3647A5FF');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    function createDevices(count) {
-      devices = [];
-      for (let i = 0; i < count; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        devices.push({ x, y, dx: Math.random() - 0.5, dy: Math.random() - 0.5 });
-      }
-    }
-
-    function drawNetwork() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Hintergrund-Gradient
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, '#051E41FF');
-      gradient.addColorStop(0.5, '#2C5772FF');
-      gradient.addColorStop(1, '#3647A5FF');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Punkte (devices)
-      devices.forEach(device => {
-        ctx.beginPath();
-        ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = '#FFD700';
-        ctx.fill();
-      });
-
-      // Verbindungslinien
-      devices.forEach((device, i) => {
-        for (let j = i + 1; j < devices.length; j++) {
-          const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(device.x, device.y);
-            ctx.lineTo(devices[j].x, devices[j].y);
-            ctx.strokeStyle = 'rgba(255, 127, 80, 0.1)';
-            ctx.stroke();
-          }
-        }
-      });
-    }
-
-    function updatePositions() {
-      devices.forEach(device => {
-        device.x += device.dx;
-        device.y += device.dy;
-        // Abprallen an den Canvas-Rändern
-        if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
-        if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
-      });
-    }
-
-    function animate() {
-      updatePositions();
-      drawNetwork();
-      requestAnimationFrame(animate);
-    }
-
-    window.addEventListener('resize', () => {
-      resizeCanvas();
+    // Punkte zeichnen
+    devices.forEach(device => {
+      ctx.beginPath();
+      ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = '#FFD700';
+      ctx.fill();
     });
 
-    // Initial
+    // Verbindungslinien
+    devices.forEach((device, i) => {
+      for (let j = i + 1; j < devices.length; j++) {
+        const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.moveTo(device.x, device.y);
+          ctx.lineTo(devices[j].x, devices[j].y);
+          ctx.strokeStyle = 'rgba(255, 127, 80, 0.1)';
+          ctx.stroke();
+        }
+      }
+    });
+  }
+  function updatePositions() {
+    devices.forEach(device => {
+      device.x += device.dx;
+      device.y += device.dy;
+      // Ränder abprallen
+      if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
+      if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
+    });
+  }
+  function animate() {
+    updatePositions();
+    drawNetwork();
+    requestAnimationFrame(animate);
+  }
+  window.addEventListener('resize', () => {
     resizeCanvas();
-    animate();
-  </script>
+  });
+  // Initialisierung
+  resizeCanvas();
+  animate();
 
-  <!-- MOBILE MENU TOGGLE -->
-  <script>
-    const mobileMenu = document.getElementById('mobileMenu');
-    const navLinks = document.getElementById('navLinks');
 
-    mobileMenu.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
+  /* ----------------------------------
+     MODAL-Logik
+  ---------------------------------- */
+  const founderCards = document.querySelectorAll('.founder-card');
+  const modalOverlay = document.getElementById('founderModal');
+  const modalContent = document.getElementById('modalContent');
+  let modalImg = null; // Referenz aufs Bild im Modal
 
-    // Menü schließt sich, wenn man auf einen Link klickt (Mobile)
-    const navLinkItems = navLinks.querySelectorAll('li a');
-    navLinkItems.forEach(link => {
-      link.addEventListener('click', () => {
-        if (window.innerWidth < 769) {
-          navLinks.classList.remove('active');
+  // Klick auf eine Founder-Karte
+  founderCards.forEach(card => {
+    card.addEventListener('click', () => {
+      // Daten aus Custom-Attributen holen
+      const imgSrc = card.getAttribute('data-founder-img');
+      const name = card.getAttribute('data-founder-name');
+      const title = card.getAttribute('data-founder-title');
+      const text = card.getAttribute('data-founder-text');
+
+      // Modal-Inhalt dynamisch einfügen
+      const modalInnerHTML = `
+        <button class="modal-close" id="modalClose">&times;</button>
+        <img src="${imgSrc}" alt="${name}" />
+        <h2>${name}</h2>
+        <h3>${title}</h3>
+        <p>${text}</p>
+      `;
+      modalContent.innerHTML = modalInnerHTML;
+      
+      // Overlay sichtbar machen
+      modalOverlay.classList.add('active');
+
+      // Referenzen auf neue Elemente
+      modalImg = modalContent.querySelector('img');
+      const closeBtn = modalContent.querySelector('#modalClose');
+
+      // Klick auf "X"
+      closeBtn.addEventListener('click', () => {
+        modalOverlay.classList.remove('active');
+      });
+      // Klick auf Overlay = Schließen
+      modalOverlay.addEventListener('click', e => {
+        if (e.target === modalOverlay) {
+          modalOverlay.classList.remove('active');
         }
       });
-    });
-  </script>
 
-  <!-- MODAL SCRIPT -->
-  <script>
-    const founderCards = document.querySelectorAll('.founder-card');
-    const modalOverlay = document.getElementById('founderModal');
-    const modalContent = document.getElementById('modalContent');
-
-    founderCards.forEach(card => {
-      card.addEventListener('click', () => {
-        // Daten aus Attributen
-        const imgSrc = card.getAttribute('data-founder-img');
-        const name = card.getAttribute('data-founder-name');
-        const title = card.getAttribute('data-founder-title');
-        const text = card.getAttribute('data-founder-text');
-
-        // Modal-Inhalt erstellen
-        const modalInnerHTML = `
-          <button class="modal-close" id="modalClose">&times;</button>
-          <img src="${imgSrc}" alt="${name}" />
-          <h2>${name}</h2>
-          <h3>${title}</h3>
-          <p>${text}</p>
-        `;
-
-        modalContent.innerHTML = modalInnerHTML;
-        modalOverlay.classList.add('active');
-
-        // Close-Button im frisch gerenderten Inhalt holen
-        const newCloseBtn = modalContent.querySelector('#modalClose');
-        newCloseBtn.addEventListener('click', () => {
-          modalOverlay.classList.remove('active');
-        });
-
-        // --- NEU: Bild vergrößern beim Klick ---
-        const modalImg = modalContent.querySelector('img');
-        modalImg.addEventListener('click', () => {
-          modalImg.classList.toggle('enlarged');
-        });
+      // Bild zunächst kleiner (scale(0.8)) einstellen
+      modalImg.style.transform = 'scale(0.5)';
+      // Dann animiert hochfahren auf scale(1)
+      requestAnimationFrame(() => {
+        modalImg.style.transform = 'scale(1)';
       });
-    });
 
-    // Klick auf Overlay schließt das Modal, wenn man neben den Inhalt klickt
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) {
-        modalOverlay.classList.remove('active');
-      }
+      // Scroll-Event => dynamische Skalierung
+      modalContent.addEventListener('scroll', handleScroll);
     });
-  </script>
+  });
+
+  // Scroll-Funktion
+  function handleScroll() {
+    if (!modalImg) return;
+    const scrollTop = modalContent.scrollTop;
+    // Diesen Wert kannst du anpassen:
+    const maxScroll = 300;
+    // Verhältnis scroll / maxScroll
+    let fraction = scrollTop / maxScroll;
+    if (fraction > 1) fraction = 1;
+    // Zwischen 1 und 0.8 (oder andere Werte)
+    let newScale = 1 - fraction * 0.4; 
+    modalImg.style.transform = `scale(${newScale})`;
+  }
+</script>
 </body>
 </html>
