@@ -232,6 +232,7 @@
        MODAL CONTENT
     --------------------------------- */
     .modal-content {
+      overflow-x: hidden; /* Kein horizontales Scrollen */
       background: white;
       max-width: 800px;
       width: 90%;
@@ -253,6 +254,8 @@
         transform: scale(1) translateY(0);
       }
     }
+
+
 
     .modal-close {
       position: absolute;
@@ -283,6 +286,13 @@
       object-fit: cover;
       border-radius: 50%;
       transition: transform 0.2s linear; /* "Realtime"-Animation beim Scrollen */
+    }
+
+    @media (max-width: 768px) {
+      .modal-content img {
+        width: 300px;
+        height: 300px;
+      }
     }
 
     .modal-content h2 {
@@ -624,6 +634,6 @@ This unique blend of technical and financial expertise shapes my work at Connexa
     });
   </script>
 
-  
+
 </body>
 </html>
