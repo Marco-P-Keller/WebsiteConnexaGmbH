@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connexa GmbH - Crowdfunding</title>
+  <link rel="icon" href="LogoV1.jpg" type="image/png" />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Integriertes CSS -->
+  <style>
+    /* Basis-Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Schrift */
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden; /* Ermöglicht vertikales Scrollen */
+    }
+
+    /* Canvas als Hintergrund */
+    #networkCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1; /* Hinter allen Inhalten */
+    }
+
+    /* Navigation (oben fixiert) */
+    .navbar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(22, 47, 85, 0.7),
+        rgba(48, 87, 110, 0.7)
+      );
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000; /* vor dem Canvas */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Brand-Logo/Link links */
+    .navbar-brand a {
+      color: #f1faee;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.5rem;
+    }
+
+    /* Nav-Links */
+    .nav-links {
+      list-style: none;
+      display: flex; /* Desktop: horizontal */
+      gap: 30px;
+      /* Für Mobile Overlay-Effekt */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(9, 22, 51, 0.95),
+        rgba(69, 123, 157, 0.95),
+        rgba(34, 88, 90, 0.95)
+      );
+      overflow: hidden;
+      transition: height 0.4s ease;
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Desktop: Menü normal, kein Overlay */
+    @media (min-width: 769px) {
+      .nav-links {
+        position: static;
+        height: auto;
+        background: none;
+        flex-direction: row;
+        justify-content: flex-end;
+        transition: none;
+      }
+    }
+
+    /* Menü-Links-Stil */
+    .nav-links li a {
+      color: #f1faee;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    .nav-links li a:hover {
+      color: #44a1bd;
+    }
+    .nav-links li a.active {
+      color: #3faab8;
+      text-decoration: underline;
+    }
+
+    /* Vollbild Overlay, wenn .active */
+    .nav-links.active {
+      height: 100vh;
+    }
+
+    /* Hamburger Icon (nur auf Mobile/Tablet) */
+    .navbar-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .bar {
+      height: 3px;
+      width: 25px;
+      background-color: #f1faee;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-toggle {
+        display: flex;
+      }
+    }
+
+    /* Hero-Section */
+    .hero-section {
+      min-height: 60vh; /* Füllt den Screen */
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      padding-left: 4rem; /* Platz zum linken Rand */
+    }
+    /* Falls Inhalt zentriert sein soll, füge eine Klasse hero-center hinzu */
+    .hero-section.hero-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0;
+    }
+    .hero-content {
+      width: 70%;
+      text-align: left;
+    }
+
+    /* Titel im Hero */
+    #centerText {
+      font-size: clamp(1.5rem, 5vw, 4rem);
+      color: #50e2ff;
+      text-shadow: 0 0 20px rgba(80, 141, 255, 0.8);
+      pointer-events: none;
+      animation: glow 2s infinite alternate;
+      margin-bottom: 1rem;
+    }
+    .indent {
+      display: inline-block;
+      margin-left: 2em;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 20px rgba(80, 109, 255, 0.8);
+      }
+      100% {
+        text-shadow: 0 0 40px rgb(80, 80, 255);
+      }
+    }
+
+    /* Hero-Button / CTA-Button */
+    .btn-cta {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #44a1bd;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    .btn-cta:hover {
+      background-color: #3faab8;
+    }
+
+    /* Größere, markante Version (optional) */
+    .big-cta-btn {
+      font-size: 1.4rem;
+      padding: 16px 32px;
+      margin-top: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+    }
+    .big-cta-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Inhaltliche Sektionen */
+    .content-section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      color: #F1FAEE;
+      background: rgba(29, 53, 87, 0.5);
+      border-radius: 10px;
+      margin-bottom: 50px;
+    }
+    .content-section h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    .content-section p,
+    .content-section ul,
+    .content-section ol {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .content-section ul li,
+    .content-section ol li {
+      margin-left: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(135deg, #152C48, #1F4E5D);
+      color: #f1faee;
+      padding: 20px;
+      text-align: center;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .footer-links li a {
+      color: #f1faee;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-links li a:hover {
+      color: #44a1bd;
+    }
+
+    /* Responsive Anpassungen */
+    @media (max-width: 768px) {
+      .hero-section {
+        justify-content: flex-start;
+        padding-left: 5%;
+      }
+      .hero-content {
+        width: 90%;
+        text-align: left;
+        padding: 0;
+      }
+      #centerText {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation (gleicher Aufbau wie Hauptseite) -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <!-- <img src="LogoV1.jpg" width="10%" alt="Connexa Logo"> -->
+      <a href="index.html">Connexa</a>
+    </div>
+    <div class="navbar-toggle" id="mobileMenu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <!-- Falls gewünscht, Home-Link einkommentieren -->
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pitch.html">Pitch</a></li>
+      <li><a href="white-paper.html">White Paper</a></li>
+      <li><a href="crowdfunding.html" class="active">Crowdfunding</a></li>
+      <li><a href="founders.html">Our Founders</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="get-started.html">Download</a></li>
+    </ul>
+  </nav>
+
+  <!-- Canvas-Hintergrund (animiertes Netzwerk) -->
+  <canvas id="networkCanvas"></canvas>
+
+  <!-- HERO-Bereich für Crowdfunding (zentrierter Inhalt, großer Button) -->
+  <section class="hero-section hero-center">
+    <div class="hero-content">
+      <h1 id="centerText">
+        SUPPORT<br>
+        <span class="indent">OUR CROWDFUNDING</span>
+      </h1>
+      <!-- Großer CTA-Button -->
+      <a href="#crowdfunding-info" class="btn-cta big-cta-btn">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Crowdfunding-Inhalte -->
+  <section id="crowdfunding-info" class="content-section">
+    <h2>Crowdfunding: Support Our Vision</h2>
+    <p>
+      Be a part of our journey to bring authentic social connections to the world.
+      By supporting our crowdfunding campaign, you directly help us shape a platform
+      that values real-life friendships and genuine interactions.
+    </p>
+
+    <h2>Why Crowdfunding?</h2>
+    <p>
+      We believe that building a community-driven platform should start
+      with the community itself. By crowdfunding, we’re empowering our
+      supporters to be part of the evolution of SoulBond from day one.
+    </p>
+
+    <h2>Our Goals</h2>
+    <ul>
+      <li>
+        <strong>Expand Our Team:</strong> Hire more developers and designers to
+        accelerate new features.
+      </li>
+      <li>
+        <strong>Enhance Privacy:</strong> Implement advanced encryption and
+        strict no-tracking policies.
+      </li>
+      <li>
+        <strong>Improve User Experience:</strong> Continuously refine the interface
+        for a clean, distraction-free environment.
+      </li>
+      <li>
+        <strong>Scale Infrastructure:</strong> Invest in reliable servers to ensure
+        smooth performance.
+      </li>
+    </ul>
+
+    <h2>Your Rewards</h2>
+    <p>
+      In appreciation of your support, we’re offering exclusive perks:
+    </p>
+    <ul>
+      <li>Early access to upcoming beta features</li>
+      <li>Access to special premium functions</li>
+      <li>Immortalize your name as a supporter in our app</li>
+      <li>Voting rights on new features and overall platform direction</li>
+    </ul>
+
+    <p>  
+      Ready to help us redefine social media? Click below to contribute!
+    </p>
+    <a href="https://www.your-crowdfunding-platform.com/connexa" 
+       target="_blank" 
+       class="btn-cta" 
+       style="margin-top: 20px;">
+      Contribute Now
+    </a>
+  </section>
+
+  <!-- Footer (gleiches Styling wie Hauptseite) -->
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="pitch.html">Pitch</a></li>
+        <li><a href="white-paper.html">White Paper</a></li>
+        <li><a href="crowdfunding.html">Crowdfunding</a></li>
+        <li><a href="founders.html">Our Founders</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="get-started.html">Download</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="imprint.html">Imprint</a></li>
+      </ul>
+      <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Hintergrund-Animation (Netzwerk) -->
+  <script>
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let devices = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight * 5;
+      createDevices(Math.floor((canvas.width * canvas.height) / 5000));
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    let lastExecution = 0;
+    window.addEventListener('resize', () => {
+      const now = Date.now();
+      if (now - lastExecution >= 200) {
+        resizeCanvas();
+        lastExecution = now;
+      }
+    });
+
+    function createDevices(count) {
+      devices = [];
+      for (let i = 0; i < count; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        devices.push({
+          x,
+          y,
+          dx: Math.random() - 0.5,
+          dy: Math.random() - 0.5
+        });
+      }
+    }
+
+    function drawNetwork() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Farbverlauf
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#051E41FF');
+      gradient.addColorStop(0.5, '#2C5772FF');
+      gradient.addColorStop(1, '#3647A5FF');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Punkte (Devices)
+      devices.forEach(device => {
+        ctx.beginPath();
+        ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFD700';
+        ctx.fill();
+      });
+
+      // Linien zwischen Devices
+      devices.forEach((device, i) => {
+        for (let j = i + 1; j < devices.length; j++) {
+          const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(device.x, device.y);
+            ctx.lineTo(devices[j].x, devices[j].y);
+            ctx.strokeStyle = 'rgba(255, 127, 80, 0.1)';
+            ctx.stroke();
+          }
+        }
+      });
+    }
+
+    function updatePositions() {
+      devices.forEach(device => {
+        device.x += device.dx;
+        device.y += device.dy;
+        // An Rändern abprallen
+        if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
+        if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
+      });
+    }
+
+    function animate() {
+      updatePositions();
+      drawNetwork();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
+  <!-- Mobile-Menü per JavaScript ein-/ausklappen -->
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

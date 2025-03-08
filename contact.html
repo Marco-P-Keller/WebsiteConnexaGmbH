@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us - Connexa GmbH</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="LogoV1.jpg" type="image/png" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* --------------------------------
+       Grundlegendes Reset & Box Sizing
+    --------------------------------- */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 
+      WICHTIG: HTML und Body auf 100% Höhe setzen 
+      + flex layout im Body für Sticky-Footer 
+    */
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden; /* prevent horizontal scroll */
+    }
+
+    /* Wrapper für Hauptinhalt,
+       damit der Footer unten "klebt". */
+    .main-content {
+      flex: 1; /* nimmt den verfügbaren Platz ein */
+      display: block;
+    }
+
+    /* --------------------------------
+       Navigation Styles
+    --------------------------------- */
+    .navbar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      /* Halbtransparenter Farbverlauf */
+      background: linear-gradient(
+        135deg,
+        rgba(22, 47, 85, 0.7),
+        rgba(48, 87, 110, 0.7)
+      );
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000; /* vor dem Canvas */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .navbar-brand a {
+      color: #f1faee;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.5rem;
+    }
+    
+    .nav-links {
+      list-style: none;
+      display: flex;  /* Desktop: horizontal */
+      gap: 30px;
+      /* Für Mobile Overlay-Effekt */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(9, 22, 51, 0.95),
+        rgba(69, 123, 157, 0.95),
+        rgba(34, 88, 90, 0.95)
+      );
+      overflow: hidden;
+      transition: height 0.4s ease;
+      z-index: 9999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    @media (min-width: 769px) {
+      .nav-links {
+        position: static;
+        height: auto;
+        background: none;
+        flex-direction: row;
+        justify-content: flex-end;
+        transition: none;
+      }
+    }
+    
+    .nav-links li a {
+      color: #f1faee;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    .nav-links li a:hover {
+      color: #44a1bd;
+    }
+
+    .nav-links li a.active {
+      color: #3faab8;
+      text-decoration: underline;
+    }
+
+    .nav-links.active {
+      height: 100vh;
+    }
+
+    .navbar-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .bar {
+      height: 3px;
+      width: 25px;
+      background-color: #f1faee;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+    
+    @media (max-width: 768px) {
+      .navbar-toggle {
+        display: flex;
+      }
+    }
+
+    /* --------------------------------
+       Canvas (Background Animation)
+    --------------------------------- */
+    #networkCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1; /* behind content */
+    }
+
+    /* --------------------------------
+       Contact Section
+    --------------------------------- */
+    .contact-section {
+      position: relative;
+      margin-top: 80px; /* space below navbar */
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 2em;
+    }
+
+    .contact-header h1 {
+      font-size: 2rem;
+      color: #d0d4d8;
+      margin-bottom: 0.5em;
+    }
+
+    .contact-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #dbd4d4;
+      margin-bottom: 2.5em;
+    }
+
+    .contact-form-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(6px);
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+
+    .contact-form-wrapper h2 {
+      text-align: center;
+      font-size: 1.4rem;
+      color: #2c3e50;
+      margin-bottom: 1.2em;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-form label {
+      font-weight: 500;
+      color: #444;
+      margin-bottom: 0.3em;
+      margin-top: 1em;
+    }
+
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.7em;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      outline: none;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      margin-top: 1.5em;
+      padding: 0.8em 1.5em;
+      background-color: #47cbcf;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      align-self: flex-start;
+    }
+    .contact-form button:hover {
+      background-color: #3d97a3;
+      transform: translateY(-2px);
+    }
+
+    /* --------------------------------
+       Footer
+    --------------------------------- */
+    .footer {
+      background: linear-gradient(135deg, #152C48, #1F4E5D);
+      color: #f1faee;
+      padding: 20px;
+      text-align: center;
+      /* Wichtig: Damit der Footer unten bleibt */
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .footer-links li a {
+      color: #f1faee;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-links li a:hover {
+      color: #44a1bd;
+    }
+
+    .footer-copyright {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hauptinhalt in Wrapper, damit der Footer sticky sein kann -->
+  <div class="main-content">
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <a href="index.html">Connexa</a>
+      </div>
+      <div class="navbar-toggle" id="mobileMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pitch.html">Pitch</a></li>
+        <li><a href="white-paper.html">White Paper</a></li>
+        <li><a href="crowdfunding.html">Crowdfunding</a></li>
+        <li><a href="founders.html">Our Founders</a></li>
+        <li><a href="contact.html" class="active">Contact Us</a></li>
+        <li><a href="get-started.html">Download</a></li>
+      </ul>
+    </nav>
+
+    <!-- BACKGROUND CANVAS -->
+    <canvas id="networkCanvas"></canvas>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section">
+      <div class="contact-header">
+        <h1>Contact Us</h1>
+        <p class="contact-intro">
+          We’d love to hear from you! Whether you have questions about SoulBond’s 
+          features, feedback on our platform, or are interested in partnering, 
+          feel free to reach out.
+        </p>
+      </div>
+
+      <div class="contact-form-wrapper">
+        <h2>Get In Touch</h2>
+        <form class="contact-form"
+              action="https://formspree.io/f/mzzzyzbz"
+              method="POST">
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required />
+
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="Your email address" required />
+
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" placeholder="Your message" required></textarea>
+
+          <!-- optional subject line -->
+          <input type="hidden" name="_subject" value="Neue Nachricht vom Kontaktformular" />
+
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </div> <!-- Ende .main-content -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="pitch.html">Pitch</a></li>
+        <li><a href="white-paper.html">White Paper</a></li>
+        <li><a href="crowdfunding.html">Crowdfunding</a></li>
+        <li><a href="founders.html">Our Founders</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="get-started.html">Download</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="imprint.html">Imprint</a></li>
+      </ul>
+      <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- BACKGROUND ANIMATION SCRIPT -->
+  <script>
+    /* Canvas Animation Code */
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let devices = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      /* Bei sehr langen Seiten ggf. canvas.height erhöhen */
+      canvas.height = window.innerHeight * 5; 
+      createDevices(Math.floor((canvas.width * canvas.height) / 5000));
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    let lastExecution = 0;
+    window.addEventListener('resize', () => {
+      const now = Date.now();
+      if (now - lastExecution >= 200) {
+        resizeCanvas();
+        lastExecution = now;
+      }
+    });
+
+    function createDevices(count) {
+      devices = [];
+      for (let i = 0; i < count; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        devices.push({
+          x,
+          y,
+          dx: Math.random() - 0.5,
+          dy: Math.random() - 0.5
+        });
+      }
+    }
+
+    function drawNetwork() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#051E41FF');
+      gradient.addColorStop(0.5, '#2C5772FF');
+      gradient.addColorStop(1, '#3647A5FF');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      devices.forEach(device => {
+        ctx.beginPath();
+        ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFD700';
+        ctx.fill();
+      });
+
+      devices.forEach((device, i) => {
+        for (let j = i + 1; j < devices.length; j++) {
+          const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(device.x, device.y);
+            ctx.lineTo(devices[j].x, devices[j].y);
+            ctx.strokeStyle = 'rgba(255, 127, 80, 0.1)';
+            ctx.stroke();
+          }
+        }
+      });
+    }
+
+    function updatePositions() {
+      devices.forEach(device => {
+        device.x += device.dx;
+        device.y += device.dy;
+        // An Kanten abprallen
+        if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
+        if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
+      });
+    }
+
+    function animate() {
+      updatePositions();
+      drawNetwork();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
+  <!-- MOBILE MENU TOGGLE -->
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

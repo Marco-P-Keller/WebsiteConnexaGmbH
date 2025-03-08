@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connexa GmbH - SoulBond</title>
+  <link rel="icon" href="LogoV1.jpg" type="image/png" />
+  <!-- Main CSS File -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <!-- Optional Logo: <img src="LogoV1.jpg" width="10%" alt="Connexa Logo"> -->
+      <a href="index.html">Connexa</a>
+    </div>
+    <div class="navbar-toggle" id="mobileMenu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pitch.html">Pitch</a></li>
+      <li><a href="white-paper.html">White Paper</a></li>
+      <li><a href="crowdfunding.html">Crowdfunding</a></li>
+      <li><a href="founders.html">Our Founders</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="get-started.html">Download</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hintergrund-Canvas (Animation) -->
+  <canvas id="networkCanvas"></canvas>
+
+  <!-- HERO-SECTION -->
+  <section id="home" class="hero-section">
+    <div class="hero-content">
+      <h1 id="centerText">
+        CONNECT<br>
+        <span class="indent">WITH AUTHENTICITY</span>
+      </h1>
+      <p class="hero-description">
+        Welcome to a new era of social networking, where meaningful connections 
+        take center stage. No endless feeds, no like counters, and no influencer 
+        hype—just genuine, face-to-face encounters that nurture real relationships. 
+        With SoulBond, you only connect with people you meet offline, ensuring 
+        authentic bonds and freeing you from the noise, pressure, and invasive 
+        data collection common to traditional social media.
+      </p>
+      <a href="get-started.html" class="btn-cta">Try the Beta App</a>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE SUMMARY / OVERVIEW -->
+  <section class="content-section" id="overview">
+    <h2>SoulBond – The New Approach to Genuine Social Connections</h2>
+    <p>
+      SoulBond reimagines social networking by focusing on real-life encounters, 
+      data privacy, and trust. Instead of endless content streams or faceless 
+      online acquaintances, you form “friendships” or “connections” only when you 
+      physically meet and pair your smartphones via NFC or Bluetooth.
+    </p>
+
+    <h3>Key Highlights</h3>
+    <ul>
+      <li><strong>No follower or like counts:</strong> No competition, no addictive loops</li>
+      <li><strong>Automated group post upon pairing:</strong> Real memories rather than staged content</li>
+      <li><strong>Fully ad-free and privacy-first:</strong> No data collection, no user data sales</li>
+      <li><strong>Free core features:</strong> Future optional premium features remain voluntary</li>
+    </ul>
+
+    <p>
+      SoulBond primarily caters to young users seeking to control their screen time, 
+      privacy-conscious individuals, those craving authenticity, and people wanting 
+      to stay connected with friends & family without the usual stress or addictive 
+      nature of conventional social media.
+    </p>
+  </section>
+
+  <!-- PROBLEM STATEMENT -->
+  <section class="content-section" id="problems">
+    <h2>Problem Statement</h2>
+    
+    <h3>Time Wasting & Potential Addiction</h3>
+    <p>
+      Popular networks often rely on infinite scrolling, likes, and follower metrics 
+      that trigger psychological cues. The outcome is potential addiction, excessive 
+      screen time, and a marked loss of productivity.
+    </p>
+
+    <h3>Privacy Concerns & Monetization</h3>
+    <p>
+      Many platforms earn revenue from ads and targeted advertising, which involves 
+      vast user data collection. This raises increasing doubts about data security 
+      and privacy.
+    </p>
+
+    <h3>Lack of Authenticity & Superficial Interactions</h3>
+    <p>
+      Likes, follower counts, and influencer-driven behavior often lead to superficial 
+      engagement. Most connections remain purely virtual, lacking genuine interaction 
+      and diluting meaningful relationships with close friends or family.
+    </p>
+
+    <h3>Content Overload</h3>
+    <p>
+      Constant streams of ads, memes, and self-promotional posts can overwhelm users, 
+      making it tough to find updates from genuine contacts amid the clutter.
+    </p>
+  </section>
+
+  <!-- SOLUTION (SoulBond) -->
+  <section class="content-section" id="solution">
+    <h2>SoulBond: The Solution</h2>
+    
+    <h3>Physical Pairing via NFC or Bluetooth</h3>
+    <p>
+      New connections arise only through offline meetings, where two people briefly 
+      bring their phones together (NFC) or pair via Bluetooth. This method is 
+      tamper-proof and blocks strangers, bots, or fake profiles.
+    </p>
+
+    <h3>Automatic Post with Every Pairing</h3>
+    <p>
+      Upon successful pairing, both individuals can capture a photo or video, which 
+      appears on each participant’s profile. This encourages genuine shared experiences, 
+      firmly tied to real-life encounters.
+    </p>
+
+    <h3>Minimal Content Flood & Reduced Addictive Tendencies</h3>
+    <ul>
+      <li><strong>No likes or follower counts:</strong> No “numbers game” fueling competition</li>
+      <li><strong>Curated media consumption:</strong> Without feed algorithms, time-wasting doomscrolling is minimized</li>
+    </ul>
+
+    <h3>Privacy & Ad-Free Operation</h3>
+    <p>
+      SoulBond is ad-free and does not monetize user data. We store only minimal, 
+      essential details (e.g., encrypted IDs). Our business approach rests on 
+      optional premium features, meaning we have no interest in analyzing or 
+      selling personal data.
+    </p>
+
+    <h3>Free Core Application</h3>
+    <p>
+      SoulBond’s fundamental functionalities (pairing, posting, chatting) are 
+      completely free. Potential premium add-ons may include expanded group 
+      features, distinctive designs, or extra cloud space, but remain optional.
+    </p>
+  </section>
+
+  <!-- TECHNICAL ARCHITECTURE -->
+  <section class="content-section" id="tech">
+    <h2>Technical Architecture</h2>
+
+    <h3>App Design</h3>
+    <ul>
+      <li><strong>Mobile App (iOS/Android):</strong> Intuitive interface with separate views for chats, profiles, and posts.</li>
+      <li><strong>Optional Web Access:</strong> A browser-based version for convenience and messaging on desktop.</li>
+    </ul>
+
+    <h3>NFC/Bluetooth Pairing</h3>
+    <ul>
+      <li><strong>NFC:</strong> Phones come within close range for a secure handshake</li>
+      <li><strong>Bluetooth:</strong> If NFC is unavailable, a similar pairing process is done wirelessly</li>
+      <li><strong>Fraud-Resistant:</strong> Purely online friend requests are impossible, preventing fake additions</li>
+    </ul>
+
+    <h3>Security & Encryption</h3>
+    <ul>
+      <li><strong>End-to-end encryption (E2EE):</strong> Used for private chats and sensitive data whenever possible</li>
+      <li><strong>Hosted in Switzerland:</strong> Subject to stringent Swiss data protection regulations</li>
+      <li><strong>Minimal data retention:</strong> We follow a data minimization principle, retaining only core metadata</li>
+    </ul>
+  </section>
+
+  <!-- BUSINESS MODEL -->
+  <section class="content-section" id="business">
+    <h2>Business Model</h2>
+
+    <h3>Free Core Features</h3>
+    <ul>
+      <li>Establishing connections (pairing)</li>
+      <li>Joint posts (photos/videos) upon pairing</li>
+      <li>Basic chat and profile functionality</li>
+    </ul>
+
+    <h3>Potential Premium Features</h3>
+    <p>
+      Future paid upgrades may be offered to support ongoing development:
+    </p>
+    <ul>
+      <li>Advanced group/event tools (e.g., team chats, scheduling)</li>
+      <li>Additional cloud storage for media</li>
+      <li>Customized themes or design packages</li>
+      <li>Video/voice group calls</li>
+    </ul>
+    <p>
+      The free plan always remains ad-free and essential features fully intact.
+    </p>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="content-section" id="roadmap">
+    <h2>Roadmap</h2>
+    <ol>
+      <li>
+        <strong>Alpha Phase (current):</strong>
+        Core NFC/Bluetooth pairing functionality, basic app (iOS/Android).
+      </li>
+      <li>
+        <strong>Beta Phase (Q1 2025):</strong>
+        Inviting young audiences, privacy advocates, families, friend groups.
+        Testing the automated group post process, initial refinements (UI, performance).
+      </li>
+      <li>
+        <strong>Public Launch (Q2 2025):</strong>
+        Release on major app stores, media campaign for privacy and responsible screen use.
+        Soft launch of optional premium features.
+      </li>
+      <li>
+        <strong>Growth & Continuous Development:</strong>
+        International expansion, multilingual capabilities, expanded group/community functionalities.
+        Ongoing UI/UX improvements and security enhancements.
+      </li>
+    </ol>
+  </section>
+
+  <!-- MARKET POTENTIAL -->
+  <section class="content-section" id="market-potential">
+    <h2>Market Potential</h2>
+    <h3>Target Audiences</h3>
+    <ul>
+      <li>Younger users eager to limit screen time</li>
+      <li>Privacy-conscious individuals</li>
+      <li>Authenticity seekers, tired of fake accounts and influencer hype</li>
+      <li>Friends & families valuing genuine, private interaction</li>
+    </ul>
+
+    <h3>Competitive Advantage</h3>
+    <p>
+      SoulBond merges real-life exclusivity (physical pairing) with a friendly interface, 
+      avoids addictive triggers, and safeguards user privacy. This is a significant 
+      departure from conventional social platforms reliant on big data and massive 
+      ad revenues.
+    </p>
+  </section>
+
+  <!-- VISION & OUTLOOK -->
+  <section class="content-section" id="vision">
+    <h2>Vision and Outlook</h2>
+    <p>
+      The vision behind SoulBond is a return to essentials in digital communication: 
+      meaningful friendships, face-to-face connections, and a respectful, private 
+      online space. Instead of bombarding users with countless posts, likes, and 
+      endless follower battles, SoulBond promotes direct, personal exchange.
+    </p>
+    <p>
+      <strong>Goal:</strong> Building a network where grandparents and grandchildren, 
+      peer groups, and colleagues interact securely, sharing real moments—free from 
+      addictive loops, algorithmic manipulations, or spam-laden feeds.
+    </p>
+  </section>
+
+  <!-- SUMMARY -->
+  <section class="content-section" id="summary">
+    <h2>Summary</h2>
+    <ul>
+      <li><strong>Pairing only through physical encounters (NFC/Bluetooth):</strong> No purely online friend requests</li>
+      <li><strong>Automatic post (photo/video) with each pairing:</strong> Genuine memories, not staged content</li>
+      <li><strong>No addictive mechanics:</strong> Absent are likes, follower counts, or infinite feed loops</li>
+      <li><strong>Privacy & Ad-Free:</strong> Minimal data usage, zero targeted ads</li>
+      <li><strong>Sustainable approach:</strong> Free core, optional premium expansions</li>
+      <li><strong>Audience:</strong> Young screen-time managers, privacy advocates, authenticity enthusiasts, friends & families</li>
+    </ul>
+  </section>
+
+  <!-- CALL TO ACTION -->
+  <section class="content-section" id="cta-section">
+    <h2>Ready to Join the Community?</h2>
+    <p>
+      Get the SoulBond beta app today and see how refreshing social media can be 
+      when it starts with a real handshake and continues with genuine connections.
+    </p>
+    <a href="get-started.html" class="btn-cta">Download Now</a>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="content-section" id="contact-info">
+    <h2>Contact</h2>
+    <p><strong>Connexa GmbH</strong><br/>
+       Wilerstrasse 82<br/>
+       8370 Sirnach – Switzerland</p>
+    <p>Email: <a href="mailto:info@connexa-gmbh.ch">info@connexa-gmbh.ch</a></p>
+
+    <p>
+      <em>
+      Legal Note: This information is for informational purposes only and does not 
+      constitute a legally binding offer. All mentioned data, features, and timelines 
+      are subject to change during development. For further details, please contact us directly.
+      </em>
+    </p>
+    <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pitch.html">Pitch</a></li>
+        <li><a href="white-paper.html">White Paper</a></li>
+        <li><a href="crowdfunding.html">Crowdfunding</a></li>
+        <li><a href="founders.html">Our Founders</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="get-started.html">Download</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="imprint.html">Imprint</a></li>
+      </ul>
+      <p class="footer-copyright">
+        &copy; 2025 Connexa GmbH. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Hintergrund-Animation (Canvas) -->
+  <script>
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let devices = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight * 5; 
+      createDevices(Math.floor((canvas.width * canvas.height) / 5000));
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    let lastExecution = 0;
+    window.addEventListener('resize', () => {
+      const now = Date.now();
+      if (now - lastExecution >= 200) {
+        resizeCanvas();
+        lastExecution = now;
+      }
+    });
+
+    function createDevices(count) {
+      devices = [];
+      for (let i = 0; i < count; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        devices.push({
+          x,
+          y,
+          dx: Math.random() - 0.5,
+          dy: Math.random() - 0.5
+        });
+      }
+    }
+
+    function drawNetwork() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Verlauf-Hintergrund
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#051E41FF');
+      gradient.addColorStop(0.5, '#2C5772FF');
+      gradient.addColorStop(1, '#3647A5FF');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Punkte (Geräte)
+      devices.forEach(device => {
+        ctx.beginPath();
+        ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFD700';
+        ctx.fill();
+      });
+
+      // Verbindende Linien
+      devices.forEach((device, i) => {
+        for (let j = i + 1; j < devices.length; j++) {
+          const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(device.x, device.y);
+            ctx.lineTo(devices[j].x, devices[j].y);
+            ctx.strokeStyle = 'rgba(255, 127, 80, 0.1)';
+            ctx.stroke();
+          }
+        }
+      });
+    }
+
+    function updatePositions() {
+      devices.forEach(device => {
+        device.x += device.dx;
+        device.y += device.dy;
+        // Richtung umkehren, wenn Ränder erreicht
+        if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
+        if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
+      });
+    }
+
+    function animate() {
+      updatePositions();
+      drawNetwork();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
+  <!-- Mobile Menu Toggle -->
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>

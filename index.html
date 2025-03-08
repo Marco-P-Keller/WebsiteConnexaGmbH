@@ -1,432 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexa GmbH</title>
-    <link rel="icon" href="LogoV1.jpg" type="image/png">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-            overflow: auto;
-            overflow-x: hidden;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(120deg, #1D3557, #457B9D);
-        
-        }
-        canvas {
-            display: block;
-        }
-
-        #centerText {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 60px;
-            font-weight: bold;
-            color: #50e2ff;
-            text-shadow: 0 0 20px rgba(80, 141, 255, 0.8);
-            pointer-events: none;
-            animation: glow 2s infinite alternate;
-        }
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 20px rgba(80, 109, 255, 0.8);
-            }
-            100% {
-                text-shadow: 0 0 40px rgb(80, 80, 255);
-            }
-        }
-        nav {
-            position: sticky;   /*changed from fixed*/
-            top: 0;
-            width: 100%;
-            background-color: rgba(29, 53, 87, 0.8);
-            color: #fff;
-            padding: 15px 0;
-            text-align: center;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease, padding 0.3s ease;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 20px;
-        }
-        nav ul li a {
-            color: #50bfff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        nav ul li a:hover {
-            color: #004cff;
-        }
-        #networkCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-
-        #titel{
-            text-align: center;
-            z-index: 1;
-        }
-
-        .parallax {
-            height: 100vh;
-            background: linear-gradient(120deg, #1D3557, #457B9D);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-        section {
-            padding: 80px 20px;
-        }
-
-        #home{
-            /* margin-top: 0%; */
-            height: 100vh;
-            text-align: center;
-            z-index: -1;
-            background: linear-gradient(120deg, #1D3557, #457B9D);
-        }
-
-        #about{
-            margin-top: 0%;
-            height: 100vh;
-            width: 100%;
-            text-align: center;
-            z-index: 1;
-            background: linear-gradient(120deg, #1D3557, #457B9D);
-        }
-        #about h2, #founders h2 {
-            margin: 4%;
-            font-size: 2.5rem;
-            margin-bottom: 5vh;
-            color: #c6c7c7;
-        }
-        #about p {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: #aad0e7;
-            margin: 0 auto;
-            max-width: 1500px;
-        }
-
-        /* Allgemeiner Stil (Desktop-Standard) */
-        .desktop-only {
-            display: block; /* Standardmäßig sichtbar */
-        }
-
-        .mobile-only {
-            display: none; /* Standardmäßig unsichtbar */
-        }
-
-        /* Stil für Mobilgeräte */
-        @media (max-width: 768px) {
-            .desktop-only {
-                display: none; /* Auf Mobilgeräten ausblenden */
-            }
-
-            .mobile-only {
-                display: block; /* Auf Mobilgeräten anzeigen */
-            }
-        }
-
-
-        #founders{
-            height: 80vh;
-            text-align: center;
-            margin-top: 10%;
-            z-index: 0;
-            
-        }
-
-        .founders {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-            
-            
-        }
-        .founder {
-            max-width: 600px;
-            background: #1e394a;
-            color: #F1FAEE;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        /* Anpassung für mittelgroße Bildschirme */
-        @media (max-width: 768px) {
-            .founder {
-                max-width: 250px; /* Reduzierte Breite */
-                padding: 15px; /* Weniger Padding für kleinere Bildschirme */
-            }
-        }
-        /* Anpassung für kleine Bildschirme */
-        @media (max-width: 480px) {
-            .founder {
-                max-width: 200px; /* Noch schmaler auf sehr kleinen Bildschirmen */
-                padding: 10px; /* Noch kompakter */
-                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Weniger Schatten */
-            }
-        }
-        .founder:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-        .founder img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            border: 5px solid #F1FAEE;
-        }
-
-        #product{
-            position: relative;
-            height: 100vh;
-        }
-        .logo {
-            margin: 0 auto;
-            align-items: center;
-        }
-        .logotransparent{
-            position: absolute;
-            transform: translate(47%, 10%);
-            align-items: center;
-            display: block;
-            margin: 0 auto;
-            width: 50%;
-            z-index: 2;
-        }
-        .loch{
-            transform: translate(-23, -40%);
-            position: absolute;
-            width: 100%;
-            z-index: 1;
-        }
-
-        footer {
-
-            /* bottom: 0 auto; */
-            background-color: #1D3557;
-            /* margin-top: auto; */
-            color: #F1FAEE;
-            text-align: center;
-            /* padding: 0;
-            margin: 0; */
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
-        }
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
-        footer .social-icons {
-            margin-top: auto;
-        }
-        footer .social-icons a {
-            margin: 0 10px;
-            color: #F1FAEE;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-        footer .social-icons a:hover {
-            color: #5082ff;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connexa GmbH - Single Page</title>
+  <link rel="icon" href="LogoV1.jpg" type="image/png" />
+  <!-- Main CSS File -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#founders">Founders</a></li>
-            <!-- <li style="display:none;" class="desktop-only"><a href="#product">Product</a></li> -->
-        </ul>
-    </nav>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <!-- <img src="LogoV1.jpg" width="10%" alt="Connexa Logo"> -->
+      <a href="index.html">Connexa</a>
+    </div>
+    <div class="navbar-toggle" id="mobileMenu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <!-- Adjust or uncomment the Home link if needed -->
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="pitch.html">Pitch</a></li>
+      <li><a href="white-paper.html">White Paper</a></li>
+      <li><a href="crowdfunding.html">Crowdfunding</a></li>
+      <li><a href="founders.html">Our Founders</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="get-started.html">Download</a></li>
+    </ul>
+  </nav>
 
-    <section id="home" class="parallax">
-        <div id="centerText">Connexa GmbH</div>
-        <canvas id="networkCanvas"></canvas>
-        <!-- <img src="logo.jpeg" alt="titlepicture"> -->
-    </section> 
+  <!-- Background Canvas -->
+  <canvas id="networkCanvas"></canvas>
 
-    <section id="about">
-        <div class="desktop-only">
-            <h2>Goal</h2>
-            <!-- <p>Our mission is to make social media a space where trust, transparency, and authenticity come first.</p> -->
-            <p>Our mission is to make social media a space where trust, transparency, and authenticity take center stage. Instead of relying on superficial metrics like likes and follower counts, we aim to create a platform that fosters meaningful conversations and honest exchanges.</p>
-            <h2>The Problem</h2>
-            <p>Today’s social media is often dominated by pretense and manipulation. Fake profiles, curated posts, and the constant pressure to present a perfect image alienate us from one another. The consequences range from diminished self-esteem to a lack of genuine interaction.</p>
-            <!-- <p>Today’s social media landscape is dominated by pretense and manipulation, alienating us from one another.</p> -->
-            <h2>Solution</h2>
-            <p>Connexa offers an alternative: a digital space where authenticity matters. Our platform focuses on real interactions without misleading algorithms or manufactured popularity. Instead, users can express themselves honestly and unfiltered — creating a community built on shared values and true connections.            </p>
-            
-        </div>
-        <div class="mobile-only">
-            <h2>Goal</h2>
-            <p>Our mission is to make social media a space where trust, transparency, and authenticity come first.</p>
-            <!-- <p>Our mission is to make social media a space where trust, transparency, and authenticity take center stage. Instead of relying on superficial metrics like likes and follower counts, we aim to create a platform that fosters meaningful conversations and honest exchanges.</p> -->
-            <h2>The Problem</h2>
-            <!-- <p>Today’s social media is often dominated by pretense and manipulation. Fake profiles, curated posts, and the constant pressure to present a perfect image alienate us from one another. The consequences range from diminished self-esteem to a lack of genuine interaction.</p> -->
-            <p>Today’s social media landscape is dominated by pretense and manipulation, alienating us from one another.</p>
-            <h2>Solution</h2>
-            <p>We provides a digital space where authenticity thrives, fostering honest interactions and genuine connections without manipulative algorithms or fake popularity.
-        </div>
+  <!-- HERO SECTION (Home) -->
+  <section id="home" class="hero-section">
+    <div class="hero-content">
+      <h1 id="centerText">
+        CONNECT<br>
+        <span class="indent">WITH AUTHENTICITY</span>
+      </h1>
+      <p class="hero-description">
+        Welcome to a new era of social networking, where meaningful connections 
+        take center stage. No endless feeds, no like counters, and no influencer 
+        hype—just genuine, face-to-face encounters that nurture real relationships. 
+        With SoulBond, you only connect with people you meet offline, ensuring 
+        authentic bonds and freeing you from the noise, pressure, and invasive 
+        data collection common to traditional social media.
+      </p>
+      <!-- Updated beta app link -->
+      <a href="https://testflight.apple.com/join/TYeaSwnC" class="btn-cta">Try the Beta App</a>
+    </div>
+  </section>
 
+  <!-- EXECUTIVE SUMMARY / OVERVIEW -->
+  <section class="content-section" id="overview">
+    <h2>SoulBond – The New Approach to Genuine Social Connections</h2>
+    <p>
+      SoulBond reimagines social networking by focusing on real-life encounters, 
+      data privacy, and trust. Instead of endless content streams or faceless 
+      online acquaintances, you form “friendships” or “connections” only when you 
+      physically meet and pair your smartphones via NFC or Bluetooth.
+    </p>
+
+    <h3>Key Highlights</h3>
+    <ul>
+      <li><strong>No follower or like counts:</strong> No competition, no addictive loops</li>
+      <li><strong>Automated group post upon pairing:</strong> Real memories rather than staged content</li>
+      <li><strong>Fully ad-free and privacy-first:</strong> No data collection, no user data sales</li>
+      <li><strong>Free core features:</strong> Future optional premium features remain voluntary</li>
+    </ul>
+
+    <p>
+      SoulBond primarily caters to young users seeking to control their screen time, 
+      privacy-conscious individuals, those craving authenticity, and people wanting 
+      to stay connected with friends & family without the usual stress or addictive 
+      nature of conventional social media.
+    </p>
+  </section>
+
+  <!-- PROBLEM STATEMENT -->
+  <section class="content-section" id="problems">
+    <h2>Problem Statement</h2>
+    
+    <h3>Time Wasting & Potential Addiction</h3>
+    <p>
+      Popular networks often rely on infinite scrolling, likes, and follower metrics 
+      that trigger psychological cues. The outcome is potential addiction, excessive 
+      screen time, and a marked loss of productivity.
+    </p>
+
+    <h3>Privacy Concerns & Monetization</h3>
+    <p>
+      Many platforms earn revenue from ads and targeted advertising, which involves 
+      vast user data collection. This raises increasing doubts about data security 
+      and privacy.
+    </p>
+
+    <h3>Lack of Authenticity & Superficial Interactions</h3>
+    <p>
+      Likes, follower counts, and influencer-driven behavior often lead to superficial 
+      engagement. Most connections remain purely virtual, lacking genuine interaction 
+      and diluting meaningful relationships with close friends or family.
+    </p>
+
+    <h3>Content Overload</h3>
+    <p>
+      Constant streams of ads, memes, and self-promotional posts can overwhelm users, 
+      making it tough to find updates from genuine contacts amid the clutter.
+    </p>
+  </section>
+
+  <!-- SOLUTION (SoulBond) -->
+  <section class="content-section" id="solution">
+    <h2>SoulBond: The Solution</h2>
+    
+    <h3>Physical Pairing via NFC or Bluetooth</h3>
+    <p>
+      New connections arise only through offline meetings, where two people briefly 
+      bring their phones together (NFC) or pair via Bluetooth. This method is 
+      tamper-proof and blocks strangers, bots, or fake profiles.
+    </p>
+
+    <h3>Automatic Post with Every Pairing</h3>
+    <p>
+      Upon successful pairing, both individuals can capture a photo or video, which 
+      appears on each participant’s profile. This encourages genuine shared experiences, 
+      firmly tied to real-life encounters.
+    </p>
+
+    <h3>Minimal Content Flood & Reduced Addictive Tendencies</h3>
+    <ul>
+      <li><strong>No likes or follower counts:</strong> No “numbers game” fueling competition</li>
+      <li><strong>Curated media consumption:</strong> Without feed algorithms, time-wasting doomscrolling is minimized</li>
+    </ul>
+
+    <h3>Privacy & Ad-Free Operation</h3>
+    <p>
+      SoulBond is ad-free and does not monetize user data. We store only minimal, 
+      essential details (e.g., encrypted IDs). Our business approach rests on 
+      optional premium features, meaning we have no interest in analyzing or 
+      selling personal data.
+    </p>
+
+    <h3>Free Core Application</h3>
+    <p>
+      SoulBond’s fundamental functionalities (pairing, posting, chatting) are 
+      completely free. Potential premium add-ons may include expanded group 
+      features, distinctive designs, or extra cloud space, but remain optional.
+    </p>
+  </section>
+
+  <!-- TECHNICAL ARCHITECTURE -->
+  <section class="content-section" id="tech">
+    <h2>Technical Architecture</h2>
+
+    <h3>App Design</h3>
+    <ul>
+      <li><strong>Mobile App (iOS/Android):</strong> Intuitive interface with separate views for chats, profiles, and posts.</li>
+      <li><strong>Optional Web Access:</strong> A browser-based version for convenience and messaging on desktop.</li>
+    </ul>
+
+    <h3>NFC/Bluetooth Pairing</h3>
+    <ul>
+      <li><strong>NFC:</strong> Phones come within close range for a secure handshake</li>
+      <li><strong>Bluetooth:</strong> If NFC is unavailable, a similar pairing process is done wirelessly</li>
+      <li><strong>Fraud-Resistant:</strong> Purely online friend requests are impossible, preventing fake additions</li>
+    </ul>
+
+    <h3>Security & Encryption</h3>
+    <ul>
+      <li><strong>End-to-end encryption (E2EE):</strong> Used for private chats and sensitive data whenever possible</li>
+      <li><strong>Hosted in Switzerland:</strong> Subject to stringent Swiss data protection regulations</li>
+      <li><strong>Minimal data retention:</strong> We follow a data minimization principle, retaining only core metadata</li>
+    </ul>
+  </section>
+
+  <!-- BUSINESS MODEL -->
+  <section class="content-section" id="business">
+    <h2>Business Model</h2>
+
+    <h3>Free Core Features</h3>
+    <ul>
+      <li>Establishing connections (pairing)</li>
+      <li>Joint posts (photos/videos) upon pairing</li>
+      <li>Basic chat and profile functionality</li>
+    </ul>
+
+    <h3>Potential Premium Features</h3>
+    <p>
+      Future paid upgrades may be offered to support ongoing development:
+    </p>
+    <ul>
+      <li>Advanced group/event tools (e.g., team chats, scheduling)</li>
+      <li>Additional cloud storage for media</li>
+      <li>Customized themes or design packages</li>
+      <li>Video/voice group calls</li>
+    </ul>
+    <p>
+      The free plan always remains ad-free and essential features fully intact.
+    </p>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="content-section" id="roadmap">
+    <h2>Roadmap</h2>
+    <ol>
+      <li>
+        <strong>Alpha Phase (current):</strong>
+        Core NFC/Bluetooth pairing functionality, basic app (iOS/Android).
+      </li>
+      <li>
+        <strong>Beta Phase (Q1 2025):</strong>
+        Inviting young audiences, privacy advocates, families, friend groups.
+        Testing the automated group post process, initial refinements (UI, performance).
+      </li>
+      <li>
+        <strong>Public Launch (Q2 2025):</strong>
+        Release on major app stores, media campaign for privacy and responsible screen use.
+        Soft launch of optional premium features.
+      </li>
+      <li>
+        <strong>Growth & Continuous Development:</strong>
+        International expansion, multilingual capabilities, expanded group/community functionalities.
+        Ongoing UI/UX improvements and security enhancements.
+      </li>
+    </ol>
+  </section>
+
+  <!-- MARKET POTENTIAL -->
+  <section class="content-section" id="market-potential">
+    <h2>Market Potential</h2>
+    <h3>Target Audiences</h3>
+    <ul>
+      <li>Younger users eager to limit screen time</li>
+      <li>Privacy-conscious individuals</li>
+      <li>Authenticity seekers, tired of fake accounts and influencer hype</li>
+      <li>Friends & families valuing genuine, private interaction</li>
+    </ul>
+
+    <h3>Competitive Advantage</h3>
+    <p>
+      SoulBond merges real-life exclusivity (physical pairing) with a friendly interface, 
+      avoids addictive triggers, and safeguards user privacy. This is a significant 
+      departure from conventional social platforms reliant on big data and massive 
+      ad revenues.
+    </p>
+  </section>
+
+  <!-- VISION & OUTLOOK -->
+  <section class="content-section" id="vision">
+    <h2>Vision and Outlook</h2>
+    <p>
+      The vision behind SoulBond is a return to essentials in digital communication: 
+      meaningful friendships, face-to-face connections, and a respectful, private 
+      online space. Instead of bombarding users with countless posts, likes, and 
+      endless follower battles, SoulBond promotes direct, personal exchange.
+    </p>
+    <p>
+      <strong>Goal:</strong> Building a network where grandparents and grandchildren, 
+      peer groups, and colleagues interact securely, sharing real moments—free from 
+      addictive loops, algorithmic manipulations, or spam-laden feeds.
+    </p>
+  </section>
+
+  <!-- SUMMARY -->
+  <section class="content-section" id="summary">
+    <h2>Summary</h2>
+    <ul>
+      <li><strong>Pairing only through physical encounters (NFC/Bluetooth):</strong> No purely online friend requests</li>
+      <li><strong>Automatic post (photo/video) with each pairing:</strong> Genuine memories, not staged content</li>
+      <li><strong>No addictive mechanics:</strong> Absent are likes, follower counts, or infinite feed loops</li>
+      <li><strong>Privacy & Ad-Free:</strong> Minimal data usage, zero targeted ads</li>
+      <li><strong>Sustainable approach:</strong> Free core, optional premium expansions</li>
+      <li><strong>Audience:</strong> Young screen-time managers, privacy advocates, authenticity enthusiasts, friends & families</li>
+    </ul>
+  </section>
+
+  <!-- FOUNDERS SECTION
+  <section id="founders" class="content-section">
+    <h2>The Founders</h2>
+    <p>
+      SoulBond was born from a shared belief that social media should enhance our 
+      real-world connections, not replace them. Our founders—visionaries in both 
+      technology and community-building—combined expertise in secure mobile 
+      development and ethical design to create a platform that puts genuine human 
+      relationships first.
+    </p>
+    <div class="founders">
+      <div class="founder">
+        <img src="Janis.webp" alt="Janis" />
+        <h3>Janis Papagiorgio</h3>
+        <p>CTO & Co-founder</p>
+      </div>
+      ...
+    </div>
+    -->
+  <!-- </section> -->
+  
+    <!-- HOW IT WORKS
+    <section id="how-it-works" class="content-section">
+      <h2>How It Works</h2>
+      <p>
+        It’s simple and grounded in the real world:
+      </p>
+      <ol>
+        <li><strong>Meet in Person:</strong> Find friends, family, or new acquaintances offline.</li>
+        <li><strong>Pair Devices:</strong> Tap your smartphones together using NFC or Bluetooth.</li>
+        <li><strong>Create a Post:</strong> Capture a quick photo or video to mark the occasion.</li>
+        <li><strong>Stay Connected:</strong> See genuine updates and shared content only from people you truly know.</li>
+      </ol>
+      <p>
+        By anchoring each connection in a face-to-face encounter, SoulBond ensures 
+        every friend in your feed is someone you genuinely trust.
+      </p>
+    </section> -->
+
+    <!-- ADDITIONAL CTA SECTION (OPTIONAL) -->
+    <section id="cta-section" class="content-section">
+      <h2>Ready to Join the Community?</h2>
+      <p>
+        Get the SoulBond beta app today and see how refreshing social media can be 
+        when it starts with a real handshake and continues with genuine connections.
+      </p>
+      <a href="get-started.html" class="btn-cta">Download Now</a>
     </section>
 
-    <section id="founders">
-        <div>
-            <h2>The Founders</h2>
-            <div class="founders">
-                <div class="founder">
-                    <img src="Janis.webp" alt="Founder 1">
-                    <h3>Janis Papagiorgio</h3>
-                    <p>CTO & Co-founder</p>
-                    <div class="desktop-only">
-                        <p>Janis is a visionary technologist with exceptional problem-solving skills and expertise in software architecture. His innovative mindset ensures Connexa remains secure, scalable, and at the forefront of authentic digital interactions.</p>
-                    </div>
-                </div>
-                <div class="founder">
-                    <img src="Marco2.webp" alt="Founder 2">
-                    <h3>Marco P. Keller</h3>
-                    <p>CEO & Co-founder</p>
-                    <div class="desktop-only">
-                        <p>Marco is a strategic leader known for inspiring teams and forging impactful partnerships. With a clear vision and a focus on growth, he drives Connexa’s mission to revolutionize social media.</p>
-                    </div>
-                </div>
-                <div class="founder">
-                    <img src="Marius.webp" alt="Founder 3">
-                    <h3>Marius Jörger</h3>
-                    <div class="desktop-only">
-                        <p>CFO & Co-founder</p>
-                        <p>Marius is a financial strategist with a keen eye for sustainable growth and resource efficiency. His forward-thinking approach positions Connexa for long-term success in a competitive landscape.</p>
-                    </div>
-                    <div class="mobile-only">
-                        <p>CFO & Co-founder</p>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pitch.html">Pitch</a></li>
+        <li><a href="white-paper.html">White Paper</a></li>
+        <li><a href="crowdfunding.html">Crowdfunding</a></li>
+        <li><a href="founders.html">Our Founders</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="get-started.html">Download</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="imprint.html">Imprint</a></li>
+      </ul>
+      <p>&copy; 2025 Connexa GmbH. All rights reserved.</p>
+    </div>
+  </footer>
 
-    <!-- <section id="product" class="desktop-only">
+  <!-- Background Animation Script -->
+  <script>
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
 
-        
-        <img src="Logo_TransparentV4.png" alt="Logo_TransparentV4" class="logotransparent">
-        <img src="Loch.png" alt="Loch" class="loch">
-        
-    </section>  -->
+    let devices = [];
 
-    <!-- <footer>
-        <p>&copy; 2024 Connexa GmbH. All rights reserved.</p>
-        <div class="social-icons">
-            <a href="#">&#x2665; Facebook</a>
-            <a href="#">&#x2665; Twitter</a>
-            <a href="#">&#x2665; LinkedIn</a>
-        </div>
-    </footer> -->
+    // Function to resize the canvas to full window dimensions
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight * 5; 
+      // Adjust multiplier if the page height changes
+      createDevices(Math.floor((canvas.width * canvas.height) / 5000));
+    }
 
-    <script>
-        const canvas = document.getElementById('networkCanvas');
-        const ctx = canvas.getContext('2d');
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-        let devices = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            const deviceCount = Math.floor((canvas.width * canvas.height) / 5000); // 1 Gerät pro 10.000 Pixel Fläche
-            createDevices(deviceCount);
-        }
-        window.addEventListener('resize', resizeCanvas);
+    let lastExecution = 0;
+    window.addEventListener('resize', () => {
+      const now = Date.now();
+      if (now - lastExecution >= 200) {
         resizeCanvas();
+        lastExecution = now;
+      }
+    });
 
-        //added
-        let lastExecution = 0; // Zeitpunkt der letzten Ausführung
-
-        window.addEventListener('resize', () => {
-            const now = Date.now();
-            if (now - lastExecution >= 200) { // 200 ms Intervall
-                resizeCanvas();
-                lastExecution = now;
-            }
+    // Create random device positions
+    function createDevices(count) {
+      devices = [];
+      for (let i = 0; i < count; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        devices.push({
+          x,
+          y,
+          dx: Math.random() - 0.5,
+          dy: Math.random() - 0.5
         });
-        //added
+      }
+    }
 
-        function createDevices(count) {
-            devices = []; // Löscht vorherige Geräte
-            for (let i = 0; i < count; i++) {
-                const x = Math.random() * canvas.width;
-                const y = Math.random() * canvas.height;
-                devices.push({ x, y, dx: Math.random() - 0.5, dy: Math.random() - 0.5 });
-            }
+    // Draw network of devices and connections
+    function drawNetwork() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Create gradient background
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#051E41FF');
+      gradient.addColorStop(0.5, '#2C5772FF');
+      gradient.addColorStop(1, '#3647A5FF');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw each device as a point
+      devices.forEach(device => {
+        ctx.beginPath();
+        ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFD700';
+        ctx.fill();
+      });
+
+      // Draw connecting lines between devices if close enough
+      devices.forEach((device, i) => {
+        for (let j = i + 1; j < devices.length; j++) {
+          const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(device.x, device.y);
+            ctx.lineTo(devices[j].x, devices[j].y);
+            ctx.strokeStyle = 'rgba(255, 127, 80, 0.1)';
+            ctx.stroke();
+          }
         }
+      });
+    }
 
-        function drawNetwork() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00172D';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Update device positions for animation
+    function updatePositions() {
+      devices.forEach(device => {
+        device.x += device.dx;
+        device.y += device.dy;
+        // Reverse direction upon hitting boundaries
+        if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
+        if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
+      });
+    }
 
-            devices.forEach(device => {
-                ctx.beginPath();
-                ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
-                ctx.fillStyle = '#FFD700';
-                ctx.fill();
-            });
+    // Animation loop
+    function animate() {
+      updatePositions();
+      drawNetwork();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
 
-            devices.forEach((device, i) => {
-                for (let j = i + 1; j < devices.length; j++) {
-                    const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
-                    if (dist < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(device.x, device.y);
-                        ctx.lineTo(devices[j].x, devices[j].y);
-                        ctx.strokeStyle = 'rgba(255, 127, 80, 0.1)';
-                        ctx.stroke();
-                    }
-                }
-            });
-        }
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = document.getElementById('navLinks');
 
-        
-
-        function updatePositions() {
-            devices.forEach(device => {
-                device.x += device.dx;
-                device.y += device.dy;
-
-                if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
-                if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
-            });
-        }
-
-        function animate() {
-            updatePositions();
-            drawNetwork();
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>

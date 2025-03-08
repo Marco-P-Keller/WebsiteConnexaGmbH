@@ -1,0 +1,281 @@
+/* Basis-Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Schrift */
+  body {
+    font-family: 'Poppins', sans-serif;
+    /* Wir machen kein eigenes Body-Gradient,
+       da wir den Canvas selbst einen Hintergrund-Gradient nutzen lassen.
+       So bleibt es "durchsichtig" und du siehst das Canvas darunter. */
+    overflow-x: hidden; /* Ermöglicht vertikales Scrollen */
+  }
+  
+  /* Canvas als Hintergrund */
+  #networkCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Damit es hinter allen Inhalten liegt */
+  }
+  
+  /* Navigation (oben fixiert) */
+  .navbar {
+    position: sticky;
+    /* position: fixed; */
+    top: 0;
+    width: 100%;
+    /* Halbtransparenter Farbverlauf */
+    background: linear-gradient(
+      135deg,
+      rgba(22, 47, 85, 0.7),
+      rgba(48, 87, 110, 0.7)
+    );
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000; /* vor dem Canvas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Brand links */
+  .navbar-brand a {
+    color: #f1faee;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.5rem;
+  }
+  
+  /* Menü */
+  .nav-links {
+    list-style: none;
+    display: flex;  /* Desktop: horizontal */
+    gap: 30px;
+    /* Für Mobile Overlay-Effekt */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(9, 22, 51, 0.95),
+      rgba(69, 123, 157, 0.95),
+      rgba(34, 88, 90, 0.95)
+    );
+    overflow: hidden;
+    transition: height 0.4s ease;
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Desktop: Menü normal (keine Overlay-Eigenschaften) */
+  @media (min-width: 769px) {
+    .nav-links {
+      position: static;
+      height: auto;
+      background: none;
+      flex-direction: row;
+      justify-content: flex-end;
+      transition: none;
+    }
+  }
+  
+  /* Menü-Links */
+  .nav-links li a {
+    color: #f1faee;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  .nav-links li a:hover {
+    color: #44a1bd;
+  }
+  .nav-links li a.active {
+    color: #3faab8;
+    text-decoration: underline;
+  }
+  /* Vollbild Overlay, wenn active */
+  .nav-links.active {
+    height: 100vh;
+  }
+  /* Hamburger Icon (nur sichtbar auf Mobile/Tablet) */
+  .navbar-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .bar {
+    height: 3px;
+    width: 25px;
+    background-color: #f1faee;
+    margin: 4px 0;
+    transition: 0.4s;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-toggle {
+      display: flex;
+    }
+  }
+  
+  /* Hero-Sektion (Home-Bereich oben) */
+  .hero-section {
+    min-height: 100vh; /* damit man den ganzen Screen füllt */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Inhalte nach links */
+    position: relative;
+    padding-left: 4rem; /* etwas Platz zum linken Rand */
+  }
+  
+  /* Container für Titel und Text auf der linken Seite */
+  .hero-content {
+    width: 70%;       /* 70% der Bildschirmbreite */
+    text-align: left; /* Text linksbündig */
+  }
+  
+  /* Titel */
+  #centerText {
+    /* font-size: 5rem; */
+    font-size: clamp(1.5rem, 5vw, 4.5rem);
+    color: #50e2ff;
+    text-shadow: 0 0 20px rgba(80, 141, 255, 0.8);
+    pointer-events: none;
+    animation: glow 2s infinite alternate;
+    margin-bottom: 2rem;
+  }
+  .indent {
+    display: inline-block; /* Damit wir margin-left gezielt anwenden können */
+    margin-left: 2em;      /* Hier den gewünschten Einzug/Abstand einstellen */
+  }
+
+  @keyframes glow {
+    0% {
+      text-shadow: 0 0 20px rgba(80, 109, 255, 0.8);
+    }
+    100% {
+      text-shadow: 0 0 40px rgb(80, 80, 255);
+    }
+  }
+  
+  /* Text darunter */
+  .hero-description {
+    color: #F1FAEE;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Button */
+  .btn-cta {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #44a1bd;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  .btn-cta:hover {
+    background-color: #3faab8;
+  }
+  
+  /* Content-Sektionen (Idea, Concept, etc.) */
+  .content-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #F1FAEE;
+    background: rgba(29, 54, 88, 0.702); /* Halbtransparenter Hintergrund (optional) */
+    border-radius: 10px;
+    margin-bottom: 50px;
+  }
+  .content-section h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  .content-section p,
+  .content-section ul,
+  .content-section ol {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .content-section ul li,
+  .content-section ol li {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Footer */
+  .footer {
+    background: linear-gradient(135deg, #152C48, #1F4E5D);
+    color: #f1faee;
+    padding: 20px;
+    text-align: center;
+    /* Falls du den Footer oben anpinnen willst, ggf. position: fixed; bottom: 0; */
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .footer-links li a {
+    color: #f1faee;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .footer-links li a:hover {
+    color: #44a1bd;
+  }
+
+  .footer-copyright {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  /* Responsive Anpassungen */
+  @media (max-width: 768px) {
+    /* Hero: in der Mitte ausrichten bei kleineren Screens */
+    .hero-section {
+      /* justify-content: left */
+      /* padding-left: 0%; */
+      /* padding-left: 1rem; */ 
+      justify-content: flex-start; 
+      padding-left: 5%; /* Auf 0 setzen, damit nichts „eingerückt“ wird */
+      
+    }
+    .hero-content {
+      /* width: 90%; */
+      /* text-align: center; */
+      padding: 0;
+      text-align: left;
+    }
+    #centerText {
+      font-size: 2rem;
+    }
+    .content-section {
+      margin: 0 10px;
+    }
+  }
+  

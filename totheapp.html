@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e90ff, #ff7f50);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            animation: fadeIn 2s ease-in-out infinite alternate;
+        }
+
+        #countdown {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Coming Soon</h1>
+        <div id="countdown"></div>
+    </div>
+
+    <script>
+        const targetDate = new Date("2025-03-06T00:00:00");
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeDifference = targetDate - now;
+
+            if (timeDifference > 0) {
+                const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML =
+                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                document.getElementById("countdown").innerHTML = "We are live!";
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
