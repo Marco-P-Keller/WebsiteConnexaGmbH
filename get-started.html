@@ -16,7 +16,7 @@
 
   <style>
     /* --------------------------------
-       Grundlegendes Reset & Box Sizing
+       Basic Reset & Box Sizing
     --------------------------------- */
     *, *::before, *::after {
       margin: 0;
@@ -25,8 +25,8 @@
     }
 
     /* 
-      WICHTIG: HTML und Body auf 100% Höhe setzen 
-      + flex layout im Body für Sticky-Footer 
+      IMPORTANT: Set HTML and Body to 100% height 
+      + flex layout on body for a sticky footer 
     */
     html,
     body {
@@ -41,12 +41,12 @@
       color: #333;
       line-height: 1.6;
       margin: 0;
-      overflow-x: hidden; /* prevent horizontal scroll */
+      overflow-x: hidden; /* Prevent horizontal scroll */
     }
 
-    /* Hier wrappern wir den Hauptinhalt (inkl. Canvas, Coming Soon Section etc.) */
+    /* Wrapper for main content (including canvas, coming soon section etc.) */
     .main-content {
-      flex: 1; /* Füllt den verfügbaren Platz aus */
+      flex: 1; /* Fills the available space */
       display: block;
     }
 
@@ -57,7 +57,7 @@
       position: sticky;
       top: 0;
       width: 100%;
-      /* Halbtransparenter Farbverlauf */
+      /* Semi-transparent gradient background */
       background: linear-gradient(
         135deg,
         rgba(22, 47, 85, 0.7),
@@ -68,7 +68,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      z-index: 1000; /* vor dem Canvas */
+      z-index: 1000; /* In front of the canvas */
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
     
@@ -80,12 +80,12 @@
       font-size: 1.5rem;
     }
     
-    /* Menü */
+    /* Menu styles */
     .nav-links {
       list-style: none;
       display: flex;  /* Desktop: horizontal */
       gap: 30px;
-      /* Für Mobile Overlay-Effekt */
+      /* For Mobile Overlay effect */
       position: fixed;
       top: 0;
       left: 0;
@@ -105,7 +105,7 @@
       justify-content: center;
     }
     
-    /* Desktop: Menü normal (keine Overlay-Eigenschaften) */
+    /* Desktop: normal menu (no overlay) */
     @media (min-width: 769px) {
       .nav-links {
         position: static;
@@ -117,7 +117,7 @@
       }
     }
     
-    /* Menü-Links */
+    /* Menu links */
     .nav-links li a {
       color: #f1faee;
       text-decoration: none;
@@ -134,11 +134,11 @@
       text-decoration: underline;
     }
 
-    /* Vollbild Overlay, wenn active */
+    /* Fullscreen overlay when active */
     .nav-links.active {
       height: 100vh;
     }
-    /* Hamburger Icon (nur sichtbar auf Mobile/Tablet) */
+    /* Hamburger Icon (visible on Mobile/Tablet only) */
     .navbar-toggle {
       display: none;
       flex-direction: column;
@@ -165,7 +165,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -1; /* behind content */
+      z-index: -1; /* Behind content */
     }
 
     /* --------------------------------
@@ -173,7 +173,7 @@
     --------------------------------- */
     .coming-soon-section {
       position: relative;
-      margin-top: 80px; /* space below navbar */
+      margin-top: 80px; /* Space below navbar */
       padding: 60px 20px;
       max-width: 1200px;
       margin-left: auto;
@@ -195,35 +195,20 @@
       margin: 0 auto 2em auto;
     }
 
-    /* Countdown Box */
-    .countdown {
+    /* Beta App Button Styles */
+    .btn-cta {
       display: inline-block;
-      background-color: rgba(143, 190, 204, 0.9);
-      backdrop-filter: blur(6px);
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      padding: 30px 50px;
-      margin-bottom: 2em;
+      padding: 10px 20px;
+      background-color: #2C5772FF;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      margin-top: 20px;
     }
-    .countdown h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5em;
-      color: #2c3e50;
-    }
-    .countdown p {
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 1.5em;
-    }
-    /* Timer Display */
-    .timer-display {
-      font-size: 1.2rem;
-      color: #444;
-      margin: 1em 0 0 0;
-    }
-    .timer-display span {
-      display: inline-block;
-      min-width: 60px;
+    .btn-cta:hover {
+      background-color: #3647A5FF;
     }
 
     /* --------------------------------
@@ -234,8 +219,7 @@
       color: #f1faee;
       padding: 20px;
       text-align: center;
-
-      /* Wichtig: Damit der Footer unten bleibt */
+      /* IMPORTANT: To keep the footer at the bottom */
       margin-top: auto;
     }
 
@@ -269,7 +253,7 @@
   </style>
 </head>
 <body>
-  <!-- Hauptinhalt in Wrapper, damit der Footer "sticky" unten bleibt -->
+  <!-- Main content wrapper for sticky footer -->
   <div class="main-content">
     <!-- NAVIGATION BAR -->
     <nav class="navbar">
@@ -305,16 +289,10 @@
         </p>
       </div>
 
-      <!-- Countdown Box -->
-      <div class="countdown">
-        <h2>Launch Countdown</h2>
-        <p>We can’t wait to share what’s next with you!</p>
-        <div class="timer-display" id="timerDisplay">
-          <!-- We'll populate this with JS below -->
-        </div>
-      </div>
+      <!-- Beta App Button -->
+      <a href="https://testflight.apple.com/join/TYeaSwnC" class="btn-cta">Try the Beta App</a>
     </section>
-  </div> <!-- Ende .main-content -->
+  </div> <!-- End of .main-content -->
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -340,10 +318,11 @@
 
     let devices = [];
 
+    // Function to resize canvas to full window dimensions
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight * 5; 
-      // Falls du sehr viel Inhalt hast, erhöhe den Faktor entsprechend.
+      // Increase factor if you have a lot of content
       createDevices(Math.floor((canvas.width * canvas.height) / 5000));
     }
 
@@ -359,6 +338,7 @@
       }
     });
 
+    // Function to create devices at random positions
     function createDevices(count) {
       devices = [];
       for (let i = 0; i < count; i++) {
@@ -373,6 +353,7 @@
       }
     }
 
+    // Function to draw the network of devices and connecting lines
     function drawNetwork() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -384,7 +365,7 @@
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Points (devices)
+      // Draw devices as points
       devices.forEach(device => {
         ctx.beginPath();
         ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
@@ -392,7 +373,7 @@
         ctx.fill();
       });
 
-      // Connecting lines
+      // Draw connecting lines between close devices
       devices.forEach((device, i) => {
         for (let j = i + 1; j < devices.length; j++) {
           const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
@@ -407,16 +388,18 @@
       });
     }
 
+    // Function to update positions for animation
     function updatePositions() {
       devices.forEach(device => {
         device.x += device.dx;
         device.y += device.dy;
-        // An Kanten abprallen
+        // Bounce off edges
         if (device.x < 0 || device.x > canvas.width) device.dx *= -1;
         if (device.y < 0 || device.y > canvas.height) device.dy *= -1;
       });
     }
 
+    // Animation loop
     function animate() {
       updatePositions();
       drawNetwork();
@@ -425,7 +408,7 @@
     animate();
   </script>
 
-  <!-- MOBILE MENU TOGGLE -->
+  <!-- MOBILE MENU TOGGLE SCRIPT -->
   <script>
     const mobileMenu = document.getElementById('mobileMenu');
     const navLinks = document.getElementById('navLinks');
@@ -433,41 +416,6 @@
     mobileMenu.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
-  </script>
-
-  <!-- COUNTDOWN SCRIPT -->
-  <script>
-    // Set a target launch date/time:
-    const launchDate = new Date("Mar 05, 2025 23:59:59").getTime();
-
-    const timerDisplay = document.getElementById("timerDisplay");
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = launchDate - now;
-
-      if (distance <= 0) {
-        // If the date is reached or passed:
-        timerDisplay.textContent = "We're Live! Thank you for your patience.";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      timerDisplay.innerHTML = `
-        <span><strong>${days}</strong> Days</span> 
-        <span><strong>${hours}</strong> Hrs</span> 
-        <span><strong>${minutes}</strong> Min</span> 
-        <span><strong>${seconds}</strong> Sec</span>
-      `;
-    }
-
-    // Update the countdown every second
-    updateCountdown(); // initial call
-    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>

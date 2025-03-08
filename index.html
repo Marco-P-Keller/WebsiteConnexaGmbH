@@ -55,7 +55,8 @@
         authentic bonds and freeing you from the noise, pressure, and invasive 
         data collection common to traditional social media.
       </p>
-      <a href="totheapp.html" class="btn-cta">Try the Beta App</a>
+      <!-- Updated beta app link -->
+      <a href="https://testflight.apple.com/join/TYeaSwnC" class="btn-cta">Try the Beta App</a>
     </div>
   </section>
 
@@ -350,17 +351,18 @@
     </div>
   </footer>
 
-  <!-- Background Animation -->
+  <!-- Background Animation Script -->
   <script>
     const canvas = document.getElementById('networkCanvas');
     const ctx = canvas.getContext('2d');
 
     let devices = [];
 
+    // Function to resize the canvas to full window dimensions
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight * 5; 
-      // If you have a long page, multiply accordingly so the canvas covers all.
+      // Adjust multiplier if the page height changes
       createDevices(Math.floor((canvas.width * canvas.height) / 5000));
     }
 
@@ -376,6 +378,7 @@
       }
     });
 
+    // Create random device positions
     function createDevices(count) {
       devices = [];
       for (let i = 0; i < count; i++) {
@@ -390,10 +393,11 @@
       }
     }
 
+    // Draw network of devices and connections
     function drawNetwork() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Gradient background
+      // Create gradient background
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
       gradient.addColorStop(0, '#051E41FF');
       gradient.addColorStop(0.5, '#2C5772FF');
@@ -401,7 +405,7 @@
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Points (devices)
+      // Draw each device as a point
       devices.forEach(device => {
         ctx.beginPath();
         ctx.arc(device.x, device.y, 3, 0, Math.PI * 2);
@@ -409,7 +413,7 @@
         ctx.fill();
       });
 
-      // Connecting lines
+      // Draw connecting lines between devices if close enough
       devices.forEach((device, i) => {
         for (let j = i + 1; j < devices.length; j++) {
           const dist = Math.hypot(device.x - devices[j].x, device.y - devices[j].y);
@@ -424,6 +428,7 @@
       });
     }
 
+    // Update device positions for animation
     function updatePositions() {
       devices.forEach(device => {
         device.x += device.dx;
@@ -434,6 +439,7 @@
       });
     }
 
+    // Animation loop
     function animate() {
       updatePositions();
       drawNetwork();
@@ -442,7 +448,7 @@
     animate();
   </script>
 
-  <!-- Mobile Menu Toggle -->
+  <!-- Mobile Menu Toggle Script -->
   <script>
     const mobileMenu = document.getElementById('mobileMenu');
     const navLinks = document.getElementById('navLinks');
